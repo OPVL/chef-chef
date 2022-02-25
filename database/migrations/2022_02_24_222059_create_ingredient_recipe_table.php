@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('ingredient_id');
             $table->foreignId('recipe_id');
             $table->timestamps();
+            //test
         });
     }
 
