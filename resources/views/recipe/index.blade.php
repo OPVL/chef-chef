@@ -10,18 +10,19 @@
 
 <body>
     <table>
-        <tr>
+        <thead>
             <th>ID</th>
             <th>NAME</th>
             <th>DESCRIPTION</th>
             <th>INGREDIENTS</th>
-        </tr>
+        </thead>
         @foreach ($recipes as $recipe)
             <tr>
                 <td>{{ $recipe->id }}</td>
                 <td>{{ $recipe->name }}</td>
                 <td>{{ $recipe->description }}</td>
-                <td>{{ $recipe->ingredients->count }}</td>
+                <td>{{ $recipe->name }}</td>
+                {{-- <td>{{ $recipe->ingredients->count }}</td> --}}
             </tr>
         @endforeach
     </table>

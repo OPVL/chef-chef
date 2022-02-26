@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Recipe extends Model
 {
     use HasFactory;
 
-    public function ingredients(): HasManyThrough
+    public function ingredients(): BelongsToMany
     {
-        return $this->hasManyThrough(Ingredient::class, IngredientRecipe::class);
+        return $this->belongsToMany(Ingredient::class);
     }
 }
