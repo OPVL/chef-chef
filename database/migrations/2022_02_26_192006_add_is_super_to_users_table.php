@@ -6,22 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('cuisine_recipe', function (Blueprint $table): void {
-            $table->id();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table): void {
+            $table->boolean('is_super')->default(false);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('cuisine_recipe');
+        Schema::table('users', function (Blueprint $table): void {
+            $table->dropColumn('is_super');
+        });
     }
 };
