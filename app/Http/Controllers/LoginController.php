@@ -2,6 +2,6 @@
 
 namespace App\Http\Controllers;
 
-class UnitController extends Controller
+class LoginController extends Controller
 {
 }
