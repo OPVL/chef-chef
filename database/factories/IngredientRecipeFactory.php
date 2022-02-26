@@ -4,12 +4,12 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class IngredientFactory extends Factory
+class IngredientRecipeFactory extends Factory
 {
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
+            'quantity' => $this->faker->number(),
             'unit_id' => 1,
         ];
     }

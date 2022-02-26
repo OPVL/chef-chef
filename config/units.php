@@ -7,6 +7,6 @@ return [
         'ml' => 'millilitre',
         'g' => 'gram',
         'kg' => 'kilogram',
-        'can' => 'can'
-    ]
+        'can' => 'can',
+    ],
 ];

@@ -5,9 +5,6 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Unit>
- */
 class UnitFactory extends Factory
 {
     public function __construct()
@@ -15,7 +12,7 @@ class UnitFactory extends Factory
         $this->config = Collect(config('units.defaults'));
     }
 
-    public function definition()
+    public function definition(): array
     {
         $name = $this->faker->word();
         return [
