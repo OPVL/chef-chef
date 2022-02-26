@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
         return view('auth.register');
     }
 
     public function store(RegisterUser $request): RedirectResponse
     {
-        $user = User::create($request->validated());
+        $user = User::register($request->validated());
         Auth::login($user);
-        return redirect()->intended(route('recipe.index'));
+        return redirect()->intended('');
     }
 }

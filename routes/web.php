@@ -19,13 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::delete('logout')->uses([LoginController::class, 'delete'])->name('login.delete');
 
-Route::get('login')->uses([LoginController::class, 'index'])->name('login.index');
-Route::put('login')->uses([LoginController::class, 'store'])->name('login.store');
-Route::put('logout')->uses([LoginController::class, 'delete'])->name('login.delete');
+Route::group(['middleware' => 'guest'], function (): void {
+    Route::get('login')->uses([LoginController::class, 'index'])->name('login');
+    Route::put('login')->uses([LoginController::class, 'store'])->name('login.store');
 
-Route::get('register')->uses([RegisterController::class, 'create'])->name('register.create');
-Route::put('register')->uses([RegisterController::class, 'store'])->name('register.store');
+    Route::get('register')->uses([RegisterController::class, 'create'])->name('register');
+    Route::put('register')->uses([RegisterController::class, 'store'])->name('register.store');
+});
 
 Route::group(['prefix' => 'recipe'], function (): void {
     Route::get('')->uses([RecipeController::class, 'index'])->name('recipe.index');

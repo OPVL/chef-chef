@@ -12,6 +12,9 @@
     <form action="{{ route('register.store') }}" method="post">
         @method('PUT')
         @csrf
+        <label for="name">name</label>
+        <input type="text" name="name" id="name" autocomplete="name">
+
         <label for="email">email</label>
         <input type="text" name="email" id="email" autocomplete="email">
 
