@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
@@ -33,6 +34,7 @@ Route::group(['prefix' => 'recipes'], function (): void {
     Route::get('')->uses([RecipeController::class, 'index'])->name('recipe.index');
     Route::get('create')->uses([RecipeController::class, 'create'])->name('recipe.create');
     Route::get('{recipe}')->uses([RecipeController::class, 'get'])->name('recipe.get');
+    Route::get('{recipe}/edit')->uses([RecipeController::class, 'edit'])->name('recipe.edit');
     Route::delete('{recipe}/delete')->uses([RecipeController::class, 'delete'])->name('recipe.delete');
     Route::patch('{recipe}/update')->uses([RecipeController::class, 'update'])->name('recipe.update');
     Route::put('store')->uses([RecipeController::class, 'store'])->name('recipe.store');
@@ -54,4 +56,13 @@ Route::group(['prefix' => 'units'], function (): void {
     Route::delete('{unit}/delete')->uses([UnitController::class, 'delete'])->name('unit.delete');
     Route::patch('{unit}/update')->uses([UnitController::class, 'update'])->name('unit.update');
     Route::put('store')->uses([UnitController::class, 'store'])->name('unit.store');
+});
+
+Route::group(['prefix' => 'cuisines'], function (): void {
+    Route::get('')->uses([CuisineController::class, 'index'])->name('cuisine.index');
+    Route::get('create')->uses([CuisineController::class, 'create'])->name('cuisine.create');
+    Route::get('{cuisine}')->uses([CuisineController::class, 'get'])->name('cuisine.get');
+    Route::delete('{cuisine}/delete')->uses([CuisineController::class, 'delete'])->name('cuisine.delete');
+    Route::patch('{cuisine}/update')->uses([CuisineController::class, 'update'])->name('cuisine.update');
+    Route::put('store')->uses([CuisineController::class, 'store'])->name('cuisine.store');
 });

@@ -9,19 +9,24 @@
 </head>
 
 <body>
+    @isset($success)
+        {{ $success }}
+    @endisset
     <table>
         <thead>
             <th>ID</th>
             <th>NAME</th>
             <th>DESCRIPTION</th>
-            <th>INGREDIENTS</th>
+            <th>CUISINE</th>
+            <th>EDIT</th>
         </thead>
         @foreach ($recipes as $recipe)
             <tr>
                 <td>{{ $recipe->id }}</td>
                 <td>{{ $recipe->name }}</td>
                 <td>{{ $recipe->description }}</td>
-                <td>{{ $recipe->name }}</td>
+                <td>{{ $recipe->cuisine->name }}</td>
+                <td><a href="{{ route('recipe.edit', $recipe) }}">edit</a></td>
                 {{-- <td>{{ $recipe->ingredients->count }}</td> --}}
             </tr>
         @endforeach
