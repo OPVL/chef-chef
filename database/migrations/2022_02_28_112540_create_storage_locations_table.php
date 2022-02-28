@@ -8,22 +8,25 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('units', function (Blueprint $table): void {
+        Schema::create('storage_locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('label');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('units');
+        Schema::dropIfExists('storage_locations');
     }
 };

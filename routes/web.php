@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\CuisineController;
+use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\IngredientRecipeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\StorageLocationController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +38,9 @@ Route::group(['prefix' => 'recipes'], function (): void {
     Route::get('')->uses([RecipeController::class, 'index'])->name('recipe.index');
     Route::get('create')->uses([RecipeController::class, 'create'])->name('recipe.create');
     Route::get('{recipe}')->uses([RecipeController::class, 'get'])->name('recipe.get');
+    Route::get('{recipe}/ingredients')->uses([IngredientRecipeController::class, 'create'])->name('recipe.ingredient.create');
+    Route::get('{recipe}/ingredients/edit')->uses([IngredientRecipeController::class, 'edit'])->name('recipe.ingredient.edit');
+    Route::put('{recipe}/ingredients')->uses([IngredientRecipeController::class, 'store'])->name('recipe.ingredient.store');
     Route::get('{recipe}/edit')->uses([RecipeController::class, 'edit'])->name('recipe.edit');
     Route::delete('{recipe}/delete')->uses([RecipeController::class, 'delete'])->name('recipe.delete');
     Route::patch('{recipe}/update')->uses([RecipeController::class, 'update'])->name('recipe.update');
@@ -44,6 +51,7 @@ Route::group(['prefix' => 'ingredients'], function (): void {
     Route::get('')->uses([IngredientController::class, 'index'])->name('ingredient.index');
     Route::get('create')->uses([IngredientController::class, 'create'])->name('ingredient.create');
     Route::get('{ingredient}')->uses([IngredientController::class, 'get'])->name('ingredient.get');
+    Route::get('{ingredient}/edit')->uses([IngredientController::class, 'edit'])->name('ingredient.edit');
     Route::delete('{ingredient}/delete')->uses([IngredientController::class, 'delete'])->name('ingredient.delete');
     Route::patch('{ingredient}/update')->uses([IngredientController::class, 'update'])->name('ingredient.update');
     Route::put('store')->uses([IngredientController::class, 'store'])->name('ingredient.store');
@@ -53,6 +61,7 @@ Route::group(['prefix' => 'units'], function (): void {
     Route::get('')->uses([UnitController::class, 'index'])->name('unit.index');
     Route::get('create')->uses([UnitController::class, 'create'])->name('unit.create');
     Route::get('{unit}')->uses([UnitController::class, 'get'])->name('unit.get');
+    Route::get('{unit}/edit')->uses([UnitController::class, 'edit'])->name('unit.edit');
     Route::delete('{unit}/delete')->uses([UnitController::class, 'delete'])->name('unit.delete');
     Route::patch('{unit}/update')->uses([UnitController::class, 'update'])->name('unit.update');
     Route::put('store')->uses([UnitController::class, 'store'])->name('unit.store');
@@ -62,7 +71,18 @@ Route::group(['prefix' => 'cuisines'], function (): void {
     Route::get('')->uses([CuisineController::class, 'index'])->name('cuisine.index');
     Route::get('create')->uses([CuisineController::class, 'create'])->name('cuisine.create');
     Route::get('{cuisine}')->uses([CuisineController::class, 'get'])->name('cuisine.get');
+    Route::get('{cuisine}/edit')->uses([CuisineController::class, 'edit'])->name('cuisine.edit');
     Route::delete('{cuisine}/delete')->uses([CuisineController::class, 'delete'])->name('cuisine.delete');
     Route::patch('{cuisine}/update')->uses([CuisineController::class, 'update'])->name('cuisine.update');
     Route::put('store')->uses([CuisineController::class, 'store'])->name('cuisine.store');
+});
+
+Route::group(['prefix' => 'storage-locations'], function (): void {
+    Route::get('')->uses([StorageLocationController::class, 'index'])->name('storage-location.index');
+    Route::get('create')->uses([StorageLocationController::class, 'create'])->name('storage-location.create');
+    Route::get('{storageLocation}')->uses([StorageLocationController::class, 'get'])->name('storage-location.get');
+    Route::get('{storageLocation}/edit')->uses([StorageLocationController::class, 'edit'])->name('storage-location.edit');
+    Route::delete('{storageLocation}/delete')->uses([StorageLocationController::class, 'delete'])->name('storage-location.delete');
+    Route::patch('{storageLocation}/update')->uses([StorageLocationController::class, 'update'])->name('storage-location.update');
+    Route::put('store')->uses([StorageLocationController::class, 'store'])->name('storage-location.store');
 });

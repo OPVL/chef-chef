@@ -22,7 +22,7 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <label for="name">description</label>
-        <input type="text" name="description" id="recipe-description" value="{{ $recipe->decription }}">
+        <input type="text" name="description" id="recipe-description" value="{{ $recipe->description }}">
 
         @error('cuisine')
             <div class="alert alert-danger">{{ $message }}</div>

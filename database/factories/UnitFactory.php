@@ -17,7 +17,7 @@ class UnitFactory extends Factory
         $name = $this->faker->word();
         return [
             'name' => $name,
-            'display' => Str::limit($name, 2),
+            'label' => Str::limit($name, 2),
         ];
     }
 }

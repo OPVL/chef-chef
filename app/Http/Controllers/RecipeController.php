@@ -54,14 +54,14 @@ class RecipeController extends Controller
     {
         $recipe = $this->create->execute($request->validated());
 
-        if ($recipe->exists()) {
-            return redirect()
-                ->route('recipe.index')
-                ->with('success', "created recipe: {$recipe->id}");
+        if ($recipe->exists() === false) {
+            return back()
+                ->with('errors', 'unable to create recipe');
         }
 
-        return back()
-            ->with('errors', 'unable to create recipe');
+        return redirect()
+            ->route('recipe.ingredient.create', $recipe)
+            ->with('success', "created recipe: {$recipe->id}");
     }
 
     public function delete(Recipe $recipe, DeleteRequest $request): RedirectResponse

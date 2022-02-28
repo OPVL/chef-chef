@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ingredient_id');
             $table->foreignId('recipe_id');
-            $table->float('quantity');
-            $table->foreignId('unit_id');
+            $table->float('quantity')->nullable();
+            $table->foreignId('unit_id')->nullable();
             $table->timestamps();
         });
     }
