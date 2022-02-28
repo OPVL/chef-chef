@@ -25,50 +25,50 @@ return [
         'can' => 'can',
         'tsp' => 'teaspoon',
         'tbsp' => 'tablespoon',
-        'unspecified' => 'unspecified'
+        'unspecified' => 'unspecified',
     ],
     'storagelocations' => [
         'spices',
         'cupboard',
         'fridge',
         'freezer',
-        'unspecified'
+        'unspecified',
     ],
     'ingredients' => [
         [
             'name' => 'cumin',
             'location' => 'spices',
-            'unit' => 'tsp'
+            'unit' => 'tsp',
         ],
         [
             'name' => 'tinned tomatoes',
             'location' => 'cupboard',
-            'unit' => 'can'
+            'unit' => 'can',
         ],
         [
             'name' => 'lettuce',
             'location' => 'fridge',
-            'unit' => 'item'
+            'unit' => 'item',
         ],
         [
             'name' => 'lemon',
             'location' => 'fridge',
-            'unit' => 'item'
+            'unit' => 'item',
         ],
         [
             'name' => 'sausage',
             'location' => 'fridge',
-            'unit' => 'g'
+            'unit' => 'g',
         ],
         [
             'name' => 'petit pois',
             'location' => 'freezer',
-            'unit' => 'g'
+            'unit' => 'g',
         ],
         [
             'name' => 'kidney beans',
             'location' => 'cupboard',
-            'unit' => 'can'
-        ]
-    ]
+            'unit' => 'can',
+        ],
+    ],
 ];
