@@ -7,7 +7,7 @@ use App\Models\Ingredient;
 use App\Models\Recipe;
 use App\Models\StorageLocation;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class SortIngredientsByLocationTest extends TestCase
 {
@@ -16,17 +16,22 @@ class SortIngredientsByLocationTest extends TestCase
     /** @test */
     public function test_that_true_is_true(): void
     {
-        // $this->except();
+        $location = StorageLocation::factory(5)
+            ->create();
 
-        $ingredients = collect();
-        StorageLocation::factory(5)->create()->each(function (StorageLocation $storageLocation) use (&$ingredients): void {
-            $ingredients->push(Ingredient::factory(5)->location($storageLocation)->make());
-        });
+        Ingredient::factory(4)->location($location->random())->create();
+        Ingredient::factory(4)->location($location->random())->create();
+        Ingredient::factory(4)->location($location->random())->create();
+        Ingredient::factory(4)->location($location->random())->create();
         $recipe = Recipe::factory()->create();
+        $ingredients = Ingredient::all();
+        $recipe->ingredients()->attach($ingredients);
 
-        $recipe->ingredients()->saveMany($ingredients);
+        // dd($recipe->ingredients->pluck('name'));
 
-        dd($recipe->ingredients);
+        $formatted = $this->action()->execute($recipe->ingredients);
+
+        dd($formatted);
     }
 
     protected function action(): SortIngredientsByLocation
