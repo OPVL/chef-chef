@@ -9,7 +9,9 @@ class CuisineSeeder extends Seeder
 {
     public function run(): void
     {
-        collect(config('defaults.cuisines'))->each(function (string $cuisine): void {
+        collect(config('defaults.cuisines'))
+            ->sort()
+            ->each(function (string $cuisine): void {
             Cuisine::factory()->create(['name' => $cuisine]);
         });
     }
