@@ -3,17 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\StorageLocation;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StorageLocationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         collect(config('defaults.storagelocations'))
             ->sort()

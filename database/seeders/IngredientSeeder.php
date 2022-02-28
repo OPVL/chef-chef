@@ -5,16 +5,14 @@ namespace Database\Seeders;
 use App\Models\Ingredient;
 use App\Models\StorageLocation;
 use App\Models\Unit;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Log;
 
 class IngredientSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
@@ -24,7 +22,7 @@ class IngredientSeeder extends Seeder
                 $payload = [
                     'name' => $ingredient['name'],
                     'unit_id' => $this->getUnit($ingredient)->id,
-                    'storage_location_id' => $this->getLocation($ingredient)->id
+                    'storage_location_id' => $this->getLocation($ingredient)->id,
                 ];
 
                 dump($payload);

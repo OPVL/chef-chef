@@ -12,7 +12,7 @@ class CuisineSeeder extends Seeder
         collect(config('defaults.cuisines'))
             ->sort()
             ->each(function (string $cuisine): void {
-            Cuisine::factory()->create(['name' => $cuisine]);
-        });
+                Cuisine::factory()->create(['name' => $cuisine]);
+            });
     }
 }

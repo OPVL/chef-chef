@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\StorageLocation;
 use App\Models\Unit;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IngredientFactory extends Factory
 {
@@ -13,7 +13,7 @@ class IngredientFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'unit_id' => 1,
-            'storage_location_id' => 1
+            'storage_location_id' => 1,
         ];
     }
 
@@ -21,7 +21,7 @@ class IngredientFactory extends Factory
     {
         return $this->state(function (array $attributes) use ($storageLocation) {
             return [
-                'storage_location_id' => $storageLocation->id
+                'storage_location_id' => $storageLocation->id,
             ];
         });
     }
@@ -30,7 +30,7 @@ class IngredientFactory extends Factory
     {
         return $this->state(function (array $attributes) use ($unit) {
             return [
-                'unit_id' => $unit->id
+                'unit_id' => $unit->id,
             ];
         });
     }
