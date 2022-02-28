@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateIngredient;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateIngredient;
-use App\Models\Cuisine;
 use App\Models\Ingredient;
 use App\Models\StorageLocation;
 use App\Models\Unit;
@@ -25,7 +24,7 @@ class IngredientController extends Controller
             'ingredient.index',
             [
                 'ingredients' => Ingredient::with(['unit', 'storageLocation'])
-                    ->get()
+                    ->get(),
             ]
         );
     }
@@ -37,7 +36,7 @@ class IngredientController extends Controller
 
         return view('ingredient.create', [
             'units' => $units,
-            'storageLocations' => $storageLocations
+            'storageLocations' => $storageLocations,
         ]);
     }
 
@@ -54,7 +53,7 @@ class IngredientController extends Controller
         return view('ingredient.edit', [
             'ingredient' => $ingredient,
             'units' => $units,
-            'storageLocations' => $storageLocations
+            'storageLocations' => $storageLocations,
         ]);
     }
 

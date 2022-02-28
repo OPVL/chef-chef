@@ -8,10 +8,8 @@ class CreateStorageLocation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,10 +19,10 @@ class CreateStorageLocation extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:storage_locations,name'
+            'name' => 'required|string|unique:storage_locations,name',
         ];
     }
 }

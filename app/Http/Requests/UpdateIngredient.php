@@ -8,10 +8,8 @@ class UpdateIngredient extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,12 +19,12 @@ class UpdateIngredient extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|string',
             'unit_id' => 'nullable|integer|exists:units,id',
-            'storage_location_id' => 'nullable|integer|exists:storage_locations,id'
+            'storage_location_id' => 'nullable|integer|exists:storage_locations,id',
         ];
     }
 }

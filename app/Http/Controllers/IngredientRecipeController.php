@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Recipe;
 use App\Http\Requests\CreateIngredientRecipe;
 use App\Models\Ingredient;
+use App\Models\Recipe;
 use App\Models\StorageLocation;
 
 class IngredientRecipeController extends Controller

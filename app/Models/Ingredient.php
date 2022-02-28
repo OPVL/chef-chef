@@ -14,7 +14,7 @@ class Ingredient extends Model
     protected $fillable = [
         'name',
         'unit_id',
-        'storage_location_id'
+        'storage_location_id',
     ];
 
     protected static function booted(): void

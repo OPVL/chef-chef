@@ -6,7 +6,6 @@ use App\Actions\DeleteStorageLocation as DeleteAction;
 use App\Http\Requests\CreateStorageLocation;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateStorageLocation;
-use App\Models\Cuisine;
 use App\Models\StorageLocation;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
