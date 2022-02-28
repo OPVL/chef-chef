@@ -4,10 +4,10 @@ namespace Tests\Unit\Action;
 
 use App\Actions\SortIngredientsByLocation;
 use App\Models\Ingredient;
-use PHPUnit\Framework\TestCase;
 use App\Models\Recipe;
 use App\Models\StorageLocation;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use PHPUnit\Framework\TestCase;
 
 class SortIngredientsByLocationTest extends TestCase
 {
@@ -19,7 +19,7 @@ class SortIngredientsByLocationTest extends TestCase
         // $this->except();
 
         $ingredients = collect();
-        StorageLocation::factory(5)->create()->each(function (StorageLocation $storageLocation) use (&$ingredients) {
+        StorageLocation::factory(5)->create()->each(function (StorageLocation $storageLocation) use (&$ingredients): void {
             $ingredients->push(Ingredient::factory(5)->location($storageLocation)->make());
         });
         $recipe = Recipe::factory()->create();
