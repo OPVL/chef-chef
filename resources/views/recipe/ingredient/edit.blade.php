@@ -12,19 +12,34 @@
     <h1>edit ingredients</h1>
     <hr>
     <form action="{{ route('recipe.ingredient.update', $recipe) }}" method="post">
-        @method('PUT')
+        @method('PATCH')
         @csrf
         @error('ingredient')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
-        @foreach ($locations as $location)
+        @foreach ($groups as $location => $ingredients)
             <div>
-                <h4>{{ $location->name }}</h4>
-                @foreach ($location->ingredients as $ingredient)
-                <label for="ingredient-{{ $ingredient->name }}">{{ $ingredient->name }}</label>
-                <input type="checkbox" name="ingredient[]" id="ingredient-{{ $ingredient->name }}"
-                value="{{ $ingredient->id }}">
+                <h4>{{ $location }}</h4>
+                @foreach ($ingredients as $ingredient)
+                    <p>{{ $ingredient->name }}</p>
+                    @error('quantity[{{ $ingredient->id }}]')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <label for="quantity[{{ $ingredient->id }}]">quantity</label>
+                    <input type="number" name="quantity[{{ $ingredient->id }}]"
+                        id="{{ $ingredient->name }}-quantity"
+                        value="{{ old("quantity[{$ingredient->id}]") ?? $ingredient->pivot->quantity }}">
+                    @error('unit[{{ $ingredient->id }}]')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <label for="unit[{{ $ingredient->id }}]">unit</label>
+                    <select name="unit[{{ $ingredient->id }}]" id="{{ $ingredient->name }}-unit">
+                        @foreach ($units as $unit)
+                            <option value="{{ $unit->id }}" @if ($ingredient->unit_id === $unit->id) selected @endif>
+                                {{ $unit->name }}</option>
+                        @endforeach
+                    </select>
                 @endforeach
             </div>
         @endforeach

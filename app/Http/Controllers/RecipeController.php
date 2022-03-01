@@ -31,7 +31,7 @@ class RecipeController extends Controller
 
     public function get(Recipe $recipe): View
     {
-        return view('recipe.index', ['recipe' => $recipe]);
+        return view('recipe.view', ['recipe' => $recipe]);
     }
 
     public function edit(Recipe $recipe): View

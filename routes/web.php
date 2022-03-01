@@ -40,6 +40,7 @@ Route::group(['prefix' => 'recipes'], function (): void {
     Route::get('{recipe}')->uses([RecipeController::class, 'get'])->name('recipe.get');
     Route::get('{recipe}/ingredients')->uses([IngredientRecipeController::class, 'create'])->name('recipe.ingredient.create');
     Route::get('{recipe}/ingredients/edit')->uses([IngredientRecipeController::class, 'edit'])->name('recipe.ingredient.edit');
+    Route::patch('{recipe}/ingredients/update')->uses([IngredientRecipeController::class, 'update'])->name('recipe.ingredient.update');
     Route::put('{recipe}/ingredients')->uses([IngredientRecipeController::class, 'store'])->name('recipe.ingredient.store');
     Route::get('{recipe}/edit')->uses([RecipeController::class, 'edit'])->name('recipe.edit');
     Route::delete('{recipe}/delete')->uses([RecipeController::class, 'delete'])->name('recipe.delete');

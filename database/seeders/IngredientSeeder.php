@@ -25,8 +25,6 @@ class IngredientSeeder extends Seeder
                     'storage_location_id' => $this->getLocation($ingredient)->id,
                 ];
 
-                dump($payload);
-
                 Ingredient::create($payload);
             });
     }

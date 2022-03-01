@@ -16,18 +16,14 @@ class SortIngredientsByLocationTest extends TestCase
     /** @test */
     public function test_that_true_is_true(): void
     {
-        $location = StorageLocation::factory(5)
-            ->create();
-
-        Ingredient::factory(4)->location($location->random())->create();
-        Ingredient::factory(4)->location($location->random())->create();
-        Ingredient::factory(4)->location($location->random())->create();
-        Ingredient::factory(4)->location($location->random())->create();
+        StorageLocation::factory(5)
+            ->create()->each(function (StorageLocation $location): void {
+                Ingredient::factory(4)->location($location)->create();
+            });
         $recipe = Recipe::factory()->create();
         $ingredients = Ingredient::all();
         $recipe->ingredients()->attach($ingredients);
 
-        // dd($recipe->ingredients->pluck('name'));
 
         $formatted = $this->action()->execute($recipe->ingredients);
 
