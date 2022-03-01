@@ -31,4 +31,13 @@ class Ingredient extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    protected function getDisplayAttribute(): string
+    {
+        if (!$this->pivot) {
+            return "{$this->unit->name} of {$this->name}";
+        }
+
+        return "{$this->pivot->quantity} {$this->pivot->unit->name} of {$this->name}";
+    }
 }

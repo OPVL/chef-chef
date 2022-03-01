@@ -17,7 +17,7 @@ class IngredientFactory extends Factory
         ];
     }
 
-    public function location(Type $type)
+    public function type(Type $type): static
     {
         return $this->state(
             function (array $attributes) use ($type) {
@@ -28,7 +28,7 @@ class IngredientFactory extends Factory
         );
     }
 
-    public function unit(Unit $unit)
+    public function unit(Unit $unit): static
     {
         return $this->state(
             function (array $attributes) use ($unit) {

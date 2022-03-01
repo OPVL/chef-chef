@@ -2,12 +2,8 @@
 
 namespace Tests\Unit\Action;
 
-use App\Actions\CreateRecipe;
 use App\Actions\DeleteType;
-use App\Actions\SortIngredientsByType;
-use App\Models\Cuisine;
 use App\Models\Ingredient;
-use App\Models\Recipe;
 use App\Models\Type;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -20,35 +16,35 @@ class DeleteTypeTest extends TestCase
     /** @test */
     public function can_delete_type(): void
     {
-        $location = Type::factory()->create();
-        $this->assertModelExists($location);
+        $type = Type::factory()->create();
+        $this->assertModelExists($type);
 
-        $this->assertTrue($this->action()->execute($location));
-        $this->assertModelMissing($location);
+        $this->assertTrue($this->action()->execute($type));
+        $this->assertModelMissing($type);
     }
 
     /** @test */
     public function it_creates_fallback_if_not_exist(): void
     {
-        $this->assertNotNull(config('fallback.type.name'), 'fallback location not configured');
-        $this->assertNull(Type::firstWhere('name', config('fallback.type.name')), 'fallback location already exists?');
+        $this->assertNotNull(config('fallback.type.name'), 'fallback type not configured');
+        $this->assertNull(Type::firstWhere('name', config('fallback.type.name')), 'fallback type already exists?');
 
-        $location = Type::factory()->create();
-        $this->action()->execute($location);
+        $type = Type::factory()->create();
+        $this->action()->execute($type);
 
-        $this->assertModelMissing($location);
+        $this->assertModelMissing($type);
         $this->assertNotNull(Type::firstWhere('name', config('fallback.type.name')));
     }
 
     /** @test */
     public function it_moves_ingredients_to_fallback_if_none_specified(): void
     {
-        $location = Type::factory()->create();
-        $ingredients = Ingredient::factory(5)->location($location)->create();
-        $this->assertCount(5, $location->ingredients);
-        $this->assertEquals($location->id, $ingredients->first()->type_id);
+        $type = Type::factory()->create();
+        $ingredients = Ingredient::factory(5)->type($type)->create();
+        $this->assertCount(5, $type->ingredients);
+        $this->assertEquals($type->id, $ingredients->first()->type_id);
 
-        $this->action()->execute($location);
+        $this->action()->execute($type);
 
         $fallback = Type::firstWhere('name', config('fallback.type.name'));
 

@@ -7,17 +7,11 @@ use Illuminate\Support\Str;
 
 class UnitFactory extends Factory
 {
-    public function __construct()
-    {
-        $this->config = Collect(config('units.defaults'));
-    }
-
     public function definition(): array
     {
-        $name = $this->faker->word();
         return [
-            'name' => $name,
-            'label' => Str::limit($name, 2),
+            'name' => $this->faker->word(),
+            'label' => Str::limit($this->faker->word(), 2),
         ];
     }
 }
