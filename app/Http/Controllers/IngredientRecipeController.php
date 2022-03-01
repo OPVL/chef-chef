@@ -47,6 +47,8 @@ class IngredientRecipeController extends Controller
                 ];
             });
 
+        $recipe->ingredients()->sync($payload);
+
         return redirect()->route('recipe.get', $recipe);
     }
 

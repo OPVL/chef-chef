@@ -41,7 +41,7 @@ class RecipeController extends Controller
         $cuisines = Cuisine::all();
         $ingredients = $this->sortIngredients->execute($recipe->ingredients);
         $units = Unit::all();
-        // dd($ingredients);
+
         return view('recipe.edit', ['recipe' => $recipe, 'cuisines' => $cuisines, 'groups' => $ingredients, 'units' => $units]);
     }
 
