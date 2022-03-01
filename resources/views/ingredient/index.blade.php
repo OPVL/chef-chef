@@ -25,7 +25,7 @@
                 <td>{{ $ingredient->id }}</td>
                 <td>{{ $ingredient->name }}</td>
                 <td>{{ $ingredient->unit->name }}</td>
-                <td>{{ $ingredient->storageLocation->name }}</td>
+                <td>{{ $ingredient->type->name }}</td>
                 <td><a href="{{ route('ingredient.edit', $ingredient) }}">edit</a></td>
             </tr>
         @endforeach

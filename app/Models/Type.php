@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class StorageLocation extends Model
+class Type extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class StorageLocation extends Model
     ];
 
     /**
-     * Get all of the ingredients for the StorageLocation
+     * Get all of the ingredients for the Type
      */
     public function ingredients(): HasMany
     {

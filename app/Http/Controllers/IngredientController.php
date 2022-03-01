@@ -7,7 +7,7 @@ use App\Http\Requests\CreateIngredient;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateIngredient;
 use App\Models\Ingredient;
-use App\Models\StorageLocation;
+use App\Models\Type;
 use App\Models\Unit;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -23,7 +23,7 @@ class IngredientController extends Controller
         return view(
             'ingredient.index',
             [
-                'ingredients' => Ingredient::with(['unit', 'storageLocation'])
+                'ingredients' => Ingredient::with(['unit', 'type'])
                     ->get(),
             ]
         );
@@ -31,12 +31,12 @@ class IngredientController extends Controller
 
     public function create(): View
     {
-        $storageLocations = StorageLocation::all();
+        $types = Type::all();
         $units = Unit::all();
 
         return view('ingredient.create', [
             'units' => $units,
-            'storageLocations' => $storageLocations,
+            'types' => $types,
         ]);
     }
 
@@ -47,13 +47,13 @@ class IngredientController extends Controller
 
     public function edit(Ingredient $ingredient): View
     {
-        $storageLocations = StorageLocation::all();
+        $types = Type::all();
         $units = Unit::all();
 
         return view('ingredient.edit', [
             'ingredient' => $ingredient,
             'units' => $units,
-            'storageLocations' => $storageLocations,
+            'types' => $types,
         ]);
     }
 

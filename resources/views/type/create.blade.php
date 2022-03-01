@@ -1,18 +1,18 @@
 <x-layout.standard>
     @slot('title')
-        edit {{ $storageLocation->name }}
+        create storage location
     @endslot
     @section('content')
-        <form action="{{ route('storage-location.update', $storageLocation) }}" method="post">
-            @method('PATCH')
+        <form action="{{ route('type.store') }}" method="post">
+            @method('PUT')
             @csrf
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <label for="name">name</label>
-            <input type="text" name="name" id="name" value="{{ $storageLocation->name }}">
+            <input type="text" name="name" id="type-name">
 
-            <button type="submit">update</button>
+            <button type="submit">save</button>
         </form>
     @endsection
 </x-layout.standard>

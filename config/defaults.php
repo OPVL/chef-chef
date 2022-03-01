@@ -27,48 +27,65 @@ return [
         'tbsp' => 'tablespoon',
         'unspecified' => 'unspecified',
     ],
-    'storagelocations' => [
-        'spices',
-        'cupboard',
-        'fridge',
-        'freezer',
+    'types' => [
+        'spice',
+        'sauce',
+        'produce',
+        'non-perishable',
+        'frozen',
         'unspecified',
+        'protein',
     ],
     'ingredients' => [
         [
             'name' => 'cumin',
-            'location' => 'spices',
+            'type' => 'spice',
+            'unit' => 'tsp',
+        ],
+        [
+            'name' => 'salt',
+            'type' => 'spice',
+            'unit' => 'tsp',
+        ],
+        [
+            'name' => 'black pepper',
+            'type' => 'spice',
             'unit' => 'tsp',
         ],
         [
             'name' => 'tinned tomatoes',
-            'location' => 'cupboard',
+            'type' => 'non-perishable',
             'unit' => 'can',
         ],
         [
             'name' => 'lettuce',
-            'location' => 'fridge',
+            'type' => 'produce',
             'unit' => 'item',
         ],
         [
             'name' => 'lemon',
-            'location' => 'fridge',
+            'type' => 'produce',
             'unit' => 'item',
         ],
         [
             'name' => 'sausage',
-            'location' => 'fridge',
+            'type' => 'protein',
             'unit' => 'g',
         ],
         [
             'name' => 'petit pois',
-            'location' => 'freezer',
+            'type' => 'frozen',
             'unit' => 'g',
         ],
         [
             'name' => 'kidney beans',
-            'location' => 'cupboard',
+            'type' => 'non-perishable',
             'unit' => 'can',
+        ],
+        [
+            'name' => 'brown onion',
+            'type' => 'produce',
+            'unit' => 'item',
         ],
     ],
 ];

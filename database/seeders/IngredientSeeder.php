@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Ingredient;
-use App\Models\StorageLocation;
+use App\Models\Type;
 use App\Models\Unit;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Seeder;
@@ -22,7 +22,7 @@ class IngredientSeeder extends Seeder
                 $payload = [
                     'name' => $ingredient['name'],
                     'unit_id' => $this->getUnit($ingredient)->id,
-                    'storage_location_id' => $this->getLocation($ingredient)->id,
+                    'type_id' => $this->getType($ingredient)->id,
                 ];
 
                 Ingredient::create($payload);
@@ -39,13 +39,13 @@ class IngredientSeeder extends Seeder
         }
     }
 
-    public function getLocation(array $ingredient): StorageLocation
+    public function getType(array $ingredient): Type
     {
         try {
-            return StorageLocation::where('name', $ingredient['location'])->firstOrFail();
+            return Type::where('name', $ingredient['type'])->firstOrFail();
         } catch (ModelNotFoundException $th) {
-            Log::warning("Unable to find StorageLocation", ['ingredient' => $ingredient, 'error' => $th->getMessage()]);
-            return StorageLocation::where(config('fallback.storage-location'))->first();
+            Log::warning("Unable to find Type", ['ingredient' => $ingredient, 'error' => $th->getMessage()]);
+            return Type::where(config('fallback.type'))->first();
         }
     }
 }

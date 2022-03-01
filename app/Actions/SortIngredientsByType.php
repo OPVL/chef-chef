@@ -5,13 +5,13 @@ namespace App\Actions;
 use App\Models\Ingredient;
 use Illuminate\Support\Collection;
 
-class SortIngredientsByLocation implements Action
+class SortIngredientsByType implements Action
 {
     public function execute(Collection $ingredients): Collection
     {
-        $ingredients->pluck('storageLocation');
+        $ingredients->pluck('type');
         $output = $ingredients->mapToGroups(function (Ingredient $ingredient) {
-            return [$ingredient->storageLocation->name => $ingredient];
+            return [$ingredient->type->name => $ingredient];
         });
 
         return $output;

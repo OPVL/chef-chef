@@ -24,7 +24,7 @@ class UpdateIngredient extends FormRequest
         return [
             'name' => 'required|string',
             'unit_id' => 'nullable|integer|exists:units,id',
-            'storage_location_id' => 'nullable|integer|exists:storage_locations,id',
+            'type_id' => 'nullable|integer|exists:types,id',
         ];
     }
 }

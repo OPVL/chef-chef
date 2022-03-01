@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
     {
         app(CuisineSeeder::class)->run();
         app(UnitSeeder::class)->run();
-        app(StorageLocationSeeder::class)->run();
+        app(TypeSeeder::class)->run();
         app(IngredientSeeder::class)->run();
     }
 }

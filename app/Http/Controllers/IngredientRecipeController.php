@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\SortIngredientsByLocation;
+use App\Actions\SortIngredientsByType;
 use App\Http\Requests\CreateIngredientRecipe;
 use App\Http\Requests\UpdateIngredientRecipe;
 use App\Models\Ingredient;
@@ -13,7 +13,7 @@ use Illuminate\Http\RedirectResponse;
 
 class IngredientRecipeController extends Controller
 {
-    public function __construct(protected SortIngredientsByLocation $sortAction)
+    public function __construct(protected SortIngredientsByType $sortAction)
     {
     }
 
@@ -21,7 +21,7 @@ class IngredientRecipeController extends Controller
     {
         return view('recipe.ingredient.create', [
             'recipe' => $recipe,
-            'groups' => $this->sortAction->execute(Ingredient::with('storageLocation')->get()),
+            'groups' => $this->sortAction->execute(Ingredient::with('type')->get()),
         ]);
     }
 
@@ -29,7 +29,7 @@ class IngredientRecipeController extends Controller
     {
         return view('recipe.ingredient.edit', [
             'recipe' => $recipe,
-            'groups' => $this->sortAction->execute($recipe->ingredients()->with('storageLocation')->get()),
+            'groups' => $this->sortAction->execute($recipe->ingredients()->with('type')->get()),
             'units' => Unit::all(),
         ]);
     }

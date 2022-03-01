@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Action;
 
-use App\Actions\SortIngredientsByLocation;
+use App\Actions\SortIngredientsByType;
 use App\Models\Ingredient;
 use App\Models\Recipe;
-use App\Models\StorageLocation;
+use App\Models\Type;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -19,23 +19,23 @@ use Tests\TestCase;
  *      ...
  *  ]
  */
-class SortIngredientsByLocationTest extends TestCase
+class SortIngredientsByTypeTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
     public function sort_puts_ingredients_by_location(): void
     {
-        $locations = StorageLocation::factory(5)
+        $locations = Type::factory(5)
             ->create();
 
-        $locations->each(function (StorageLocation $location): void {
+        $locations->each(function (Type $location): void {
             Ingredient::factory(4)->location($location)->create();
         });
 
         $formatted = $this->action()->execute(Ingredient::all());
 
-        $locations->each(function (StorageLocation $location) use ($formatted): void {
+        $locations->each(function (Type $location) use ($formatted): void {
             $this->assertArrayHasKey($location->name, $formatted, "{$location->name} not included in collection");
             $this->assertCount($location->ingredients->count(), $formatted[$location->name], "{$location->name} incorrect count");
         });
@@ -46,9 +46,9 @@ class SortIngredientsByLocationTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $locations = StorageLocation::factory(5)
+        $locations = Type::factory(5)
             ->create();
-        $locations->each(function (StorageLocation $location): void {
+        $locations->each(function (Type $location): void {
             Ingredient::factory(4)->location($location)->create();
         });
 
@@ -58,14 +58,14 @@ class SortIngredientsByLocationTest extends TestCase
 
         $formatted = $this->action()->execute($recipe->ingredients);
 
-        $locations->each(function (StorageLocation $location) use ($formatted): void {
+        $locations->each(function (Type $location) use ($formatted): void {
             $this->assertArrayHasKey($location->name, $formatted, "{$location->name} not included in collection");
             $this->assertCount($location->ingredients->count(), $formatted[$location->name], "{$location->name} incorrect count");
         });
     }
 
-    protected function action(): SortIngredientsByLocation
+    protected function action(): SortIngredientsByType
     {
-        return app(SortIngredientsByLocation::class);
+        return app(SortIngredientsByType::class);
     }
 }

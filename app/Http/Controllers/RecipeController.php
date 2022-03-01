@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\CreateRecipe as CreateAction;
-use App\Actions\SortIngredientsByLocation;
+use App\Actions\SortIngredientsByType;
 use App\Http\Requests\CreateRecipe;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateRecipe;
@@ -15,7 +15,7 @@ use App\Models\Unit;
 
 class RecipeController extends Controller
 {
-    public function __construct(protected CreateAction $create, protected SortIngredientsByLocation $sortIngredients)
+    public function __construct(protected CreateAction $create, protected SortIngredientsByType $sortIngredients)
     {
     }
 

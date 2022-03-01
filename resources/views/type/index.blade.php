@@ -15,14 +15,14 @@
                     <th>DELETE</th>
                 @endif
             </thead>
-            @foreach ($storageLocations as $storageLocation)
+            @foreach ($types as $type)
                 <tr>
-                    <td>{{ $storageLocation->id }}</td>
-                    <td>{{ $storageLocation->name }}</td>
-                    <td><a href="{{ route('storage-location.edit', $storageLocation) }}">edit</a></td>
+                    <td>{{ $type->id }}</td>
+                    <td>{{ $type->name }}</td>
+                    <td><a href="{{ route('type.edit', $type) }}">edit</a></td>
                     @if (true || (Auth::user() && Auth::user()->is_super))
                         <td>
-                            <form action="{{ route('storage-location.delete', $storageLocation) }}" method="post">
+                            <form action="{{ route('type.delete', $type) }}" method="post">
                                 @method('DELETE')
                                 @csrf
                                 <input type="hidden" name="confirm" id="confirmation-input">

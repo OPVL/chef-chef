@@ -14,7 +14,7 @@ class Ingredient extends Model
     protected $fillable = [
         'name',
         'unit_id',
-        'storage_location_id',
+        'type_id',
     ];
 
     protected static function booted(): void
@@ -27,8 +27,8 @@ class Ingredient extends Model
         return $this->belongsTo(Unit::class);
     }
 
-    public function storageLocation(): BelongsTo
+    public function type(): BelongsTo
     {
-        return $this->belongsTo(StorageLocation::class);
+        return $this->belongsTo(Type::class);
     }
 }

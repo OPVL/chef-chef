@@ -1,9 +1,9 @@
 <x-layout.standard>
     @slot('title')
-        {{ $storageLocation->name }}
+        {{ $type->name }}
     @endslot
     @section('content')
-        <h1>{{ $storageLocation->name }}</h1>
+        <h1>{{ $type->name }}</h1>
         <hr>
         <div>
             <h4>Ingredients</h4>
@@ -12,7 +12,7 @@
                     <th>NAME</th>
                 </thead>
                 <tbody>
-                    @foreach ($storageLocation->ingredients as $ingredient)
+                    @foreach ($type->ingredients as $ingredient)
                         <tr>
                             <td>{{ $ingredient->name }}</td>
                         </tr>

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\StorageLocation;
+use App\Models\Type;
 use App\Models\Unit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -13,15 +13,15 @@ class IngredientFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'unit_id' => 1,
-            'storage_location_id' => 1,
+            'type_id' => 1,
         ];
     }
 
-    public function location(StorageLocation $storageLocation)
+    public function location(Type $type)
     {
-        return $this->state(function (array $attributes) use ($storageLocation) {
+        return $this->state(function (array $attributes) use ($type) {
             return [
-                'storage_location_id' => $storageLocation->id,
+                'type_id' => $type->id,
             ];
         });
     }

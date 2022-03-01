@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('unit_id');
-            $table->foreignId('storage_location_id');
+            $table->foreignId('type_id');
             $table->timestamps();
         });
     }

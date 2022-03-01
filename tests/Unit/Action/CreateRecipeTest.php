@@ -3,11 +3,11 @@
 namespace Tests\Unit\Action;
 
 use App\Actions\CreateRecipe;
-use App\Actions\SortIngredientsByLocation;
+use App\Actions\SortIngredientsByType;
 use App\Models\Cuisine;
 use App\Models\Ingredient;
 use App\Models\Recipe;
-use App\Models\StorageLocation;
+use App\Models\Type;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;

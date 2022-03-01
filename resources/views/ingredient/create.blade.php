@@ -28,13 +28,13 @@
             @endforeach
         </select>
 
-        @error('storageLocation')
+        @error('type')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <label for="name">storage location</label>
-        <select name="storage_location_id" id="storage_location_id    ">
-            @foreach ($storageLocations as $storageLocation)
-                <option value="{{ $storageLocation->id }}">{{ $storageLocation->name }}</option>
+        <select name="type_id" id="type_id    ">
+            @foreach ($types as $type)
+                <option value="{{ $type->id }}">{{ $type->name }}</option>
             @endforeach
         </select>
 

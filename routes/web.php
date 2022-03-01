@@ -6,7 +6,7 @@ use App\Http\Controllers\IngredientRecipeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\StorageLocationController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,12 +82,12 @@ Route::group(['prefix' => 'cuisines'], function (): void {
     Route::put('store')->uses([CuisineController::class, 'store'])->name('cuisine.store');
 });
 
-Route::group(['prefix' => 'storage-locations'], function (): void {
-    Route::get('')->uses([StorageLocationController::class, 'index'])->name('storage-location.index');
-    Route::get('create')->uses([StorageLocationController::class, 'create'])->name('storage-location.create');
-    Route::get('{storageLocation}')->uses([StorageLocationController::class, 'get'])->name('storage-location.get');
-    Route::get('{storageLocation}/edit')->uses([StorageLocationController::class, 'edit'])->name('storage-location.edit');
-    Route::delete('{storageLocation}/delete')->uses([StorageLocationController::class, 'delete'])->name('storage-location.delete');
-    Route::patch('{storageLocation}/update')->uses([StorageLocationController::class, 'update'])->name('storage-location.update');
-    Route::put('store')->uses([StorageLocationController::class, 'store'])->name('storage-location.store');
+Route::group(['prefix' => 'types'], function (): void {
+    Route::get('')->uses([TypeController::class, 'index'])->name('type.index');
+    Route::get('create')->uses([TypeController::class, 'create'])->name('type.create');
+    Route::get('{type}')->uses([TypeController::class, 'get'])->name('type.get');
+    Route::get('{type}/edit')->uses([TypeController::class, 'edit'])->name('type.edit');
+    Route::delete('{type}/delete')->uses([TypeController::class, 'delete'])->name('type.delete');
+    Route::patch('{type}/update')->uses([TypeController::class, 'update'])->name('type.update');
+    Route::put('store')->uses([TypeController::class, 'store'])->name('type.store');
 });

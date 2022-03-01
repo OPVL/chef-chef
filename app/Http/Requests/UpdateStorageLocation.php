@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateStorageLocation extends FormRequest
+class UpdateType extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class UpdateStorageLocation extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:storage_locations,name',
+            'name' => 'required|string|unique:types,name',
         ];
     }
 }

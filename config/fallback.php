@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'storage-location' => ['name' => 'unspecified'],
+    'type' => ['name' => 'unspecified'],
     'unit' => ['label' => 'unspecified'],
 ];
