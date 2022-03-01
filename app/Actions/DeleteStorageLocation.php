@@ -20,7 +20,7 @@ class DeleteStorageLocation implements Action
             return false;
         }
 
-        return true;
+        return $storageLocation->delete();
     }
 
     protected function getDefaultStorageLocation(): StorageLocation
