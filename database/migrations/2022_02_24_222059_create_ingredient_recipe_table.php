@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingredient_recipe', function (Blueprint $table): void {
-            $table->id();
-            $table->foreignId('ingredient_id');
-            $table->foreignId('recipe_id');
-            $table->float('quantity')->nullable();
-            $table->foreignId('unit_id')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'ingredient_recipe',
+            function (Blueprint $table): void {
+                $table->id();
+                $table->foreignId('ingredient_id');
+                $table->foreignId('recipe_id');
+                $table->float('quantity')->nullable();
+                $table->foreignId('unit_id')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

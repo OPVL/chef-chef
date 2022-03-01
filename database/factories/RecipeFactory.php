@@ -21,8 +21,10 @@ class RecipeFactory extends Factory
 
     public function cuisine(Cuisine $cuisine): static
     {
-        return $this->state(function (array $attributes) use ($cuisine): array {
-            return ['cuisine_id' => $cuisine->id];
-        });
+        return $this->state(
+            function (array $attributes) use ($cuisine): array {
+                return ['cuisine_id' => $cuisine->id];
+            }
+        );
     }
 }

@@ -34,10 +34,13 @@ class IngredientController extends Controller
         $types = Type::all();
         $units = Unit::all();
 
-        return view('ingredient.create', [
+        return view(
+            'ingredient.create',
+            [
             'units' => $units,
             'types' => $types,
-        ]);
+            ]
+        );
     }
 
     public function get(Ingredient $ingredient): View
@@ -50,11 +53,14 @@ class IngredientController extends Controller
         $types = Type::all();
         $units = Unit::all();
 
-        return view('ingredient.edit', [
+        return view(
+            'ingredient.edit',
+            [
             'ingredient' => $ingredient,
             'units' => $units,
             'types' => $types,
-        ]);
+            ]
+        );
     }
 
     public function update(Ingredient $ingredient, UpdateIngredient $request): RedirectResponse

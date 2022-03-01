@@ -8,14 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('recipes', function (Blueprint $table): void {
-            $table->id();
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->foreignId('cuisine_id');
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        Schema::create(
+            'recipes',
+            function (Blueprint $table): void {
+                $table->id();
+                $table->string('name');
+                $table->string('description')->nullable();
+                $table->foreignId('cuisine_id');
+                $table->softDeletes();
+                $table->timestamps();
+            }
+        );
     }
 
     public function down(): void

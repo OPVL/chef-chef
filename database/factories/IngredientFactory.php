@@ -19,19 +19,23 @@ class IngredientFactory extends Factory
 
     public function location(Type $type)
     {
-        return $this->state(function (array $attributes) use ($type) {
-            return [
+        return $this->state(
+            function (array $attributes) use ($type) {
+                return [
                 'type_id' => $type->id,
-            ];
-        });
+                ];
+            }
+        );
     }
 
     public function unit(Unit $unit)
     {
-        return $this->state(function (array $attributes) use ($unit) {
-            return [
+        return $this->state(
+            function (array $attributes) use ($unit) {
+                return [
                 'unit_id' => $unit->id,
-            ];
-        });
+                ];
+            }
+        );
     }
 }

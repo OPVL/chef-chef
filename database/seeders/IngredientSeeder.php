@@ -18,15 +18,17 @@ class IngredientSeeder extends Seeder
     {
         collect(config('defaults.ingredients'))
             ->sort()
-            ->each(function (array $ingredient): void {
-                $payload = [
+            ->each(
+                function (array $ingredient): void {
+                    $payload = [
                     'name' => $ingredient['name'],
                     'unit_id' => $this->getUnit($ingredient)->id,
                     'type_id' => $this->getType($ingredient)->id,
-                ];
+                    ];
 
-                Ingredient::create($payload);
-            });
+                    Ingredient::create($payload);
+                }
+            );
     }
 
     public function getUnit(array $ingredient): Unit

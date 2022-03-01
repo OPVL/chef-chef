@@ -14,8 +14,10 @@ class TypeSeeder extends Seeder
     {
         collect(config('defaults.types'))
             ->sort()
-            ->each(function (string $type): void {
-                Type::create(['name' => $type]);
-            });
+            ->each(
+                function (string $type): void {
+                    Type::create(['name' => $type]);
+                }
+            );
     }
 }

@@ -8,15 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table): void {
-            $table->boolean('is_super')->default(false);
-        });
+        Schema::table(
+            'users',
+            function (Blueprint $table): void {
+                $table->boolean('is_super')->default(false);
+            }
+        );
     }
 
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table): void {
-            $table->dropColumn('is_super');
-        });
+        Schema::table(
+            'users',
+            function (Blueprint $table): void {
+                $table->dropColumn('is_super');
+            }
+        );
     }
 };

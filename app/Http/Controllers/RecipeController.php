@@ -9,9 +9,9 @@ use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateRecipe;
 use App\Models\Cuisine;
 use App\Models\Recipe;
+use App\Models\Unit;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Models\Unit;
 
 class RecipeController extends Controller
 {

@@ -8,13 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('ingredients', function (Blueprint $table): void {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('unit_id');
-            $table->foreignId('type_id');
-            $table->timestamps();
-        });
+        Schema::create(
+            'ingredients',
+            function (Blueprint $table): void {
+                $table->id();
+                $table->string('name');
+                $table->foreignId('unit_id');
+                $table->foreignId('type_id');
+                $table->timestamps();
+            }
+        );
     }
 
     public function down(): void

@@ -19,33 +19,41 @@ class IngredientRecipeController extends Controller
 
     public function create(Recipe $recipe): View
     {
-        return view('recipe.ingredient.create', [
+        return view(
+            'recipe.ingredient.create',
+            [
             'recipe' => $recipe,
             'groups' => $this->sortAction->execute(Ingredient::with('type')->get()),
-        ]);
+            ]
+        );
     }
 
     public function edit(Recipe $recipe): View
     {
-        return view('recipe.ingredient.edit', [
+        return view(
+            'recipe.ingredient.edit',
+            [
             'recipe' => $recipe,
             'groups' => $this->sortAction->execute($recipe->ingredients()->with('type')->get()),
             'units' => Unit::all(),
-        ]);
+            ]
+        );
     }
 
     public function update(Recipe $recipe, UpdateIngredientRecipe $request): RedirectResponse
     {
         $payload = [];
         collect($request->validated('quantity'))
-            ->each(function (float $quantity, int $ingredient_id) use ($request, $recipe, &$payload) {
+            ->each(
+                function (float $quantity, int $ingredient_id) use ($request, $recipe, &$payload): void {
 
-                $payload[$ingredient_id] = [
+                    $payload[$ingredient_id] = [
                     'recipe_id' => $recipe->id,
                     'quantity' => $quantity,
                     'unit_id'  => (int) $request->validated('unit')[$ingredient_id],
-                ];
-            });
+                    ];
+                }
+            );
 
         $recipe->ingredients()->sync($payload);
 

@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cuisine_recipe', function (Blueprint $table): void {
-            $table->id();
-            $table->timestamps();
-        });
+        Schema::create(
+            'cuisine_recipe',
+            function (Blueprint $table): void {
+                $table->id();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

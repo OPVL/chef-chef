@@ -10,9 +10,11 @@ class SortIngredientsByType implements Action
     public function execute(Collection $ingredients): Collection
     {
         $ingredients->pluck('type');
-        $output = $ingredients->mapToGroups(function (Ingredient $ingredient) {
-            return [$ingredient->type->name => $ingredient];
-        });
+        $output = $ingredients->mapToGroups(
+            function (Ingredient $ingredient) {
+                return [$ingredient->type->name => $ingredient];
+            }
+        );
 
         return $output;
     }
