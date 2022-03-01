@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\CreateRecipe as CreateAction;
+use App\Actions\SortIngredientsByLocation;
 use App\Http\Requests\CreateRecipe;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateRecipe;
@@ -10,10 +11,11 @@ use App\Models\Cuisine;
 use App\Models\Recipe;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Unit;
 
 class RecipeController extends Controller
 {
-    public function __construct(protected CreateAction $create)
+    public function __construct(protected CreateAction $create, protected SortIngredientsByLocation $sortIngredients)
     {
     }
 
@@ -37,8 +39,10 @@ class RecipeController extends Controller
     public function edit(Recipe $recipe): View
     {
         $cuisines = Cuisine::all();
-
-        return view('recipe.edit', ['recipe' => $recipe, 'cuisines' => $cuisines]);
+        $ingredients = $this->sortIngredients->execute($recipe->ingredients);
+        $units = Unit::all();
+        // dd($ingredients);
+        return view('recipe.edit', ['recipe' => $recipe, 'cuisines' => $cuisines, 'groups' => $ingredients, 'units' => $units]);
     }
 
     public function update(Recipe $recipe, UpdateRecipe $request): RedirectResponse
@@ -66,7 +70,7 @@ class RecipeController extends Controller
 
     public function delete(Recipe $recipe, DeleteRequest $request): RedirectResponse
     {
-        if ($request->validated()->confirm) {
+        if ($request->validated()['confirm'] === "true") {
             $recipe->delete();
         }
 

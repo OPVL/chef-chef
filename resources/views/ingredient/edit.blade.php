@@ -24,7 +24,8 @@
         <label for="name">unit</label>
         <select name="unit_id" id="unit_id">
             @foreach ($units as $unit)
-                <option value="{{ $unit->id }}" @if ($ingredient->unit_id === $unit->id) selected @endif>{{ $unit->name }}</option>
+                <option value="{{ $unit->id }}" @if ($ingredient->unit_id === $unit->id) selected @endif>
+                    {{ $unit->name }}</option>
             @endforeach
         </select>
 
@@ -34,7 +35,8 @@
         <label for="name">storage location</label>
         <select name="storage_location_id" id="storage_location_id">
             @foreach ($storageLocations as $storageLocation)
-                <option value="{{ $storageLocation->id }}" @if ($ingredient->storage_location_id === $storageLocation->id) selected @endif>{{ $storageLocation->name }}</option>
+                <option value="{{ $storageLocation->id }}" @if ($ingredient->storage_location_id === $storageLocation->id) selected @endif>
+                    {{ $storageLocation->name }}</option>
             @endforeach
         </select>
 

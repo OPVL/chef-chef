@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h1>editing {{ $recipe->name}}</h1>
     <form action="{{ route('recipe.update', $recipe) }}" method="post">
         @method('PATCH')
         @csrf
@@ -34,6 +35,35 @@
                     {{ $cuisine->name }}</option>
             @endforeach
         </select>
+
+        <div>
+            <h2>ingredients</h2>
+            @foreach ($groups as $location => $ingredients)
+                <div>
+                    <h4>{{ $location }}</h4>
+                    @foreach ($ingredients as $ingredient)
+                        <p>{{ $ingredient->name }}</p>
+                        @error('quantity[{{ $ingredient->id }}]')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <label for="quantity[{{ $ingredient->id }}]">quantity</label>
+                        <input type="number" name="quantity[{{ $ingredient->id }}]"
+                            id="{{ $ingredient->name }}-quantity"
+                            value="{{ old("quantity[{$ingredient->id}]") ?? $ingredient->pivot->quantity }}">
+                        @error('unit[{{ $ingredient->id }}]')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <label for="unit[{{ $ingredient->id }}]">unit</label>
+                        <select name="unit[{{ $ingredient->id }}]" id="{{ $ingredient->name }}-unit">
+                            @foreach ($units as $unit)
+                                <option value="{{ $unit->id }}" @if ($ingredient->unit_id === $unit->id) selected @endif>
+                                    {{ $unit->name }}</option>
+                            @endforeach
+                        </select>
+                    @endforeach
+                </div>
+            @endforeach
+        </div>
 
         <button type="submit">update</button>
     </form>
