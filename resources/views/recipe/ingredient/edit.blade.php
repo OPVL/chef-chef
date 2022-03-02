@@ -29,7 +29,7 @@
                     <label for="quantity[{{ $ingredient->id }}]">quantity</label>
                     <input type="number" name="quantity[{{ $ingredient->id }}]"
                         id="{{ $ingredient->name }}-quantity"
-                        value="{{ old("quantity[{$ingredient->id}]") ?? $ingredient->pivot->quantity }}">
+                        value="{{ old("quantity[{$ingredient->id}]") ?? $ingredient->pivot->quantity }}" step="any">
                     @error('unit[{{ $ingredient->id }}]')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

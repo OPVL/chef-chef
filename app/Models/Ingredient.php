@@ -6,6 +6,8 @@ use App\Models\Scopes\Alphabetical;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Pluralizer;
+use Phospr\Fraction;
 
 class Ingredient extends Model
 {
@@ -38,6 +40,22 @@ class Ingredient extends Model
             return "{$this->unit->name} of {$this->name}";
         }
 
-        return "{$this->pivot->quantity} {$this->pivot->unit->name} of {$this->name}";
+        // $unit = $this->pivot->quantity > 1
+        //     ? Pluralizer::plural($this->pivot->unit->name)
+        //     : $this->pivot->unit->name;
+
+        $quantity = $this->pivot->quantity >= 1
+                ? (int) $this->pivot->quantity
+                : Fraction::fromFloat($this->pivot->quantity);
+
+        if ($this->pivot->unit->measurable) {
+            $unit = $this->pivot->unit->label;
+
+            return "{$quantity}{$unit} of {$this->name}";
+        }
+
+        $ingredient = $this->pivot->quantity >= 1 ?: Pluralizer::plural($this->name);
+
+        return "{$quantity} {$ingredient}";
     }
 }

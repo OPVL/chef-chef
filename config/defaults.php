@@ -16,7 +16,10 @@ return [
         'African',
     ],
     'units' => [
-        'item' => 's',
+        's' => [
+            'name' => 'item',
+            'measurable' => false,
+        ],
         'lb' => 'pound',
         'l' => 'litre',
         'ml' => 'millilitre',
@@ -25,7 +28,10 @@ return [
         'can' => 'can',
         'tsp' => 'teaspoon',
         'tbsp' => 'tablespoon',
-        'unspecified' => 'unspecified',
+        'unspecified' => [
+            'name' => 'unspecified',
+            'measurable' => false,
+        ],
     ],
     'types' => [
         'spice',

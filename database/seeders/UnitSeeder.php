@@ -15,8 +15,12 @@ class UnitSeeder extends Seeder
         collect(config('defaults.units'))
             ->sort()
             ->each(
-                function (string $unit, string $label): void {
-                    Unit::create(['name' => $unit, 'label' => $label]);
+                function (array|string $data, string $label): Unit {
+                    if (is_array($data)) {
+                        return Unit::create(array_merge(['label' => $label], $data));
+                    }
+
+                    return Unit::create(['label' => $label, 'name' => $data]);
                 }
             );
     }

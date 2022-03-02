@@ -4,7 +4,7 @@
     @endslot
     @section('content')
         @foreach ($recipe->ingredients as $ingredient)
-            <p>{{ $ingredient->name }} - {{ $ingredient->pivot->quantity }}{{ $ingredient->unit->label }}</p>
+            <p>{{ $ingredient->display }}</p>
         @endforeach
     @endsection
 </x-layout.standard>
