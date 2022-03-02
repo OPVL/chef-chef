@@ -23,7 +23,7 @@ class IngredientTest extends TestCase
     /** @test */
     public function can_get_nice_display_name(): void
     {
-        $unit = Unit::factory()->create(['name' => 'teaspoon']);
+        $unit = Unit::factory()->create(['name' => 'teaspoon', 'label' => 'tsp']);
         $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'salt']);
 
         $this->assertEquals('teaspoon of salt', $ingredient->display);
@@ -32,7 +32,7 @@ class IngredientTest extends TestCase
     /** @test */
     public function can_get_nice_display_name_alt(): void
     {
-        $unit = Unit::factory()->create(['name' => 'can']);
+        $unit = Unit::factory()->create(['name' => 'can', 'label' => 'can']);
         $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'baked beans']);
 
         $this->assertEquals('can of baked beans', $ingredient->display);
@@ -42,7 +42,7 @@ class IngredientTest extends TestCase
     public function will_use_pivot_when_available(): void
     {
         $unit = Unit::factory()->create(['name' => 'teaspoon']);
-        $pivotUnit = Unit::factory()->create(['name' => 'gram']);
+        $pivotUnit = Unit::factory()->create(['name' => 'gram', 'label' => 'g']);
         $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'salt']);
         $recipe = Recipe::factory()->create();
 
@@ -51,14 +51,14 @@ class IngredientTest extends TestCase
             'unit_id' => $pivotUnit->id,
         ]]);
 
-        $this->assertEquals('20 grams of salt', $recipe->ingredients->first()->display);
+        $this->assertEquals('20g of salt', $recipe->ingredients->first()->display);
     }
 
     /** @test */
     public function correctly_displays_small_pivot_units(): void
     {
         $unit = Unit::factory()->create(['name' => 'gram']);
-        $pivotUnit = Unit::factory()->create(['name' => 'tablespoon']);
+        $pivotUnit = Unit::factory()->create(['name' => 'tablespoon', 'label' => 'tbsp']);
         $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'cumin']);
         $recipe = Recipe::factory()->create();
 
@@ -67,14 +67,14 @@ class IngredientTest extends TestCase
             'unit_id' => $pivotUnit->id,
         ]]);
 
-        $this->assertEquals('1/2 tablespoon of cumin', $recipe->ingredients->first()->display);
+        $this->assertEquals('1/2tbsp of cumin', $recipe->ingredients->first()->display);
     }
 
     /** @test */
     public function correctly_displays_small_pivot_units_alt(): void
     {
-        $unit = Unit::factory()->create(['name' => 'gram']);
-        $pivotUnit = Unit::factory()->create(['name' => 'teaspoon']);
+        $unit = Unit::factory()->create(['name' => 'gram', 'label' => 'g']);
+        $pivotUnit = Unit::factory()->create(['name' => 'teaspoon', 'label' => 'tsp']);
         $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'paprika']);
         $recipe = Recipe::factory()->create();
 
@@ -83,6 +83,55 @@ class IngredientTest extends TestCase
             'unit_id' => $pivotUnit->id,
         ]]);
 
-        $this->assertEquals('1/4 teaspoon of paprika', $recipe->ingredients->first()->display);
+        $this->assertEquals('1/4tsp of paprika', $recipe->ingredients->first()->display);
+    }
+
+    /** @test */
+    public function correctly_displays_non_measurable_units_singular(): void
+    {
+        $unit = Unit::factory()->create(['name' => 'gram', 'label' => 'g']);
+        $pivotUnit = Unit::factory()->create(['name' => 'item', 'label' => 's', 'measurable' => false]);
+        $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'lemon']);
+        $recipe = Recipe::factory()->create();
+
+        $recipe->ingredients()->sync([$ingredient->id => [
+            'quantity' => 1,
+            'unit_id' => $pivotUnit->id,
+        ]]);
+
+        $this->assertEquals('1 lemon', $recipe->ingredients->first()->display);
+    }
+
+    /** @test */
+    public function correctly_displays_non_measurable_units_plural(): void
+    {
+        $unit = Unit::factory()->create(['name' => 'gram', 'label' => 'g']);
+        $pivotUnit = Unit::factory()->create(['name' => 'item', 'label' => 's', 'measurable' => false]);
+        $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'orange']);
+        $recipe = Recipe::factory()->create();
+
+        $recipe->ingredients()->sync([$ingredient->id => [
+            'quantity' => 2,
+            'unit_id' => $pivotUnit->id,
+        ]]);
+
+        $this->assertEquals('2 oranges', $recipe->ingredients->first()->display);
+    }
+
+    /** @test */
+    public function correctly_displays_non_measurable_units_plural_named(): void
+    {
+        $this->markTestIncomplete('NEEDS IMPLEMT');
+        $unit = Unit::factory()->create(['name' => 'gram', 'label' => 'g']);
+        $pivotUnit = Unit::factory()->create(['name' => 'item', 'label' => 's', 'measurable' => false]);
+        $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'orange']);
+        $recipe = Recipe::factory()->create();
+
+        $recipe->ingredients()->sync([$ingredient->id => [
+            'quantity' => 2,
+            'unit_id' => $pivotUnit->id,
+        ]]);
+
+        $this->assertEquals('2 oranges', $recipe->ingredients->first()->display);
     }
 }
