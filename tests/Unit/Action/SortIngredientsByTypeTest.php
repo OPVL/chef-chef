@@ -37,7 +37,7 @@ class SortIngredientsByTypeTest extends TestCase
 
         $types->each(function (Type $type) use ($formatted): void {
             $this->assertArrayHasKey($type->name, $formatted, "{$type->name} not included in collection");
-            $this->assertCount($type->ingredients->count(), $formatted[$type->name], "{$type->name} incorrect count");
+            $this->assertCount($type->fresh()->ingredients->count(), $formatted[$type->name], "{$type->name} incorrect count");
         });
     }
 
