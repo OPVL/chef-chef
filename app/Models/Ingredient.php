@@ -24,6 +24,12 @@ class Ingredient extends Model
         static::addGlobalScope(new Alphabetical);
     }
 
+    public function recipes()
+    {
+        return $this->belongsToMany(Recipe::class)
+            ->using(IngredientRecipe::class);
+    }
+
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class);
