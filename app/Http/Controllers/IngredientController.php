@@ -37,8 +37,8 @@ class IngredientController extends Controller
         return view(
             'ingredient.create',
             [
-            'units' => $units,
-            'types' => $types,
+                'units' => $units,
+                'types' => $types,
             ]
         );
     }
@@ -56,9 +56,9 @@ class IngredientController extends Controller
         return view(
             'ingredient.edit',
             [
-            'ingredient' => $ingredient,
-            'units' => $units,
-            'types' => $types,
+                'ingredient' => $ingredient,
+                'units' => $units,
+                'types' => $types,
             ]
         );
     }
@@ -88,10 +88,10 @@ class IngredientController extends Controller
 
     public function delete(Ingredient $ingredient, DeleteRequest $request): RedirectResponse
     {
-        if ($request->validated()->confirm) {
+        if ($request->validated()['confirm'] === "true") {
             $ingredient->delete();
         }
 
-        return back();
+        return back()->with('success', 'ingredient deleted');
     }
 }

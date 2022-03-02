@@ -50,8 +50,9 @@ class Ingredient extends Model
 
         if ($this->pivot->unit->measurable) {
             $unit = $this->pivot->unit->label;
+            $shouldSpace = $this->pivot->unit->should_space ? ' ' : '';
 
-            return "{$quantity}{$unit} of {$this->name}";
+            return "{$quantity}{$shouldSpace}{$unit} of {$this->name}";
         }
 
         $ingredient = $this->pivot->quantity > 1 ? Pluralizer::plural($this->name) : $this->name;

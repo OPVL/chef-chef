@@ -20,14 +20,28 @@ return [
             'name' => 'item',
             'measurable' => false,
         ],
+        'oz' => 'ounce',
         'lb' => 'pound',
         'l' => 'litre',
         'ml' => 'millilitre',
         'g' => 'gram',
         'kg' => 'kilogram',
-        'can' => 'can',
-        'tsp' => 'teaspoon',
-        'tbsp' => 'tablespoon',
+        'can' => [
+            'name' => 'can',
+            'should_space' => true,
+        ],
+        'cup' => [
+            'name' => 'cup',
+            'should_space' => true,
+        ],
+        'tsp' => [
+            'name' => 'teaspoon',
+            'should_space' => true,
+        ],
+        'tbsp' => [
+            'name' => 'tablespoon',
+            'should_space' => true,
+        ],
         'unspecified' => [
             'name' => 'unspecified',
             'measurable' => false,

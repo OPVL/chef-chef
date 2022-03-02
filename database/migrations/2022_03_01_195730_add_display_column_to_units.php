@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('units', function (Blueprint $table): void {
             $table->boolean('measurable')->default(true);
+            $table->boolean('should_space')->default(false);
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('units', function (Blueprint $table): void {
-            $table->dropColumn('measurable');
+            $table->dropColumn(['measurable', 'should_space']);
         });
     }
 };
