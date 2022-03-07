@@ -20,14 +20,18 @@ class UserSeeder extends Seeder
 
         $rows->each(
             function (array $user): void {
-                $payload = [
-                    'name' => Str::ucfirst($user[0]),
-                    'email' => $user[1],
-                    'password' => bcrypt($user[2]),
-                    'is_super' => $user[3],
-                ];
 
-                if (!User::firstOrCreate($payload)) {
+                if (!User::firstOrCreate(
+                    [
+                        'name' => Str::ucfirst($user[0]),
+                        'email' => $user[1],
+                        'is_super' => $user[3],
+                    ],
+                    [
+                        'password' => bcrypt($user[2]),
+                    ]
+                )
+                ) {
                     return;
                 }
 

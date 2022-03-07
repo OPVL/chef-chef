@@ -35,7 +35,7 @@ class IngredientSeeder extends Seeder
                     'type_id' => $this->getType($ingredient[1], true)->id,
                 ];
 
-                if (!Ingredient::create($payload) && $this->command) {
+                if (!Ingredient::firstOrCreate($payload) && $this->command) {
                     return;
                 }
 
@@ -67,7 +67,7 @@ class IngredientSeeder extends Seeder
                     'type_id' => $this->getType($ingredient['type'], true)->id,
                 ];
 
-                if (!Ingredient::create($payload) || $this->command === null) {
+                if (!Ingredient::firstOrCreate($payload) || $this->command === null) {
                     return;
                 }
 
