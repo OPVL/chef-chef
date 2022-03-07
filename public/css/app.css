@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f1f1f1;
+  color: #292425;
+}
+body main {
+  min-height: 100vh;
+}
+body nav {
+  height: 60px;
+  background: bisque;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 15%;
+  align-items: center;
+}
+body nav .appname a {
+  text-decoration: none;
+  font-weight: 800;
+  line-height: 2;
+  font-size: 48px;
+  color: inherit;
+}
+
+/*# sourceMappingURL=app.css.map */
