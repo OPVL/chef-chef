@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\DeleteType as DeleteAction;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateType;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateType;
@@ -18,22 +19,22 @@ class TypeController extends Controller
 
     public function index(): View
     {
-        return view('type.index', ['types' => Type::all()]);
+        return view('admin.type.index', ['types' => Type::all()]);
     }
 
     public function create(): View
     {
-        return view('type.create');
+        return view('admin.type.create');
     }
 
     public function get(Type $type): View
     {
-        return view('type.get', ['type' => $type]);
+        return view('admin.type.get', ['type' => $type]);
     }
 
     public function edit(Type $type): View
     {
-        return view('type.edit', ['type' => $type]);
+        return view('admin.type.edit', ['type' => $type]);
     }
 
     public function update(Type $type, UpdateType $request): RedirectResponse

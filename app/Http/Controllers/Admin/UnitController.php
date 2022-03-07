@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUnit;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateUnit;
@@ -13,22 +14,22 @@ class UnitController extends Controller
 {
     public function index(): View
     {
-        return view('unit.index', ['units' => Unit::all()]);
+        return view('admin.unit.index', ['units' => Unit::all()]);
     }
 
     public function create(): View
     {
-        return view('unit.create');
+        return view('admin.unit.create');
     }
 
     public function get(Unit $unit): View
     {
-        return view('unit.index', ['unit' => $unit]);
+        return view('admin.unit.index', ['unit' => $unit]);
     }
 
     public function edit(Unit $unit): View
     {
-        return view('unit.edit', ['unit' => $unit]);
+        return view('admin.unit.edit', ['unit' => $unit]);
     }
 
     public function update(Unit $unit, UpdateUnit $request): RedirectResponse

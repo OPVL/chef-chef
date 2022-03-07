@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\CreateRecipe as CreateAction;
 use App\Actions\SortIngredientsByType;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRecipe;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateRecipe;
@@ -21,19 +22,19 @@ class RecipeController extends Controller
 
     public function index(): View
     {
-        return view('recipe.index', ['recipes' => Recipe::all()]);
+        return view('admin.recipe.index', ['recipes' => Recipe::all()]);
     }
 
     public function create(): View
     {
         $cuisines = Cuisine::all();
 
-        return view('recipe.create', ['cuisines' => $cuisines]);
+        return view('admin.recipe.create', ['cuisines' => $cuisines]);
     }
 
     public function get(Recipe $recipe): View
     {
-        return view('recipe.view', ['recipe' => $recipe]);
+        return view('admin.recipe.view', ['recipe' => $recipe]);
     }
 
     public function edit(Recipe $recipe): View
@@ -42,7 +43,7 @@ class RecipeController extends Controller
         $ingredients = $this->sortIngredients->execute($recipe->ingredients);
         $units = Unit::all();
 
-        return view('recipe.edit', ['recipe' => $recipe, 'cuisines' => $cuisines, 'groups' => $ingredients, 'units' => $units]);
+        return view('admin.recipe.edit', ['recipe' => $recipe, 'cuisines' => $cuisines, 'groups' => $ingredients, 'units' => $units]);
     }
 
     public function update(Recipe $recipe, UpdateRecipe $request): RedirectResponse

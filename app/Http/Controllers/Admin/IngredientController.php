@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 // use App\Actions\CreateIngredient as CreateAction;
 use App\Http\Requests\CreateIngredient;
 use App\Http\Requests\DeleteRequest;
@@ -45,7 +46,7 @@ class IngredientController extends Controller
 
     public function get(Ingredient $ingredient): View
     {
-        return view('ingredient.index', ['ingredient' => $ingredient]);
+        return view('admin.ingredient.index', ['ingredient' => $ingredient]);
     }
 
     public function edit(Ingredient $ingredient): View
