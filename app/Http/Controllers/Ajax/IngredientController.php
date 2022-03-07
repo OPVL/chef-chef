@@ -11,12 +11,19 @@ class IngredientController extends AjaxController
     public function __invoke(Request $request): Response
     {
         return response(
-            Ingredient::where('name', 'like', "%{$request->get('name')}")
-                ->limit(5)
-                ->get()
-                ->map(function ($ingredient) {
-                    return "<option value=\"{$ingredient->id}\">{$ingredient->name}</option>";
-                })
+            implode(
+                '',
+                Ingredient::where('name', 'like', "%{$request->get('query')}%")
+                    ->limit(5)
+                    ->get()
+                    ->map(function ($ingredient) {
+                        return $this->htmlElement(
+                            'option',
+                            $ingredient->name,
+                            ['value' => $ingredient->id]
+                        );
+                    })->toArray()
+            )
         );
     }
 }
