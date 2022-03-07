@@ -2,10 +2,9 @@
 
 namespace App\View\Components\Shared;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
 
-class Navigation extends Component
+class Footer extends Component
 {
     /**
      * Create a new component instance.
@@ -21,9 +20,6 @@ class Navigation extends Component
      */
     public function render(): \Illuminate\Contracts\View\View|\Closure|string
     {
-        return view(
-            'components.shared.navigation',
-            ['showRegister' => Route::has('register'), 'appname' => config('app.name')]
-        );
+        return view('components.shared.footer');
     }
 }
