@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('')->uses('AdminController@index')->name('admin.index');
 
+Route::view(
+    'test',
+    'admin.ingredient.test'
+);
+
 Route::group(
     ['prefix' => 'recipes'],
     function (): void {
