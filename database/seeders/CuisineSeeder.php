@@ -9,12 +9,18 @@ class CuisineSeeder extends Seeder
 {
     public function run(): void
     {
-        collect(config('defaults.cuisines'))
-            ->sort()
-            ->each(
-                function (string $cuisine): void {
-                    Cuisine::factory()->create(['name' => $cuisine]);
+        $rows = collect(config('defaults.cuisines'))
+            ->sort();
+        $this->command->getOutput()->progressStart($rows->count());
+
+        $rows->each(
+            function (string $cuisine): void {
+                if (!Cuisine::factory()->create(['name' => $cuisine])) {
+                    return;
                 }
-            );
+                $this->command->getOutput()->progressAdvance();
+            }
+        );
+        $this->command->getOutput()->progressFinish();
     }
 }

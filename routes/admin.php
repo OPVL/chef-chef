@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CuisineController;
-use App\Http\Controllers\IngredientController;
-use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -30,13 +27,13 @@ Route::group(
 Route::group(
     ['prefix' => 'ingredients'],
     function (): void {
-        Route::get('')->uses([IngredientController::class, 'index'])->name('admin.ingredient.index');
-        Route::get('create')->uses([IngredientController::class, 'create'])->name('admin.ingredient.create');
-        Route::get('{ingredient}')->uses([IngredientController::class, 'get'])->name('admin.ingredient.get');
-        Route::get('{ingredient}/edit')->uses([IngredientController::class, 'edit'])->name('admin.ingredient.edit');
-        Route::delete('{ingredient}/delete')->uses([IngredientController::class, 'delete'])->name('admin.ingredient.delete');
-        Route::patch('{ingredient}/update')->uses([IngredientController::class, 'update'])->name('admin.ingredient.update');
-        Route::put('store')->uses([IngredientController::class, 'store'])->name('admin.ingredient.store');
+        Route::get('')->uses('IngredientController@index')->name('admin.ingredient.index');
+        Route::get('create')->uses('IngredientController@create')->name('admin.ingredient.create');
+        Route::get('{ingredient}')->uses('IngredientController@get')->name('admin.ingredient.get');
+        Route::get('{ingredient}/edit')->uses('IngredientController@edit')->name('admin.ingredient.edit');
+        Route::delete('{ingredient}/delete')->uses('IngredientController@delete')->name('admin.ingredient.delete');
+        Route::patch('{ingredient}/update')->uses('IngredientController@update')->name('admin.ingredient.update');
+        Route::put('store')->uses('IngredientController@store')->name('admin.ingredient.store');
     }
 );
 

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Type;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class TypeSeeder extends Seeder
 {
@@ -12,12 +13,21 @@ class TypeSeeder extends Seeder
      */
     public function run(): void
     {
-        collect(config('defaults.types'))
-            ->sort()
+        $rows = collect(
+            collect(config('defaults.types'))
+        );
+        $this->command->getOutput()->progressStart($rows->count());
+
+        $rows->sort()
             ->each(
                 function (string $type): void {
-                    Type::create(['name' => $type]);
+                    if (!Type::create(['name' => Str::ucfirst($type)])) {
+                        return;
+                    }
+
+                    $this->command->getOutput()->progressAdvance();
                 }
             );
+        $this->command->getOutput()->progressFinish();
     }
 }

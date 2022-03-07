@@ -15,14 +15,10 @@ use Illuminate\Http\RedirectResponse;
 
 class IngredientController extends Controller
 {
-    // public function __construct(protected CreateAction $create)
-    // {
-    // }
-
     public function index(): View
     {
         return view(
-            'ingredient.index',
+            'admin.ingredient.index',
             [
                 'ingredients' => Ingredient::with(['unit', 'type'])
                     ->get(),
@@ -36,7 +32,7 @@ class IngredientController extends Controller
         $units = Unit::all();
 
         return view(
-            'ingredient.create',
+            'admin.ingredient.create',
             [
                 'units' => $units,
                 'types' => $types,
@@ -55,7 +51,7 @@ class IngredientController extends Controller
         $units = Unit::all();
 
         return view(
-            'ingredient.edit',
+            'admin.ingredient.edit',
             [
                 'ingredient' => $ingredient,
                 'units' => $units,

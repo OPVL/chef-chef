@@ -1,0 +1,4 @@
+name,email,password,admin
+lloyd,lloyd@example.com,password,1
+amy,amy@example.com,hollowfart,0
+tester,test@example.com,,0

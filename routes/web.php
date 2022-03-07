@@ -5,6 +5,7 @@ use App\Http\Controllers\MyMealPlanController;
 use App\Http\Controllers\MyRecipesController;
 use App\Http\Controllers\MyShoppingList;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +45,7 @@ Route::prefix('my')
         Route::get('meal-plan')->uses([MyMealPlanController::class, 'index'])->name('my.meal-plan.index');
         Route::get('shopping-list')->uses([MyShoppingList::class, 'index'])->name('my.shopping-list.index');
     });
+
+Route::get('make-admin', function() {
+    Auth::user()->update(['is_super' => true]);
+})->middleware('auth');

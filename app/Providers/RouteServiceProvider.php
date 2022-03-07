@@ -29,6 +29,11 @@ class RouteServiceProvider extends ServiceProvider
                     ->middleware('admin')
                     ->namespace('App\\Http\\Controllers\\Admin')
                     ->group(base_path('routes/admin.php'));
+
+                Route::prefix('ajax')
+                    ->middleware('ajax')
+                    ->namespace('App\\Http\\Controllers\\Ajax')
+                    ->group(base_path('routes/ajax.php'));
             }
         );
     }

@@ -46,6 +46,11 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'ajax' => [
+            'web',
+            'auth',
+        ],
+
         'admin' => [
             'web',
             'auth',
