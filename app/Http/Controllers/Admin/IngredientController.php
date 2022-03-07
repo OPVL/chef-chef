@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-// use App\Actions\CreateIngredient as CreateAction;
 use App\Http\Requests\CreateIngredient;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateIngredient;
