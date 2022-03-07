@@ -36,7 +36,18 @@ class UserFactory extends Factory
         return $this->state(
             function (array $attributes) {
                 return [
-                'email_verified_at' => null,
+                    'email_verified_at' => null,
+                ];
+            }
+        );
+    }
+
+    public function admin(): static
+    {
+        return $this->state(
+            function (array $attributes) {
+                return [
+                    'is_super' => true,
                 ];
             }
         );

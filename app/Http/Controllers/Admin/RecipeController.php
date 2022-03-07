@@ -51,7 +51,7 @@ class RecipeController extends Controller
         $recipe->update($request->validated());
 
         return redirect()
-            ->route('recipe.index')
+            ->route('admin.recipe.index')
             ->with('success', "updated recipe: {$recipe->id}");
     }
 
@@ -65,8 +65,8 @@ class RecipeController extends Controller
         }
 
         return redirect()
-            ->route('recipe.ingredient.create', $recipe)
-            ->with('success', "created recipe: {$recipe->id}");
+            ->route('admin.recipe.ingredient.create', $recipe)
+            ->with('success', "created recipe: {$recipe->name}");
     }
 
     public function delete(Recipe $recipe, DeleteRequest $request): RedirectResponse
@@ -75,6 +75,8 @@ class RecipeController extends Controller
             $recipe->delete();
         }
 
-        return back();
+        return redirect()
+            ->route('admin.recipe.index')
+            ->with('success', "deleted recipe: {$recipe->name}");
     }
 }

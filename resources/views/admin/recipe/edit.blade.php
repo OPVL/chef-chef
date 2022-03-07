@@ -4,7 +4,7 @@
     @endslot
     @section('content')
         <h1>editing {{ $recipe->name }}</h1>
-        <form action="{{ route('recipe.update', $recipe) }}" method="post">
+        <form action="{{ route('admin.recipe.update', $recipe) }}" method="post">
             @method('PATCH')
             @csrf
             @error('name')

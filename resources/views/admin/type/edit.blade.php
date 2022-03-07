@@ -3,7 +3,7 @@
         edit {{ $type->name }}
     @endslot
     @section('content')
-        <form action="{{ route('type.update', $type) }}" method="post">
+        <form action="{{ route('admin.type.update', $type) }}" method="post">
             @method('PATCH')
             @csrf
             @error('name')

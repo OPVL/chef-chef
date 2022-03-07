@@ -21,7 +21,7 @@ class IngredientRecipeController extends Controller
     public function create(Recipe $recipe): View
     {
         return view(
-            'recipe.ingredient.create',
+            'admin.recipe.ingredient.create',
             [
             'recipe' => $recipe,
             'groups' => $this->sortAction->execute(Ingredient::with('type')->get()),
@@ -32,7 +32,7 @@ class IngredientRecipeController extends Controller
     public function edit(Recipe $recipe): View
     {
         return view(
-            'recipe.ingredient.edit',
+            'admin.recipe.ingredient.edit',
             [
             'recipe' => $recipe,
             'groups' => $this->sortAction->execute($recipe->ingredients()->with('type')->get()),
@@ -58,13 +58,13 @@ class IngredientRecipeController extends Controller
 
         $recipe->ingredients()->sync($payload);
 
-        return redirect()->route('recipe.get', $recipe);
+        return redirect()->route('admin.recipe.get', $recipe);
     }
 
     public function store(Recipe $recipe, CreateIngredientRecipe $request): RedirectResponse
     {
         $recipe->ingredients()->attach($request->validated()['ingredient']);
 
-        return redirect()->route('recipe.ingredient.edit', $recipe);
+        return redirect()->route('admin.recipe.ingredient.edit', $recipe);
     }
 }

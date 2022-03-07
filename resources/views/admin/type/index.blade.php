@@ -3,9 +3,9 @@
         storage locations
     @endslot
     @section('content')
-        @isset($success)
-            {{ $success }}
-        @endisset
+        @if(session()->has('success'))
+            {{ session()->get('success') }}
+        @endif
         <table>
             <thead>
                 <th>ID</th>
@@ -19,10 +19,10 @@
                 <tr>
                     <td>{{ $type->id }}</td>
                     <td>{{ $type->name }}</td>
-                    <td><a href="{{ route('type.edit', $type) }}">edit</a></td>
+                    <td><a href="{{ route('admin.type.edit', $type) }}">edit</a></td>
                     @if (true || (Auth::user() && Auth::user()->is_super))
                         <td>
-                            <form action="{{ route('type.delete', $type) }}" method="post">
+                            <form action="{{ route('admin.type.delete', $type) }}" method="post">
                                 @method('DELETE')
                                 @csrf
                                 <input type="hidden" name="confirm" id="confirmation-input">

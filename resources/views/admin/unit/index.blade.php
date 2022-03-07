@@ -3,9 +3,9 @@
         units
     @endslot
     @section('content')
-        @isset($success)
-            {{ $success }}
-        @endisset
+        @if(session()->has('success'))
+            {{ session()->get('success') }}
+        @endif
         <table>
             <thead>
                 <th>ID</th>
@@ -18,7 +18,7 @@
                     <td>{{ $unit->id }}</td>
                     <td>{{ $unit->name }}</td>
                     <td>{{ $unit->label }}</td>
-                    <td><a href="{{ route('unit.edit', $unit) }}">edit</a></td>
+                    <td><a href="{{ route('admin.unit.edit', $unit) }}">edit</a></td>
                 </tr>
             @endforeach
         </table>

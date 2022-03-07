@@ -11,7 +11,7 @@
 <body>
     <h1>edit ingredients</h1>
     <hr>
-    <form action="{{ route('recipe.ingredient.update', $recipe) }}" method="post">
+    <form action="{{ route('admin.recipe.ingredient.update', $recipe) }}" method="post">
         @method('PATCH')
         @csrf
         @error('ingredient')

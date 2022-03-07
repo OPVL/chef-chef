@@ -3,7 +3,7 @@
         create recipe
     @endslot
     @section('content')
-        <form action="{{ route('recipe.store') }}" method="post">
+        <form action="{{ route('admin.recipe.store') }}" method="post">
             @method('PUT')
             @csrf
             @error('name')

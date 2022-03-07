@@ -12,7 +12,7 @@
     <h1>select ingredients</h1>
     <p>you'll be able to choose quantities in the next step</p>
     <hr>
-    <form action="{{ route('recipe.ingredient.store', $recipe) }}" method="post">
+    <form action="{{ route('admin.recipe.ingredient.store', $recipe) }}" method="post">
         @method('PUT')
         @csrf
         @error('ingredient')

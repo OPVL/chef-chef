@@ -3,7 +3,7 @@
         create unit
     @endslot
     @section('content')
-        <form action="{{ route('unit.store') }}" method="post">
+        <form action="{{ route('admin.unit.store') }}" method="post">
             @method('PUT')
             @csrf
             @error('name')

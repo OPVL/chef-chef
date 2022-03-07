@@ -4,7 +4,7 @@
     @endslot
 
     @section('content')
-        <form action="{{ route('cuisine.store') }}" method="post">
+        <form action="{{ route('admin.cuisine.store') }}" method="post">
             @method('PUT')
             @csrf
             @error('name')

@@ -3,7 +3,7 @@
         create storage location
     @endslot
     @section('content')
-        <form action="{{ route('type.store') }}" method="post">
+        <form action="{{ route('admin.type.store') }}" method="post">
             @method('PUT')
             @csrf
             @error('name')

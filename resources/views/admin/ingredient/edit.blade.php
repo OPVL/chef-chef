@@ -4,7 +4,7 @@
     @endslot
 
     @section('content')
-        <form action="{{ route('ingredient.update', $ingredient) }}" method="post">
+        <form action="{{ route('admin.ingredient.update', $ingredient) }}" method="post">
             @method('PATCH')
             @csrf
             @error('name')

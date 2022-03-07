@@ -3,7 +3,7 @@
         edit {{ $unit->name }}
     @endslot
     @section('content')
-        <form action="{{ route('unit.update', $unit) }}" method="post">
+        <form action="{{ route('admin.unit.update', $unit) }}" method="post">
             @method('PATCH')
             @csrf
             @error('name')

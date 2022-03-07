@@ -4,9 +4,9 @@
     @endslot
 
     @section('content')
-        @isset($success)
-            {{ $success }}
-        @endisset
+        @if(session()->has('success'))
+            {{ session()->get('success') }}
+        @endif
         <table>
             <thead>
                 <th>ID</th>
@@ -25,12 +25,12 @@
                     <td>{{ $recipe->name }}</td>
                     <td>{{ $recipe->description }}</td>
                     <td>{{ $recipe->cuisine->name }}</td>
-                    <td><a href="{{ route('recipe.get', $recipe) }}">view</a></td>
-                    <td><a href="{{ route('recipe.edit', $recipe) }}">edit</a></td>
+                    <td><a href="{{ route('admin.recipe.get', $recipe) }}">view</a></td>
+                    <td><a href="{{ route('admin.recipe.edit', $recipe) }}">edit</a></td>
                     {{-- <td>{{ $recipe->ingredients->count }}</td> --}}
                     @if (true || (Auth::user() && Auth::user()->is_super))
                         <td>
-                            <form action="{{ route('recipe.delete', $recipe) }}" method="post">
+                            <form action="{{ route('admin.recipe.delete', $recipe) }}" method="post">
                                 @method('DELETE')
                                 @csrf
                                 <input type="hidden" name="confirm" id="confirmation-input">
