@@ -1,5 +1,8 @@
 <nav>
-    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+    <div class="appname">
+        <a href="{{ route('home') }}">{{ $appname }} <i class="fa-solid fa-hat-chef"></i></a>
+    </div>
+    <div class="authbox">
         @auth
             <a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
             <form action="{{ route('login.delete') }}" method="post">
