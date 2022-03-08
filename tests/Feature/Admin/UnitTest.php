@@ -87,4 +87,29 @@ class UnitTest extends TestCase
 
         $this->assertNull(Unit::find($unit->id));
     }
+
+    /** @test */
+    public function can_update_unit(): void
+    {
+        $this->actingAs(User::factory()->admin()->create());
+        $unit = Unit::factory()->create();
+
+        $payload = [
+            'name' => $this->faker->name(),
+            'label' => $this->faker->randomLetter(),
+        ];
+
+        $this->patch(route('admin.unit.update', $unit), $payload)
+            ->assertRedirect(route('admin.unit.index'))
+            ->assertSessionHas('success', "updated unit: {$payload['name']}");
+
+        $updated = Unit::first();
+
+        $this->assertNotNull($updated);
+        $this->assertEquals($unit->id, $updated->id);
+        $this->assertNotEquals($unit->name, $updated->name);
+        $this->assertNotEquals($unit->label, $updated->label);
+        $this->assertEquals($payload['name'], $updated->name);
+        $this->assertEquals($payload['label'], $updated->label);
+    }
 }

@@ -29,7 +29,7 @@ class TypeController extends Controller
 
     public function get(Type $type): View
     {
-        return view('admin.type.get', ['type' => $type]);
+        return view('admin.type.view', ['type' => $type]);
     }
 
     public function edit(Type $type): View
@@ -42,8 +42,8 @@ class TypeController extends Controller
         $type->update($request->validated());
 
         return redirect()
-            ->route('type.index')
-            ->with('success', "updated storage location: {$type->id}");
+            ->route('admin.type.index')
+            ->with('success', "updated type: {$type->name}");
     }
 
     public function store(CreateType $request): RedirectResponse
@@ -52,12 +52,12 @@ class TypeController extends Controller
 
         if ($type->exists()) {
             return redirect()
-                ->route('type.index')
-                ->with('success', "created storage location: {$type->id}");
+                ->route('admin.type.index')
+                ->with('success', "created type: {$type->name}");
         }
 
         return back()
-            ->with('errors', 'unable to create storage location');
+            ->with('errors', 'unable to create type');
     }
 
     public function delete(Type $type, DeleteRequest $request): RedirectResponse
@@ -66,6 +66,8 @@ class TypeController extends Controller
             $this->delete->execute($type);
         }
 
-        return back();
+        return redirect()
+            ->route('admin.type.index')
+            ->with('success', "deleted type: {$type->name}");
     }
 }

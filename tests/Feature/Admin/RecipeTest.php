@@ -64,6 +64,33 @@ class RecipeTest extends TestCase
     }
 
     /** @test */
+    public function can_update_recipe(): void
+    {
+        $this->actingAs(User::factory()->admin()->create());
+        $recipe = Recipe::factory()->create();
+
+        $cuisine = Cuisine::factory()->create();
+
+        $payload = [
+            'name' => $this->faker->name(),
+            'description' => $this->faker->sentence(),
+            'cuisine_id' => $cuisine->id,
+        ];
+
+        $this->patch(route('admin.recipe.update', $recipe), $payload)
+            ->assertRedirect(route('admin.recipe.index'))
+            ->assertSessionHas('success', "updated recipe: {$payload['name']}");
+
+        $updated = Recipe::first();
+
+        $this->assertNotNull($updated);
+        $this->assertEquals($recipe->id, $updated->id);
+        $this->assertEquals($payload['name'], $updated->name);
+        $this->assertEquals($payload['description'], $updated->description);
+        $this->assertEquals($payload['cuisine_id'], $updated->cuisine->id);
+    }
+
+    /** @test */
     public function shows_list_of_recipes_on_index(): void
     {
         $this->actingAs(User::factory()->admin()->create());

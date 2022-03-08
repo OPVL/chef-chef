@@ -11,7 +11,7 @@ class UpdateCuisine extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,8 @@ class UpdateCuisine extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required|string|unique:cuisines,name',
+            'description' => 'nullable|string',
         ];
     }
 }

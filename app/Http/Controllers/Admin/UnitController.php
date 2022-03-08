@@ -38,7 +38,7 @@ class UnitController extends Controller
 
         return redirect()
             ->route('admin.unit.index')
-            ->with('success', "updated unit: {$unit->id}");
+            ->with('success', "updated unit: {$unit->name}");
     }
 
     public function store(CreateUnit $request): RedirectResponse

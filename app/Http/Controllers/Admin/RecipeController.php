@@ -52,7 +52,7 @@ class RecipeController extends Controller
 
         return redirect()
             ->route('admin.recipe.index')
-            ->with('success', "updated recipe: {$recipe->id}");
+            ->with('success', "updated recipe: {$recipe->name}");
     }
 
     public function store(CreateRecipe $request): RedirectResponse

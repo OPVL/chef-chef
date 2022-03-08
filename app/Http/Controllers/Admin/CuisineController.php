@@ -31,7 +31,9 @@ class CuisineController extends Controller
     {
         $cuisine->update($request->validated());
 
-        return back();
+        return redirect()
+            ->route('admin.cuisine.index')
+            ->with('success', "updated cuisine: {$cuisine->name}");
     }
 
     public function store(CreateCuisine $request): RedirectResponse
@@ -40,8 +42,8 @@ class CuisineController extends Controller
 
         if ($cuisine->exists()) {
             return redirect()
-                ->route('cuisine.index')
-                ->with('succss', "created cuisine: {$cuisine->id}");
+                ->route('admin.cuisine.index')
+                ->with('success', "created cuisine: {$cuisine->name}");
         }
 
         return back()
@@ -50,10 +52,12 @@ class CuisineController extends Controller
 
     public function delete(Cuisine $cuisine, DeleteRequest $request): RedirectResponse
     {
-        if ($request->validated()->confirm) {
+        if ($request->validated()['confirm'] === "true") {
             $cuisine->delete();
         }
 
-        return back();
+        return redirect()
+            ->route('admin.cuisine.index')
+            ->with('success', "deleted cuisine: {$cuisine->name}");
     }
 }

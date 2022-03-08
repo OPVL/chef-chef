@@ -98,4 +98,35 @@ class IngredientTest extends TestCase
 
         $this->assertNull(Ingredient::find($ingredient->id));
     }
+
+    /** @test */
+    public function can_update_ingredient(): void
+    {
+        $this->actingAs(User::factory()->admin()->create());
+        $ingredient = Ingredient::factory()
+            ->unit(Unit::factory()->create())
+            ->type(Type::factory()->create())
+            ->create();
+
+        $payload = [
+            'name' => $this->faker->name(),
+            'unit_id' => Unit::factory()->create()->id,
+            'type_id' => Type::factory()->create()->id,
+        ];
+
+        $this->patch(route('admin.ingredient.update', $ingredient), $payload)
+            ->assertRedirect(route('admin.ingredient.index'))
+            ->assertSessionHas('success', "updated ingredient: {$payload['name']}");
+
+        $updated = Ingredient::first();
+
+        $this->assertNotNull($updated);
+        $this->assertEquals($ingredient->id, $updated->id);
+        $this->assertNotEquals($ingredient->name, $updated->name);
+        $this->assertNotEquals($ingredient->unit_id, $updated->unit_id);
+        $this->assertNotEquals($ingredient->type_id, $updated->type_id);
+        $this->assertEquals($payload['name'], $updated->name);
+        $this->assertEquals($payload['unit_id'], $updated->unit_id);
+        $this->assertEquals($payload['type_id'], $updated->type_id);
+    }
 }

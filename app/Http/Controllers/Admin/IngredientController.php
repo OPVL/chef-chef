@@ -65,7 +65,7 @@ class IngredientController extends Controller
 
         return redirect()
             ->route('admin.ingredient.index')
-            ->with('success', "updated ingredient: {$ingredient->id}");
+            ->with('success', "updated ingredient: {$ingredient->name}");
     }
 
     public function store(CreateIngredient $request): RedirectResponse
