@@ -64,7 +64,7 @@ class IngredientController extends Controller
         $ingredient->update($request->validated());
 
         return redirect()
-            ->route('ingredient.index')
+            ->route('admin.ingredient.index')
             ->with('success', "updated ingredient: {$ingredient->id}");
     }
 
@@ -74,8 +74,8 @@ class IngredientController extends Controller
 
         if ($ingredient->exists()) {
             return redirect()
-                ->route('ingredient.index')
-                ->with('success', "created ingredient: {$ingredient->id}");
+                ->route('admin.ingredient.index')
+                ->with('success', "created ingredient: {$ingredient->name}");
         }
 
         return back()
@@ -88,6 +88,8 @@ class IngredientController extends Controller
             $ingredient->delete();
         }
 
-        return back()->with('success', 'ingredient deleted');
+        return redirect()
+            ->route('admin.ingredient.index')
+            ->with('success', "deleted ingredient: {$ingredient->name}");
     }
 }

@@ -70,7 +70,7 @@ class RecipeTest extends TestCase
         $cuisine = Cuisine::factory()->create();
         $recipes = Recipe::factory(5)->cuisine($cuisine)->create();
 
-        $response = $this->get(route('admin.recipe.index'));
+        $response = $this->get(route('admin.recipe.index'))->assertOk();
         $response->assertSeeText($cuisine->name);
 
         $recipes->each(function (Recipe $recipe) use ($response): void {

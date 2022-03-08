@@ -37,7 +37,7 @@ class UnitController extends Controller
         $unit->update($request->validated());
 
         return redirect()
-            ->route('unit.index')
+            ->route('admin.unit.index')
             ->with('success', "updated unit: {$unit->id}");
     }
 
@@ -47,8 +47,8 @@ class UnitController extends Controller
 
         if ($unit->exists()) {
             return redirect()
-                ->route('unit.index')
-                ->with('success', "created unit: {$unit->id}");
+                ->route('admin.unit.index')
+                ->with('success', "created unit: {$unit->name}");
         }
 
         return back()
@@ -57,10 +57,12 @@ class UnitController extends Controller
 
     public function delete(Unit $unit, DeleteRequest $request): RedirectResponse
     {
-        if ($request->validated()->confirm) {
+        if ($request->validated()['confirm'] === "true") {
             $unit->delete();
         }
 
-        return back();
+        return redirect()
+            ->route('admin.unit.index')
+            ->with('success', "deleted unit: {$unit->name}");
     }
 }

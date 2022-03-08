@@ -45,13 +45,13 @@ Route::group(
 Route::group(
     ['prefix' => 'units'],
     function (): void {
-        Route::get('')->uses([UnitController::class, 'index'])->name('admin.unit.index');
-        Route::get('create')->uses([UnitController::class, 'create'])->name('admin.unit.create');
-        Route::get('{unit}')->uses([UnitController::class, 'get'])->name('admin.unit.get');
-        Route::get('{unit}/edit')->uses([UnitController::class, 'edit'])->name('admin.unit.edit');
-        Route::delete('{unit}/delete')->uses([UnitController::class, 'delete'])->name('admin.unit.delete');
-        Route::patch('{unit}/update')->uses([UnitController::class, 'update'])->name('admin.unit.update');
-        Route::put('store')->uses([UnitController::class, 'store'])->name('admin.unit.store');
+        Route::get('')->uses('UnitController@index')->name('admin.unit.index');
+        Route::get('create')->uses('UnitController@create')->name('admin.unit.create');
+        Route::get('{unit}')->uses('UnitController@get')->name('admin.unit.get');
+        Route::get('{unit}/edit')->uses('UnitController@edit')->name('admin.unit.edit');
+        Route::delete('{unit}/delete')->uses('UnitController@delete')->name('admin.unit.delete');
+        Route::patch('{unit}/update')->uses('UnitController@update')->name('admin.unit.update');
+        Route::put('store')->uses('UnitController@store')->name('admin.unit.store');
     }
 );
 
