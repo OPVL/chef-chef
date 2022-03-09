@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Ajax;
 
-use App\Http\Resources\Ingredient as ResourcesIngredient;
 use App\Http\Resources\IngredientCollection;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Response;
 
 class IngredientController extends AjaxController
 {

@@ -135,7 +135,7 @@ class IngredientTest extends TestCase
     }
 
     /** @test */
-    public function when_no_unit_on_pivot_ingredient_display_used()
+    public function when_no_unit_on_pivot_ingredient_display_used(): void
     {
         $unit = Unit::factory()->create(['name' => 'can', 'label' => 'can']);
         $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'kidney beans']);
@@ -147,7 +147,7 @@ class IngredientTest extends TestCase
     }
 
     /** @test */
-    public function when_no_quantity_on_pivot_outputs_0()
+    public function when_no_quantity_on_pivot_outputs_0(): void
     {
         $unit = Unit::factory()->create(['name' => 'can', 'label' => 'can']);
         $pivotUnit = Unit::factory()->create(['name' => 'cup', 'label' => 'cup', 'should_space' => true]);
