@@ -6,6 +6,7 @@ use App\Models\Scopes\Alphabetical;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Pluralizer;
 use Phospr\Fraction;
 
@@ -24,7 +25,7 @@ class Ingredient extends Model
         static::addGlobalScope(new Alphabetical);
     }
 
-    public function recipes()
+    public function recipes(): BelongsToMany
     {
         return $this->belongsToMany(Recipe::class)
             ->using(IngredientRecipe::class);
@@ -42,11 +43,11 @@ class Ingredient extends Model
 
     protected function getDisplayAttribute(): string
     {
-        if (!$this->pivot) {
+        if (!$this->pivot || !$this->pivot->unit) {
             return "{$this->unit->name} of {$this->name}";
         }
 
-        $quantity = $this->pivot->quantity || $this->pivot->quantity <= 1 ? (int) ($this->pivot->quantity ?? 0) : Fraction::fromFloat($this->pivot->quantity);
+        $quantity = $this->pivot->quantity >= 1 ? (int) ($this->pivot->quantity ?? 0) : Fraction::fromFloat($this->pivot->quantity);
 
         if ($this->pivot->unit->measurable ?? false) {
             $unit = $this->pivot->unit->label;
