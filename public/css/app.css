@@ -9,6 +9,11 @@ body {
 }
 body main {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: auto;
+  align-items: center;
 }
 body nav {
   height: 60px;

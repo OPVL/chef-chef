@@ -46,9 +46,9 @@ class Ingredient extends Model
             return "{$this->unit->name} of {$this->name}";
         }
 
-        $quantity = $this->pivot->quantity >= 1 ? (int) $this->pivot->quantity : Fraction::fromFloat($this->pivot->quantity);
+        $quantity = $this->pivot->quantity || $this->pivot->quantity <= 1 ? (int) ($this->pivot->quantity ?? 0) : Fraction::fromFloat($this->pivot->quantity);
 
-        if ($this->pivot->unit->measurable) {
+        if ($this->pivot->unit->measurable ?? false) {
             $unit = $this->pivot->unit->label;
             $shouldSpace = $this->pivot->unit->should_space ? ' ' : '';
 
