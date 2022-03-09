@@ -145,4 +145,19 @@ class IngredientTest extends TestCase
 
         $this->assertEquals('can of kidney beans', $recipe->ingredients->first()->display);
     }
+
+    /** @test */
+    public function when_no_quantity_on_pivot_outputs_0()
+    {
+        $unit = Unit::factory()->create(['name' => 'can', 'label' => 'can']);
+        $pivotUnit = Unit::factory()->create(['name' => 'cup', 'label' => 'cup', 'should_space' => true]);
+        $ingredient = Ingredient::factory()->unit($unit)->create(['name' => 'kidney beans']);
+        $recipe = Recipe::factory()->create();
+
+        $recipe->ingredients()->sync([$ingredient->id => [
+            'unit_id' => $pivotUnit->id,
+        ]]);
+
+        $this->assertEquals('0 cup of kidney beans', $recipe->ingredients->first()->display);
+    }
 }
