@@ -2,28 +2,20 @@
 
 namespace App\Http\Controllers\Ajax;
 
+use App\Http\Resources\IngredientCollection;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class IngredientController extends AjaxController
 {
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request): JsonResource
     {
-        return response(
-            implode(
-                '',
-                Ingredient::where('name', 'like', "%{$request->get('query')}%")
-                    ->limit(5)
-                    ->get()
-                    ->map(function ($ingredient) {
-                        return $this->htmlElement(
-                            'option',
-                            $ingredient->name,
-                            ['value' => $ingredient->id]
-                        );
-                    })->toArray()
-            )
+        return new IngredientCollection(
+            Ingredient::where('name', 'like', "%{$request->get('query')}%")
+                ->limit(5)
+                ->with(['type', 'unit'])
+                ->get()
         );
     }
 }

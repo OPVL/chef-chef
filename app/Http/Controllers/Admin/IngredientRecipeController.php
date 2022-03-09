@@ -24,6 +24,7 @@ class IngredientRecipeController extends Controller
             'admin.recipe.ingredient.create',
             [
             'recipe' => $recipe,
+            'units' => Unit::all(),
             'groups' => $this->sortAction->execute(Ingredient::with('type')->get()),
             ]
         );
