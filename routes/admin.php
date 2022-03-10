@@ -3,6 +3,7 @@
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\WorkInProgressController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('')->uses('AdminController@index')->name('admin.index');
@@ -78,5 +79,31 @@ Route::prefix('types')
             Route::delete('{type}/delete')->uses('TypeController@delete')->name('admin.type.delete');
             Route::patch('{type}/update')->uses('TypeController@update')->name('admin.type.update');
             Route::put('store')->uses('TypeController@store')->name('admin.type.store');
+        }
+    );
+
+Route::prefix('users')
+    ->group(
+        function (): void {
+            Route::get('')->uses('WorkInProgressController')->name('admin.user.index');
+            // Route::get('create')->uses('UserController@create')->name('admin.user.create');
+            // Route::get('{user}')->uses('UserController@get')->name('admin.user.get');
+            // Route::get('{user}/edit')->uses('UserController@edit')->name('admin.user.edit');
+            // Route::delete('{user}/delete')->uses('UserController@delete')->name('admin.user.delete');
+            // Route::patch('{user}/update')->uses('UserController@update')->name('admin.user.update');
+            // Route::put('store')->uses('UserController@store')->name('admin.user.store');
+        }
+    );
+
+Route::prefix('settings')
+    ->group(
+        function (): void {
+            Route::get('')->uses('WorkInProgressController')->name('admin.setting.index');
+            // Route::get('create')->uses('SettingController@create')->name('admin.setting.create');
+            // Route::get('{setting}')->uses('SettingController@get')->name('admin.setting.get');
+            // Route::get('{setting}/edit')->uses('SettingController@edit')->name('admin.setting.edit');
+            // Route::delete('{setting}/delete')->uses('SettingController@delete')->name('admin.setting.delete');
+            // Route::patch('{setting}/update')->uses('SettingController@update')->name('admin.setting.update');
+            // Route::put('store')->uses('SettingController@store')->name('admin.setting.store');
         }
     );
