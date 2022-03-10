@@ -1,12 +1,13 @@
-<x-layout.standard>
+<x-layout.admin>
     @slot('title')
         recipes
     @endslot
 
     @section('content')
-        @if(session()->has('success'))
+        @if (session()->has('success'))
             {{ session()->get('success') }}
         @endif
+        <button onclick="navigate('{{route('admin.recipe.create') }}')">new</button>
         <table>
             <thead>
                 <th>ID</th>
@@ -30,10 +31,11 @@
                     {{-- <td>{{ $recipe->ingredients->count }}</td> --}}
                     @if (true || (Auth::user() && Auth::user()->is_super))
                         <td>
-                            <form action="{{ route('admin.recipe.delete', $recipe) }}" method="post">
+                            <form action="{{ route('admin.recipe.delete', $recipe) }}" method="post" id="delete-{{ $recipe->name }}">
                                 @method('DELETE')
                                 @csrf
-                                <input type="hidden" name="confirm" id="confirmation-input">
+                                <input type="hidden" name="confirm" id="confirmation-input-{{ $recipe->name }}">
+                                <a href="javascript:deleteConfirm('{{ $recipe->name }}')">delete</a>
                                 <input type="submit" value="delete" onclick="return deleteConfirm('{{ $recipe->name }}')">
                             </form>
                         </td>
@@ -47,9 +49,12 @@
         <script>
             function deleteConfirm(name) {
                 const confirmation = confirm(`Are you sure you want to delete ${name}`);
-                document.getElementById('confirmation-input').value = confirmation;
-                return confirmation;
+                document.getElementById(`confirmation-input-${name}`).value = confirmation;
+
+                if (confirmation) {
+                    document.getElementById(`delete-${name}`).submit();
+                }
             }
         </script>
     @endsection
-</x-layout.standard>
+</x-layout.admin>

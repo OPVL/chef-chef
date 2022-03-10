@@ -1,60 +1,66 @@
 name,type,unit
-Red Wine,Alcohol,ml
-White Wine,Alcohol,ml
+Red Wine,Beverages,ml
+White Wine,Beverages,ml
 Dairy Free Butter,Dairy,g
-Malt Vinegar,Dressing,ml
-Lemon,Fruit,item
-Chickpeas,non-perishable,can
-Maple Syrup,non-perishable,tsp
-Chopped Tomatoes,non-perishable,can
-Sunflower Oil,non-perishable,tbsp
-Kidney Beans,non-perishable,can
-Olive Oil,non-perishable,tbsp
-Nutritional Yeast,non-perishable,g
-Mock Duck,non-perishable,g
+Malt Vinegar,Condiments,ml
+Lemon,Fruits,item
+Chickpeas,non-perishables,can
+Maple Syrup,non-perishables,tsp
+Chopped Tomatoes,non-perishables,can
+Sunflower Oil,non-perishables,tbsp
+Kidney Beans,non-perishables,can
+Olive Oil,non-perishables,tbsp
+Nutritional Yeast,non-perishables,g
+Mock Duck,non-perishables,g
 Plant Based Bacon,Protein,item
-BBQ Sauce,Sauce,tsp
-Table Salt,Spice,tsp
-Honey,Spreads,g
-Cherry Tomatoes,Vegetable,item
-Brown Onion,Vegetable,item
-Red Pepper,Vegetable,item
-Sweet Potato,Vegetable,item
-Aubergine,Vegetable,item
-Onion Granules,Spice,tsp
-Lemongrass,spice,tsp
-Makrut Lime Leaves,spice,tsp
-Mint,spice,tsp
-Thyme,spice,tsp
-Parsely,spice,tsp
-Bay Leaves,spice,item
-Oregano,spice,tsp
-Garlic Granules,spice,tsp
-Basil,spice,tsp
-Madras Curry Powder,spice,tsp
-Coriander (ground),spice,tsp
-Chilli Powder (hot),spice,tsp
-Cumin (ground),spice,tsp
-Fennel Seeds,spice,tsp
-Nutmeg (ground),spice,tsp
-Cloves (whole),spice,tsp
-Saffron,spice,tsp
-Ground Cinnamon,spice,tsp
-Chilli Flakes,spice,tsp
-Cardamon Pods,spice,tsp
-Hot Paprika,spice,tsp
-Smoked Paprika,spice,tsp
-Paprika,spice,tsp
-Chinese 5 Spice,spice,tsp
-Garam Masala,spice,tsp
-Ground Tumeric,spice,tsp
-Ginger (ground),spice,tsp
-Cayenne Pepper,spice,tsp
-Tandoori Spice Blend,spice,tsp
-Bacon Seasoning,spice,tsp
-Chicken Seasoning,spice,tsp
-Rosemary,spice,tsp
-Rice Vinegar,non-perishable,ml
-White Wine Vegar,non-perishable,ml
-Red Wine Vinegar,non-perishable,ml
-Apple Cider Vinegar,non-perishable,ml
+Meat Free Chipolatas,Protein,item
+BBQ Condiments,Condiments,tsp
+Table Salt,Herbs & spices,tsp
+Honey,Sweeteners,g
+Cherry Tomatoes,Vegetables,item
+Brown Onion,Vegetables,item
+Red Pepper,Vegetables,item
+Sweet Potato,Vegetables,item
+Aubergine,Vegetables,item
+Onion Granules,Herbs & spices,tsp
+Lemongrass,herbs & spices,tsp
+Makrut Lime Leaves,herbs & spices,tsp
+Mint,herbs & spices,tsp
+Thyme,herbs & spices,tsp
+Parsely,herbs & spices,tsp
+Bay Leaves,herbs & spices,item
+Oregano,herbs & spices,tsp
+Garlic Granules,herbs & spices,tsp
+Basil,herbs & spices,tsp
+Madras Curry Powder,herbs & spices,tsp
+Coriander (ground),herbs & spices,tsp
+Chilli Powder (hot),herbs & spices,tsp
+Cumin (ground),herbs & spices,tsp
+Fennel Seeds,herbs & spices,tsp
+Nutmeg (ground),herbs & spices,tsp
+Cloves (whole),herbs & spices,tsp
+Saffron,herbs & spices,tsp
+Ground Cinnamon,herbs & spices,tsp
+Chilli Flakes,herbs & spices,tsp
+Cardamon Pods,herbs & spices,tsp
+Hot Paprika,herbs & spices,tsp
+Smoked Paprika,herbs & spices,tsp
+Paprika,herbs & spices,tsp
+Chinese 5 Herbs & spices,herbs & spices,tsp
+Garam Masala,herbs & spices,tsp
+Ground Tumeric,herbs & spices,tsp
+Ginger (ground),herbs & spices,tsp
+Cayenne Pepper,herbs & spices,tsp
+Tandoori Herbs & spices Blend,herbs & spices,tsp
+Bacon Seasoning,herbs & spices,tsp
+Chicken Seasoning,herbs & spices,tsp
+Rosemary,herbs & spices,tsp
+Rice Vinegar,non-perishables,ml
+White Wine Vegar,non-perishables,ml
+Red Wine Vinegar,non-perishables,ml
+Apple Cider Vinegar,non-perishables,ml
+Basmati Rice,grains,g
+Long Grain Brown Rice,grains,g
+Fusili,grains,g
+Spaghetti,grains,g
+Lasagne Sheets,grains,item

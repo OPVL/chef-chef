@@ -16,7 +16,7 @@ return [
         'African',
     ],
     'units' => [
-        's' => [
+        'item' => [
             'name' => 'item',
             'measurable' => false,
         ],
@@ -48,43 +48,52 @@ return [
         ],
     ],
     'types' => [
-        'spice',
-        'sauce',
-        'produce',
-        'non-perishable',
+        'herbs & spices',
+        'condiments',
+        'vegetables',
+        'non-perishables',
         'frozen',
         'unspecified',
         'protein',
+        'fruits',
+        'confectionary',
+        'beverages',
+        'supplements',
+        'dairy',
+        'meat',
+        'fish',
+        'grains',
+        'sweeteners',
     ],
     'ingredients' => [
         [
             'name' => 'cumin',
-            'type' => 'spice',
+            'type' => 'herbs & spices',
             'unit' => 'tsp',
         ],
         [
             'name' => 'salt',
-            'type' => 'spice',
+            'type' => 'herbs & spices',
             'unit' => 'tsp',
         ],
         [
             'name' => 'black pepper',
-            'type' => 'spice',
+            'type' => 'herbs & spices',
             'unit' => 'tsp',
         ],
         [
             'name' => 'tinned tomatoes',
-            'type' => 'non-perishable',
+            'type' => 'non-perishables',
             'unit' => 'can',
         ],
         [
             'name' => 'lettuce',
-            'type' => 'produce',
+            'type' => 'vegetables',
             'unit' => 'item',
         ],
         [
             'name' => 'lemon',
-            'type' => 'produce',
+            'type' => 'fruits',
             'unit' => 'item',
         ],
         [
@@ -93,18 +102,18 @@ return [
             'unit' => 'g',
         ],
         [
-            'name' => 'petit pois',
+            'name' => 'petit pois peas',
             'type' => 'frozen',
             'unit' => 'g',
         ],
         [
             'name' => 'kidney beans',
-            'type' => 'non-perishable',
+            'type' => 'non-perishables',
             'unit' => 'can',
         ],
         [
             'name' => 'brown onion',
-            'type' => 'produce',
+            'type' => 'vegetables',
             'unit' => 'item',
         ],
     ],

@@ -1,4 +1,4 @@
-<x-layout.standard>
+<x-layout.admin>
     @slot('title')
         create recipe
     @endslot
@@ -31,4 +31,4 @@
             <button type="submit">next</button>
         </form>
     @endsection
-</x-layout.standard>
+</x-layout.admin>
