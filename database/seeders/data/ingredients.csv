@@ -1,20 +1,35 @@
 name,type,unit
 Red Wine,Beverages,ml
 White Wine,Beverages,ml
-Dairy Free Butter,Dairy,g
+Dairy Free Butter,Plant Based,g
+Unsalted Butter,Dairy,g
+Salted Butter,Dairy,g
+Almond Milk,Plant Based,ml
+Soya Milk,Plant Based,ml
+Coconut Milk,Plant Based,ml
+Hazlenut Milk,Plant Based,ml
+Hemp Milk,Plant Based,ml
+Rice Milk,Plant Based,ml
+Skimmed Milk,Dairy,ml
+Semi Skimmed Milk,Dairy,ml
+Whole Milk,Dairy,ml
+Lacto Free Milk,Dairy,ml
+Cheddar Cheese,Dairy,ml
+Dairy Free Cheese,Plant Based,ml
 Malt Vinegar,Condiments,ml
 Lemon,Fruits,item
 Chickpeas,non-perishables,can
-Maple Syrup,non-perishables,tsp
+Maple Syrup,Sweeteners,tsp
 Chopped Tomatoes,non-perishables,can
-Sunflower Oil,non-perishables,tbsp
+Sunflower Oil,Oils & Fats,tbsp
 Kidney Beans,non-perishables,can
-Olive Oil,non-perishables,tbsp
+Olive Oil,Oils & Fats,tbsp
 Nutritional Yeast,non-perishables,g
-Mock Duck,non-perishables,g
-Plant Based Bacon,Protein,item
-Meat Free Chipolatas,Protein,item
-BBQ Condiments,Condiments,tsp
+Mock Duck,Plant Based,g
+Bacon,Plant Based,rashers
+Chipolatas,Plant Based,item
+Mayonaise,Plant Based,tsp
+BBQ Sauce,Condiments,tsp
 Table Salt,Herbs & spices,tsp
 Honey,Sweeteners,g
 Cherry Tomatoes,Vegetables,item
@@ -64,3 +79,5 @@ Long Grain Brown Rice,grains,g
 Fusili,grains,g
 Spaghetti,grains,g
 Lasagne Sheets,grains,item
+Whey Powder,Supplement,g
+Spring Onion,Vegetables,item

@@ -4,6 +4,11 @@ $green: #136F63
 $blue: #3F88C5
 $pink: #FF7477
 
+$success: #6CC551
+$warning: #E3B23C
+$info: #3F88C5
+$error: #D7263D
+
 body
     background: $white
     color: $black
@@ -121,3 +126,61 @@ footer
         display: flex
         flex-direction: column
         align-items: center
+
+.admin-form
+    max-width: 1200px
+    padding: 1vw
+    display: flex
+    min-width: 71vw
+    background: white
+    flex-wrap: wrap
+    justify-content: center
+    /* align-items: center */
+
+.input-group
+    color: #272932
+    width: 390px
+    background: white
+    height: 200px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    /* align-items: center */
+    text-align: left
+    margin-bottom: 20px
+    transition: ease-in-out 0.1s
+    border: none
+    margin: 5px 25px
+
+    & label
+        font-weight: 600
+        text-transform: lowercase
+        font-size: 24px
+        margin-bottom: 3px
+
+.action-buttons
+    display: flex
+    justify-content: space-between
+    width: 71vw
+    flex-direction: row-reverse
+
+.btn
+    color: white
+    padding: 5px 8px
+    border: solid 2px
+    border-radius: 5px
+    min-width: 80px
+    font-size: 16px
+    min-height: 42px
+
+    &.confirm
+        background: $success
+        border-color: #359219
+
+    &.error
+        background: $error
+        border-color: #63081a
+
+    &.warning
+        background: $warning
+        border-color: #ec9624

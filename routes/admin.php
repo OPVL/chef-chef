@@ -107,3 +107,16 @@ Route::prefix('settings')
             // Route::put('store')->uses('SettingController@store')->name('admin.setting.store');
         }
     );
+
+Route::prefix('allergens')
+    ->group(
+        function (): void {
+            Route::get('')->uses('AllergenController@index')->name('admin.allergen.index');
+            // Route::get('create')->uses('AllergenController@create')->name('admin.allergen.create');
+            // Route::get('{allergen}')->uses('AllergenController@get')->name('admin.allergen.get');
+            Route::get('{allergen}/edit')->uses('AllergenController@edit')->name('admin.allergen.edit');
+            Route::delete('{allergen}/delete')->uses('AllergenController@delete')->name('admin.allergen.delete');
+            Route::patch('{allergen}/update')->uses('AllergenController@update')->name('admin.allergen.update');
+            // Route::put('store')->uses('AllergenController@store')->name('admin.allergen.store');
+        }
+    );

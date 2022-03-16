@@ -9,15 +9,19 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TypeFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
             'name' => $this->faker->unique()->word(),
         ];
+    }
+
+    public function vegan(): static
+    {
+        return $this->state(function (array $attributes): array {
+            return [
+                'contains_animal_product' => false,
+            ];
+        });
     }
 }
