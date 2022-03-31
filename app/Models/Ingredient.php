@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\Alphabetical;
+use App\Models\Traits\HasAllergens;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Phospr\Fraction;
 
 class Ingredient extends Model
 {
-    use HasFactory;
+    use HasFactory, HasAllergens;
 
     protected $fillable = [
         'name',
@@ -44,11 +45,6 @@ class Ingredient extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(Type::class);
-    }
-
-    public function allergens(): BelongsToMany
-    {
-        return $this->belongsToMany(Allergen::class);
     }
 
     protected function getDisplayAttribute(): string
@@ -83,24 +79,5 @@ class Ingredient extends Model
     protected function getIsVeganAttribute(): bool
     {
         return $this->animal_product === false;
-    }
-
-    protected function scopeGlutenFree(Builder $query): Builder
-    {
-        return $query->withoutAllergens(Allergen::firstWhere('name', 'like', '%gluten%'));
-    }
-
-    protected function scopeWithoutAllergens(Builder $query, Allergen ...$allergens): Builder
-    {
-        return $query->whereDoesntHave('allergens', function (Builder $query) use ($allergens) {
-            return $query->whereIn('allergens.id', collect($allergens)->pluck('id'));
-        });
-    }
-
-    protected function scopeWithAllergens(Builder $query, Allergen ...$allergens): Builder
-    {
-        return $query->whereHas('allergens', function (Builder $query) use ($allergens) {
-            return $query->whereIn('allergens.id', collect($allergens)->pluck('id'));
-        });
     }
 }
