@@ -44,8 +44,6 @@ class SortIngredientsByTypeTest extends TestCase
     /** @test */
     public function sorts_recipe_ingredients_by_type(): void
     {
-        $this->withoutExceptionHandling();
-
         $types = Type::factory(5)
             ->create();
         $types->each(function (Type $type): void {

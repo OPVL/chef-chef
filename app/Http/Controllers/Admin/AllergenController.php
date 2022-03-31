@@ -62,7 +62,7 @@ class AllergenController extends Controller
     public function delete(Allergen $allergen, DeleteRequest $request): RedirectResponse
     {
         if ($request->validated()['confirm'] === "true") {
-            $this->delete->execute($allergen);
+            $allergen->delete();
         }
 
         return redirect()

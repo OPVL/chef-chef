@@ -108,8 +108,6 @@ class RecipeTest extends TestCase
     /** @test */
     public function can_delete_recipe(): void
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->admin()->create());
         $recipe = Recipe::factory()->create();
 

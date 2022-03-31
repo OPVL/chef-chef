@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Scopes\Alphabetical;
 use App\Models\Traits\HasAllergens;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -53,9 +52,7 @@ class Ingredient extends Model
             return "{$this->unit->name} of {$this->name}";
         }
 
-        $quantity = $this->pivot->quantity >= 1
-            ? (int) ($this->pivot->quantity ?? 0)
-            : Fraction::fromFloat($this->pivot->quantity ?? 0);
+        $quantity = $this->pivot->quantity >= 1 ? (int) ($this->pivot->quantity ?? 0) : Fraction::fromFloat($this->pivot->quantity ?? 0);
 
         if ($this->pivot->unit->measurable ?? false) {
             $unit = $this->pivot->unit->label;
