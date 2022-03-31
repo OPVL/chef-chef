@@ -6,22 +6,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateAllergen extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    protected function prepareForValidation(): void
     {
-        return false;
+        $this->merge(['animal_product' => (bool) $this->animal_product]);
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules(): array
     {
         return [
+            'name' => 'required|unique:allergens',
+            'animal_product' => 'required|boolean',
         ];
     }
 }
