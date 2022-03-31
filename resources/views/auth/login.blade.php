@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>login</title>
-</head>
-<body>
-    <form action="{{ route('login.store') }}" method="post">
-        @method('PUT')
-        @csrf
+<x-layout.standard>
+    @slot('title')
+        login
+    @endslot
+    @section('content')
+        <form action="{{ route('login.store') }}" method="post">
+            @method('PUT')
+            @csrf
 
-        <label for="email">email</label>
-        <input type="text" name="email" id="email" autocomplete="email">
+            <label for="email">email</label>
+            <input type="text" name="email" id="email" autocomplete="email">
 
-        <label for="password">password</label>
-        <input type="password" name="password" id="password" autocomplete="password">
+            <label for="password">password</label>
+            <input type="password" name="password" id="password" autocomplete="password">
 
-        <button type="submit">login</button>
-    </form>
-</body>
-</html>
+            <button type="submit">login</button>
+        </form>
+    @endsection
+</x-layout.standard>
