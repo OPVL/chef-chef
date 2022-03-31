@@ -56,7 +56,7 @@ class RegisterTest extends TestCase
     /** @test */
     public function cannot_register_short_password(): void
     {
-        $password = $this->faker->password(4);
+        $password = $this->faker->password(4, 7);
         $this->put(route('register.store'), [
             'name' => $this->faker->name,
             'email' => $this->faker->email(),
