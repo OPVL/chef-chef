@@ -70,10 +70,10 @@ class Ingredient extends Model
         return "{$quantity} {$ingredient}";
     }
 
-    protected function getIsVeganAttribute(): bool
+    protected function getContainsGlutenAttribute(): bool
     {
         return $this->allergens->filter(function (Allergen $allergen) {
             return $allergen->is_plant_based;
-        });
+        })->count() > 0;
     }
 }

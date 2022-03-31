@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\WorkInProgressController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyMealPlanController;
 use App\Http\Controllers\MyRecipesController;
@@ -41,11 +42,11 @@ Route::middleware('guest')
 Route::prefix('my')
     ->middleware('auth')
     ->group(function (): void {
-        Route::get('recipes')->uses([MyRecipesController::class, 'index'])->name('my.recipes.index');
-        Route::get('meal-plan')->uses([MyMealPlanController::class, 'index'])->name('my.meal-plan.index');
-        Route::get('shopping-list')->uses([MyShoppingList::class, 'index'])->name('my.shopping-list.index');
+        Route::get('recipes')->uses(WorkInProgressController::class)->name('my.recipes.index');
+        Route::get('meal-plan')->uses(WorkInProgressController::class)->name('my.meal-plan.index');
+        Route::get('shopping-list')->uses(WorkInProgressController::class)->name('my.shopping-list.index');
     });
 
-Route::get('make-admin', function() {
+Route::get('make-admin', function (): void {
     Auth::user()->update(['is_super' => true]);
 })->middleware('auth');

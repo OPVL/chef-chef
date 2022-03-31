@@ -27,7 +27,7 @@
             @error('type')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <label for="name">storage location</label>
+            <label for="name">type</label>
             <select name="type_id" id="type_id">
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}" @if ($ingredient->type_id === $type->id) selected @endif>
