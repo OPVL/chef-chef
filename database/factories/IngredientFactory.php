@@ -38,4 +38,11 @@ class IngredientFactory extends Factory
             }
         );
     }
+
+    public function allergens(array $allergens): static
+    {
+        return $this->afterCreating(function (Ingredient $ingredient) use ($allergens): void {
+            $ingredient->allergens()->sync(collect($allergens)->pluck('id'));
+        });
+    }
 }

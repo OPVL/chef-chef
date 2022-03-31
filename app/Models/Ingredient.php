@@ -76,4 +76,17 @@ class Ingredient extends Model
             return $allergen->is_plant_based;
         })->count() > 0;
     }
+    protected function scopeWithoutAllergens(Builder $query, Allergen ...$allergens): Builder
+    {
+        return $query->whereDoesntHave('allergens', function (Builder $query) use ($allergens) {
+            return $query->whereIn('allergens.id', collect($allergens)->pluck('id'));
+        });
+    }
+
+    protected function scopeWithAllergens(Builder $query, Allergen ...$allergens): Builder
+    {
+        return $query->whereHas('allergens', function (Builder $query) use ($allergens) {
+            return $query->whereIn('allergens.id', collect($allergens)->pluck('id'));
+        });
+    }
 }

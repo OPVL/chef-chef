@@ -40,7 +40,7 @@
                 @endif --}}
             </thead>
             <tbody>
-                {{-- @foreach ($ingredients as $ingredient)
+                @foreach ($ingredients as $ingredient)
                     <tr>
                         <td>{{ $ingredient->id }}</td>
                         <td>{{ $ingredient->name }}</td>
@@ -58,7 +58,7 @@
                             </td>
                         @endif
                     </tr>
-                @endforeach --}}
+                @endforeach
             </tbody>
         </table>
         {{-- return deleteConfirm('{{ $ingredient->name }}') --}}

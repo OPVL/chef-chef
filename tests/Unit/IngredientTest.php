@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Allergen;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use App\Models\Unit;
@@ -159,5 +160,103 @@ class IngredientTest extends TestCase
         ]]);
 
         $this->assertEquals('0 cup of kidney beans', $recipe->ingredients->first()->display);
+    }
+
+    /** @test */
+    public function can_be_vegan(): void
+    {
+        $ingredient = Ingredient::factory()->create();
+
+        $this->assertFalse($ingredient->animal_product);
+        $this->assertTrue($ingredient->isVegan);
+    }
+
+    /** @test */
+    public function can_have_allergens(): void
+    {
+        /** @var Allergen $allergen */
+        $allergen = Allergen::factory()->create();
+        /** @var Ingredient $ingredient */
+        $ingredient = Ingredient::factory()->allergens([$allergen])->create();
+
+        $this->assertContains($allergen->id, $ingredient->fresh()->allergens->pluck('id'));
+    }
+
+    /** @test */
+    public function can_get_ingredients_without_gluten_scope(): void
+    {
+        /** @var Allergen $allergen */
+        $allergen = Allergen::factory()->create(['name' => 'gluten']);
+        /** @var Ingredient[] $glutenIngredients */
+        $glutenIngredients = Ingredient::factory(5)->allergens([$allergen])->create();
+        /** @var Ingredient[] $glutenIngredients */
+        $noGlutenIngredients = Ingredient::factory(5)->create();
+
+        $this->assertCount(10, Ingredient::all());
+        $this->assertCount(5, Ingredient::select('id')->glutenFree()->get());
+    }
+
+    /** @test */
+    public function can_get_ingredients_without_allergens_scope(): void
+    {
+        $gluten = Allergen::factory()->create(['name' => 'gluten']);
+        $shellfish = Allergen::factory()->create(['name' => 'shellfish']);
+
+        $glutenIngredients = Ingredient::factory(5)->allergens([$gluten])->create();
+        $shellfishIngredients = Ingredient::factory(5)->allergens([$shellfish])->create();
+        $cleanIngredients = Ingredient::factory(5)->create();
+
+        $glutenIngredientsCollection = Ingredient::select('id')->withoutAllergens($gluten)->get();
+        $shellfishIngredientsCollection = Ingredient::select('id')->withoutAllergens($shellfish)->get();
+        $cleanIngredientsCollection = Ingredient::select('id')->withoutAllergens($gluten, $shellfish)->get();
+
+        $this->assertCount(15, Ingredient::all());
+        $this->assertCount(10, $glutenIngredientsCollection);
+        $this->assertCount(10, $shellfishIngredientsCollection);
+        $this->assertCount(5, $cleanIngredientsCollection);
+
+        $glutenIngredients->each(function (Ingredient $ingredient) use ($glutenIngredientsCollection): void {
+            $this->assertNotContains($ingredient->id, $glutenIngredientsCollection->pluck('id'));
+        });
+
+        $shellfishIngredients->each(function (Ingredient $ingredient) use ($shellfishIngredientsCollection): void {
+            $this->assertNotContains($ingredient->id, $shellfishIngredientsCollection->pluck('id'));
+        });
+
+        $cleanIngredients->each(function (Ingredient $ingredient) use ($cleanIngredientsCollection): void {
+            $this->assertContains($ingredient->id, $cleanIngredientsCollection->pluck('id'));
+        });
+    }
+
+    /** @test */
+    public function can_get_ingredients_with_allergens_scope(): void
+    {
+        $gluten = Allergen::factory()->create(['name' => 'gluten']);
+        $shellfish = Allergen::factory()->create(['name' => 'shellfish']);
+
+        $glutenIngredients = Ingredient::factory(5)->allergens([$gluten])->create();
+        $shellfishIngredients = Ingredient::factory(5)->allergens([$shellfish])->create();
+        $cleanIngredients = Ingredient::factory(5)->create();
+
+        $glutenIngredientsCollection = Ingredient::select('id')->withAllergens($gluten)->get();
+        $shellfishIngredientsCollection = Ingredient::select('id')->withAllergens($shellfish)->get();
+        $bothIngredientsCollection = Ingredient::select('id')->withAllergens($gluten, $shellfish)->get();
+
+        $this->assertCount($glutenIngredients->count() + $shellfishIngredients->count() + $cleanIngredients->count(), Ingredient::all());
+        $this->assertCount($glutenIngredients->count(), $glutenIngredientsCollection);
+        $this->assertCount($shellfishIngredients->count(), $shellfishIngredientsCollection);
+        $this->assertCount($glutenIngredients->count() + $shellfishIngredients->count(), $bothIngredientsCollection);
+
+        $glutenIngredients->each(function (Ingredient $ingredient) use ($glutenIngredientsCollection): void {
+            $this->assertContains($ingredient->id, $glutenIngredientsCollection->pluck('id'));
+        });
+
+        $shellfishIngredients->each(function (Ingredient $ingredient) use ($shellfishIngredientsCollection): void {
+            $this->assertContains($ingredient->id, $shellfishIngredientsCollection->pluck('id'));
+        });
+
+        $cleanIngredients->each(function (Ingredient $ingredient) use ($bothIngredientsCollection): void {
+            $this->assertNotContains($ingredient->id, $bothIngredientsCollection->pluck('id'));
+        });
     }
 }
