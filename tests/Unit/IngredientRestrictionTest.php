@@ -3,9 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Ingredient;
-use App\Models\Type;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class IngredientRestrictionTest extends TestCase
