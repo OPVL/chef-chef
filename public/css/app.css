@@ -3,9 +3,13 @@
   padding: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
-  background: #f1f1f1;
-  color: #292425;
+  background: #EDE7E3;
+  color: #272932;
 }
 body main {
   min-height: 100vh;
@@ -16,19 +20,53 @@ body main {
   align-items: center;
 }
 body nav {
-  height: 60px;
-  background: bisque;
+  width: 100vw;
+  height: 80px;
+  background: #3F88C5;
   display: flex;
   justify-content: space-between;
-  padding: 4px 15%;
+}
+body nav .icon {
+  max-width: 40px;
+}
+body nav img {
+  width: 100%;
+}
+body nav i {
+  font-size: 30px;
+}
+body nav *:hover {
+  color: white;
+  cursor: pointer;
+}
+body nav .authbox {
+  display: flex;
+  height: 80px;
+  width: 80px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+body nav .authbox .options {
+  position: absolute;
+  top: 60px;
+  width: 130px;
+  right: 0px;
+  background: white;
+}
+body nav .authbox .options ul {
+  list-style: none;
+}
+body nav .sitename {
+  padding: 3px;
+  margin-left: 3vw;
+  display: flex;
   align-items: center;
 }
-body nav .appname a {
-  text-decoration: none;
+body nav .sitename .name {
+  margin: 10px;
   font-weight: 800;
-  line-height: 2;
-  font-size: 48px;
-  color: inherit;
+  font-size: 30px;
 }
 
 /*# sourceMappingURL=app.css.map */
