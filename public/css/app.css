@@ -8,8 +8,9 @@
 }
 
 body {
-  background: #EDE7E3;
-  color: #272932;
+  background: #272932;
+  color: #EDE7E3;
+  overflow-x: hidden;
 }
 body main {
   min-height: 100vh;
@@ -22,7 +23,7 @@ body main {
 body nav {
   width: 100vw;
   height: 80px;
-  background: #3F88C5;
+  background: #A14DA0;
   display: flex;
   justify-content: space-between;
 }
@@ -67,6 +68,119 @@ body nav .sitename .name {
   margin: 10px;
   font-weight: 800;
   font-size: 30px;
+}
+
+.hero {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hero .page-title {
+  font-size: 3vw;
+  font-family: sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.3vw;
+  padding: 20px;
+}
+.hero form {
+  display: flex;
+  flex-direction: column;
+  min-height: 15vh;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  border: solid #272932;
+  background: #272932;
+  color: #EDE7E3;
+  background: #575460;
+}
+.hero form .input-group {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-height: 80px;
+  justify-content: space-evenly;
+}
+.hero form .input-group input {
+  padding: 6px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  border: solid #272932;
+  background: #272932;
+  color: #EDE7E3;
+}
+.hero form .input-group label {
+  font-size: 23px;
+  font-family: sans-serif;
+}
+
+.alert {
+  font-size: 14px;
+  text-transform: lowercase;
+  font-weight: 800;
+  padding: 2px 8px;
+  margin: 12px 0px 5px;
+  border-radius: 10px;
+  border: solid;
+  font-family: sans-serif;
+}
+.alert.alert-danger {
+  color: #D7263D;
+  background: #FF7477;
+}
+
+a.not-focus-link {
+  color: #EDE7E3;
+  text-decoration: none;
+  font-size: 13px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  background: #272932;
+  color: #EDE7E3;
+  border: solid #272932;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.btn.main {
+  width: 100%;
+  height: 31px;
+  margin: 20px;
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+.btn.submit {
+  color: #EDE7E3;
+  background: #629677;
+}
+.btn.submit:hover {
+  background: #303C3A;
+}
+
+footer {
+  background: #272932;
+  color: #EDE7E3;
+  width: 100vw;
+  overflow-x: hidden;
+  padding-top: 36px;
+}
+footer .\33 -col {
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+}
+footer .copyright {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*# sourceMappingURL=app.css.map */
