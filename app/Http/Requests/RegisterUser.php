@@ -16,7 +16,15 @@ class RegisterUser extends FormRequest
         return [
             'name' => 'required|string|max:15',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string',
+            'password' => 'min:8|required|string',
+            'repeat_password' => 'required|string|same:password',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'repeat_password.same' => 'your password must match, please try again',
         ];
     }
 }

@@ -104,6 +104,18 @@ body nav .sitename .name {
   min-height: 80px;
   justify-content: space-evenly;
 }
+.hero form .input-group.inline {
+  flex-direction: row;
+  min-height: 20px;
+  margin-top: 10px;
+  font-size: 24px;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 200px;
+}
+.hero form .input-group.inline label {
+  font-size: 14px;
+}
 .hero form .input-group input {
   padding: 6px;
   font-weight: 800;

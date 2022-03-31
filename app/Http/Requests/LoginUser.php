@@ -11,6 +11,11 @@ class LoginUser extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        $this->merge(['remember' => (bool) $this->remember]);
+    }
+
     public function rules(): array
     {
         return [
