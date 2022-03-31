@@ -1,22 +1,34 @@
 <nav>
-    <div class="appname">
-        <a href="{{ route('home') }}">{{ $appname }} <i class="fa-solid fa-hat-chef"></i></a>
+    <div class="sitename">
+        <div class="name">
+            {{ config('app.name') }}
+        </div>
     </div>
     <div class="authbox">
-        @auth
-            <a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-            <form action="{{ route('login.delete') }}" method="post">
-                @method('DELETE')
-                @csrf
-                <button type="submit">logout</button>
-            </form>
-        @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-            @if ($showRegister)
-                <a href="{{ route('register') }}"
-                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-            @endif
-        @endauth
+        <div class="icon"><i class="fa-solid fa-peace"></i></div>
+        <div class="options">
+            <ul>
+                @auth
+                    <li><a href="{{ route('home') }}">manage account</a></li>
+                    <li>
+                        <form action="{{ route('login.delete') }}" method="post" id="logout-form">
+                            @csrf
+                            @method('DELETE')
+                            <a href="javascript:logout()">logout</a>
+                    </li>
+                    </form>
+                @else
+                    <li><a href="{{ route('login') }}">login</a></li>
+                    <li><a href="{{ route('register') }}">register</a></li>
+                @endauth
+            </ul>
+        </div>
     </div>
 </nav>
+@slot('scripts')
+    <script>
+        function logout() {
+            document.getElementById('logout-form').submit();
+        }
+    </script>
+@endslot

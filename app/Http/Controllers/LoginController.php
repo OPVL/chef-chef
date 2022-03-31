@@ -12,17 +12,23 @@ class LoginController extends Controller
 {
     public function index(): View
     {
-        return view('auth.login');
+        return view('auth.login', [
+            'emailPlaceholder' => 'jane.doe@example.com',
+            'passwordPlaceholder' => 'chained-to-roberto',
+        ]);
     }
 
     public function store(LoginUser $request): RedirectResponse
     {
-        Auth::attempt(
+        if (Auth::attempt(
             Arr::only($request->validated(), ['email', 'password']),
             Arr::get($request, 'remember', false)
-        );
+        )
+        ) {
+            return redirect()->intended('/');
+        }
 
-        return redirect()->intended('/');
+        return redirect()->back();
     }
 
     public function delete(): RedirectResponse

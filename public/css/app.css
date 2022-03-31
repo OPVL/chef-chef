@@ -3,12 +3,17 @@
   padding: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
-  background: #f1f1f1;
-  color: #292425;
+  background: #272932;
+  color: #EDE7E3;
+  overflow-x: hidden;
 }
 body main {
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   max-width: 800px;
@@ -16,19 +21,178 @@ body main {
   align-items: center;
 }
 body nav {
-  height: 60px;
-  background: bisque;
+  width: 100vw;
+  height: 80px;
+  background: #A14DA0;
   display: flex;
   justify-content: space-between;
-  padding: 4px 15%;
+}
+body nav .icon {
+  max-width: 40px;
+}
+body nav img {
+  width: 100%;
+}
+body nav i {
+  font-size: 30px;
+}
+body nav *:hover {
+  color: white;
+  cursor: pointer;
+}
+body nav .authbox {
+  display: flex;
+  height: 80px;
+  width: 80px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+body nav .authbox .options {
+  position: absolute;
+  top: 60px;
+  width: 130px;
+  right: 0px;
+  background: white;
+}
+body nav .authbox .options ul {
+  list-style: none;
+}
+body nav .sitename {
+  padding: 3px;
+  margin-left: 3vw;
+  display: flex;
   align-items: center;
 }
-body nav .appname a {
-  text-decoration: none;
+body nav .sitename .name {
+  margin: 10px;
   font-weight: 800;
-  line-height: 2;
-  font-size: 48px;
-  color: inherit;
+  font-size: 30px;
+}
+
+.hero {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hero .page-title {
+  font-size: 3vw;
+  font-family: sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.3vw;
+  padding: 20px;
+}
+.hero form {
+  display: flex;
+  flex-direction: column;
+  min-height: 15vh;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  border: solid #272932;
+  background: #272932;
+  color: #EDE7E3;
+  background: #575460;
+}
+.hero form .input-group {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-height: 80px;
+  justify-content: space-evenly;
+}
+.hero form .input-group.inline {
+  flex-direction: row;
+  min-height: 20px;
+  margin-top: 10px;
+  font-size: 24px;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 200px;
+}
+.hero form .input-group.inline label {
+  font-size: 14px;
+}
+.hero form .input-group input {
+  padding: 6px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  border: solid #272932;
+  background: #272932;
+  color: #EDE7E3;
+}
+.hero form .input-group label {
+  font-size: 23px;
+  font-family: sans-serif;
+}
+
+.alert {
+  font-size: 14px;
+  text-transform: lowercase;
+  font-weight: 800;
+  padding: 2px 8px;
+  margin: 12px 0px 5px;
+  border-radius: 10px;
+  border: solid;
+  font-family: sans-serif;
+}
+.alert.alert-danger {
+  color: #D7263D;
+  background: #FF7477;
+}
+
+a.not-focus-link {
+  color: #EDE7E3;
+  text-decoration: none;
+  font-size: 13px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  background: #272932;
+  color: #EDE7E3;
+  border: solid #272932;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.btn.main {
+  width: 100%;
+  height: 31px;
+  margin: 20px;
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+.btn.submit {
+  color: #EDE7E3;
+  background: #629677;
+}
+.btn.submit:hover {
+  background: #303C3A;
+}
+
+footer {
+  background: #272932;
+  color: #EDE7E3;
+  width: 100vw;
+  overflow-x: hidden;
+  padding-top: 36px;
+}
+footer .\33 -col {
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+}
+footer .copyright {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*# sourceMappingURL=app.css.map */

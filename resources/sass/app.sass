@@ -1,20 +1,42 @@
-$accent-primary: #c52427
-$gray: #c9c9c9
-$accent-secondary: #e8cd15
-$gray-darker: #9d9d9d
-$dark: #292425
-$white: #f1f1f1
+$white: #EDE7E3
+$black: #272932
+$green: #136F63
+$blue: #3F88C5
+$pink: #FF7477
+$purple: #A14DA0
+$lightgray: #575460
+$darkgreen: #303C3A
+$petrol: #23596F
+$ultraviolet: #8390FA
 
+$darkersuccess: #629677
+$success: #6CC551
+$warning: #E3B23C
+$info: #3F88C5
+$error: #D7263D
+
+@mixin darkmode
+    background: $black
+    color: $white
+@mixin lightmode
+    background: $white
+    color: $black
+
+@mixin success
+    color: $white
+    background: $darkersuccess
 *
     margin: 0
     padding: 0
 
-body
-    background: $white
-    color: $dark
+.hidden
+    display: none
 
+body
+    @include darkmode
+    overflow-x: hidden
     main
-        min-height: 100vh
+        min-height: 85vh
         display: flex
         flex-direction: column
         max-width: 800px
@@ -22,15 +44,148 @@ body
         align-items: center
 
     nav
-        height: 60px
-        background: bisque
+        width: 100vw
+        height: 80px
+        background: $purple
         display: flex
         justify-content: space-between
-        padding: 4px 15%
+        .icon
+            max-width: 40px
+        & img
+            width: 100%
+        & i
+            font-size: 30px
+        & *:hover
+            color: white
+            cursor: pointer
+        .authbox
+            display: flex
+            height: 80px
+            width: 80px
+            justify-content: center
+            align-items: center
+            margin-right: 10px
+            .options
+                position: absolute
+                top: 60px
+                width: 130px
+                right: 0px
+                background: white
+                ul
+                    list-style: none
+        .sitename
+            padding: 3px
+            margin-left: 3vw
+            display: flex
+            align-items: center
+            .name
+                margin: 10px
+                font-weight: 800
+                font-size: 30px
+
+.hero
+    width: 100%
+    height: 85vh
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+    .page-title
+        font-size: 3vw
+        font-family: sans-serif
+        font-weight: 800
+        letter-spacing: 0.3vw
+        padding: 20px
+
+    & form
+        display: flex
+        flex-direction: column
+        min-height: 15vh
+        justify-content: space-around
         align-items: center
-        .appname a
-            text-decoration: none
-            font-weight: 800
-            line-height: 2
-            font-size: 48px
-            color: inherit
+        padding: 20px
+        border: solid $black
+        @include darkmode
+        background: $lightgray
+
+        .input-group
+            display: flex
+            flex-direction: column
+            width: 300px
+            min-height: 80px
+            justify-content: space-evenly
+            &.inline
+                flex-direction: row
+                min-height: 20px
+                margin-top: 10px
+                font-size: 24px
+                align-items: center
+                justify-content: space-evenly
+                width: 200px
+                label
+                    font-size: 14px
+            input
+                padding: 6px
+                font-weight: 800
+                letter-spacing: 0.9px
+                border: solid $black
+                @include darkmode
+            label
+                font-size: 23px
+                font-family: sans-serif
+
+.alert
+    font-size: 14px
+    text-transform: lowercase
+    font-weight: 800
+    padding: 2px 8px
+    margin: 12px 0px 5px
+    border-radius: 10px
+    border: solid
+    font-family: sans-serif
+
+    &.alert-danger
+        color: $error
+        background: $pink
+
+a
+    &.not-focus-link
+        color: $white
+        text-decoration: none
+        font-size: 13px
+    &:hover
+        text-decoration: underline
+
+.btn
+    @include darkmode
+    border: solid $black
+    &:hover
+        cursor: pointer
+    &.main
+        width: 100%
+        height: 31px
+        margin: 20px
+        font-size: 20px
+        letter-spacing: 3px
+    &.submit
+        @include success
+        &:hover
+            background: $darkgreen
+
+footer
+    background: $black
+    color: $white
+    width: 100vw
+    overflow-x: hidden
+    padding-top: 36px
+    .\33 -col
+        display: flex
+        width: 100vw
+        justify-content: space-around
+
+    .copyright
+        width: 100vw
+        display: flex
+        flex-direction: column
+        align-items: center

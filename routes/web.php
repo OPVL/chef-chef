@@ -34,6 +34,8 @@ Route::middleware('guest')
             Route::get('login')->uses([LoginController::class, 'index'])->name('login');
             Route::put('login')->uses([LoginController::class, 'store'])->name('login.store');
 
+            Route::get('forgot')->uses(WorkInProgressController::class)->name('forgot');
+
             Route::get('register')->uses([RegisterController::class, 'create'])->name('register');
             Route::put('register')->uses([RegisterController::class, 'store'])->name('register.store');
         }

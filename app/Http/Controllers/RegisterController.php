@@ -12,7 +12,16 @@ class RegisterController extends Controller
 {
     public function create(): View|RedirectResponse
     {
-        return view('auth.register');
+        $namePlaceholder = 'louis';
+        $int = random_int(0, 98);
+        dump($int);
+        $number = $int < 13 ? '' : $int;
+
+        return view('auth.register', [
+            'emailPlaceholder' => "{$namePlaceholder}{$number}@example.com",
+            'namePlaceholder' => $namePlaceholder,
+            'passwordPlaceholder' => 'three-rough-boys',
+        ]);
     }
 
     public function store(RegisterUser $request): RedirectResponse
