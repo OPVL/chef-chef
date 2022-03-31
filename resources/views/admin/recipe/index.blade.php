@@ -7,7 +7,27 @@
         @if (session()->has('success'))
             {{ session()->get('success') }}
         @endif
-        <button onclick="navigate('{{route('admin.recipe.create') }}')">new</button>
+        <div class="search-box">
+            <h4>filter</h4>
+            <div class="input-group">
+                <label for="filter-type">type</label>
+                <select name="filter-type" id="filter-type">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="filter-name">name</label>
+                <input type="text" name="filter-name" id="filter-name" value="{{ old('filter-name') }}">
+            </div>
+            <div class="extra">
+                <div class="diet"></div>
+                <div class="allergens"></div>
+            </div>
+        </div>
+        <button onclick="navigate('{{ route('admin.recipe.create') }}')">new</button>
         <table>
             <thead>
                 <th>ID</th>
@@ -31,12 +51,14 @@
                     {{-- <td>{{ $recipe->ingredients->count }}</td> --}}
                     @if (true || (Auth::user() && Auth::user()->is_super))
                         <td>
-                            <form action="{{ route('admin.recipe.delete', $recipe) }}" method="post" id="delete-{{ $recipe->name }}">
+                            <form action="{{ route('admin.recipe.delete', $recipe) }}" method="post"
+                                id="delete-{{ $recipe->name }}">
                                 @method('DELETE')
                                 @csrf
                                 <input type="hidden" name="confirm" id="confirmation-input-{{ $recipe->name }}">
                                 <a href="javascript:deleteConfirm('{{ $recipe->name }}')">delete</a>
-                                <input type="submit" value="delete" onclick="return deleteConfirm('{{ $recipe->name }}')">
+                                <input type="submit" value="delete"
+                                    onclick="return deleteConfirm('{{ $recipe->name }}')">
                             </form>
                         </td>
                     @endif
@@ -46,6 +68,35 @@
     @endsection
 
     @section('scripts')
+        <script>
+            $('#filter-name').on('keyup', function() {
+                $value = $(this).val();
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('ajax.ingredient') }}',
+                    data: {
+                        'query': $value
+                    },
+                    success: function(data) {
+                        $('tbody').html(data);
+                    }
+                });
+            })
+
+            $('#filter-name').on('keyup', function() {
+                $value = $(this).val();
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('ajax.ingredient') }}',
+                    data: {
+                        'query': $value
+                    },
+                    success: function(data) {
+                        $('tbody').html(data);
+                    }
+                });
+            })
+        </script>
         <script>
             function deleteConfirm(name) {
                 const confirmation = confirm(`Are you sure you want to delete ${name}`);

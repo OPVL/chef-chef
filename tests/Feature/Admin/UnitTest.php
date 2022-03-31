@@ -76,8 +76,6 @@ class UnitTest extends TestCase
     /** @test */
     public function can_delete_unit(): void
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->admin()->create());
         $unit = Unit::factory()->create();
 

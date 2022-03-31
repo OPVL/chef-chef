@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Ingredient;
 use App\Models\Type;
 use App\Models\Unit;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,6 +15,7 @@ class IngredientFactory extends Factory
             'name' => $this->faker->word(),
             'unit_id' => 1,
             'type_id' => 1,
+            'animal_product' => false,
         ];
     }
 
@@ -22,7 +24,7 @@ class IngredientFactory extends Factory
         return $this->state(
             function (array $attributes) use ($type) {
                 return [
-                'type_id' => $type->id,
+                    'type_id' => $type->id,
                 ];
             }
         );
@@ -33,9 +35,16 @@ class IngredientFactory extends Factory
         return $this->state(
             function (array $attributes) use ($unit) {
                 return [
-                'unit_id' => $unit->id,
+                    'unit_id' => $unit->id,
                 ];
             }
         );
+    }
+
+    public function allergens(array $allergens): static
+    {
+        return $this->afterCreating(function (Ingredient $ingredient) use ($allergens): void {
+            $ingredient->allergens()->sync(collect($allergens)->pluck('id'));
+        });
     }
 }

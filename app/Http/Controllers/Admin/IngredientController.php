@@ -20,7 +20,10 @@ class IngredientController extends Controller
             'admin.ingredient.index',
             [
                 'ingredients' => Ingredient::with(['unit', 'type'])
+                    ->limit(10)
                     ->get(),
+
+                'types' => Type::all(),
             ]
         );
     }

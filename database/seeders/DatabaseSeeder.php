@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             UnitSeeder::class,
             TypeSeeder::class,
             IngredientSeeder::class,
+            AllergenSeeder::class,
         ]);
     }
 }

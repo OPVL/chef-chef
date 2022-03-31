@@ -16,6 +16,7 @@ class AdminController extends Controller
             ['name' => 'units', 'icon' => '<i class="fa-solid fa-ruler"></i>', 'route' => route('admin.unit.index')],
             ['name' => 'cuisines', 'icon' => '<i class="fa-solid fa-earth-americas"></i>', 'route' => route('admin.cuisine.index')],
             ['name' => 'ingredient types', 'icon' => '<i class="fa-solid fa-table"></i>', 'route' => route('admin.type.index')],
+            ['name' => 'allergens', 'icon' => '<i class="fa-solid fa-triangle-exclamation"></i>', 'route' => route('admin.allergen.index')],
             ['name' => 'users', 'icon' => '<i class="fa-solid fa-users"></i>', 'route' => route('admin.user.index')],
             ['name' => 'settings', 'icon' => '<i class="fa-solid fa-gear"></i>', 'route' => route('admin.setting.index')],
         ];

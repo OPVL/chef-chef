@@ -68,8 +68,6 @@ class IngredientTest extends TestCase
     /** @test */
     public function shows_list_of_ingredients_on_index(): void
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->admin()->create());
         $type = Type::factory()->create();
         $unit = Unit::factory()->create();
@@ -87,8 +85,6 @@ class IngredientTest extends TestCase
     /** @test */
     public function can_delete_ingredient(): void
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->admin()->create());
         $ingredient = Ingredient::factory()->create();
 

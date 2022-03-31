@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\Alphabetical;
+use App\Models\Traits\HasAllergens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,12 +13,16 @@ use Phospr\Fraction;
 
 class Ingredient extends Model
 {
-    use HasFactory;
+    use HasFactory, HasAllergens;
 
     protected $fillable = [
         'name',
         'unit_id',
         'type_id',
+    ];
+
+    protected $with = [
+        'allergens',
     ];
 
     protected static function booted(): void
@@ -59,5 +64,17 @@ class Ingredient extends Model
         $ingredient = $this->pivot->quantity > 1 ? Pluralizer::plural($this->name) : $this->name;
 
         return "{$quantity} {$ingredient}";
+    }
+
+    protected function getContainsGlutenAttribute(): bool
+    {
+        return $this->allergens->filter(function (Allergen $allergen) {
+            return $allergen->is_plant_based;
+        })->count() > 0;
+    }
+
+    protected function getIsVeganAttribute(): bool
+    {
+        return $this->animal_product === false;
     }
 }

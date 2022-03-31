@@ -141,4 +141,66 @@ footer .copyright {
   align-items: center;
 }
 
+.admin-form {
+  max-width: 1200px;
+  padding: 1vw;
+  display: flex;
+  min-width: 71vw;
+  background: white;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* align-items: center */
+}
+
+.input-group {
+  color: #272932;
+  width: 390px;
+  background: white;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center */
+  text-align: left;
+  margin-bottom: 20px;
+  transition: ease-in-out 0.1s;
+  border: none;
+  margin: 5px 25px;
+}
+.input-group label {
+  font-weight: 600;
+  text-transform: lowercase;
+  font-size: 24px;
+  margin-bottom: 3px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 71vw;
+  flex-direction: row-reverse;
+}
+
+.btn {
+  color: white;
+  padding: 5px 8px;
+  border: solid 2px;
+  border-radius: 5px;
+  min-width: 80px;
+  font-size: 16px;
+  min-height: 42px;
+}
+.btn.confirm {
+  background: #6CC551;
+  border-color: #359219;
+}
+.btn.error {
+  background: #D7263D;
+  border-color: #63081a;
+}
+.btn.warning {
+  background: #E3B23C;
+  border-color: #ec9624;
+}
+
 /*# sourceMappingURL=admin.css.map */

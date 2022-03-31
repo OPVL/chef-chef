@@ -74,8 +74,6 @@ class TypeTest extends TestCase
     /** @test */
     public function can_delete_type(): void
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->admin()->create());
         $type = Type::factory()->create();
 

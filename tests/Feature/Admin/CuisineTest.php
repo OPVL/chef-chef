@@ -39,8 +39,6 @@ class CuisineTest extends TestCase
     /** @test */
     public function can_create_cuisine(): void
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->admin()->create());
         $this->assertNull(Cuisine::first(), 'Database not cleared from previous run');
 
@@ -78,8 +76,6 @@ class CuisineTest extends TestCase
     /** @test */
     public function can_delete_cuisine(): void
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->admin()->create());
         $cuisine = Cuisine::factory()->create();
 
@@ -93,8 +89,6 @@ class CuisineTest extends TestCase
     /** @test */
     public function can_update_cuisine(): void
     {
-        $this->withoutExceptionHandling();
-
         $this->actingAs(User::factory()->admin()->create());
         $cuisine = Cuisine::factory()->create();
 
