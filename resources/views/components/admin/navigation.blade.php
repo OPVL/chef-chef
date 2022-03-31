@@ -28,10 +28,3 @@
         </div>
     </div>
 </nav>
-@slot('scripts')
-    <script>
-        function logout() {
-            document.getElementById('logout-form').submit();
-        }
-    </script>
-@endslot

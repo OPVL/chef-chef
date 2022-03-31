@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <x-shared.favicon />
@@ -19,6 +19,10 @@
     <x-admin.footer />
     @yield('scripts')
     <script>
+        function logout() {
+            document.getElementById('logout-form').submit();
+        }
+
         function navigate(route) {
             window.location.href = route;
         }

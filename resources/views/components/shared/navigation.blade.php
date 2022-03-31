@@ -6,7 +6,7 @@
     </div>
     <div class="authbox">
         <div class="icon"><i class="fa-solid fa-peace"></i></div>
-        <div class="options hidden">
+        <div class="options">
             <ul>
                 @auth
                     <li><a href="{{ route('home') }}">manage account</a></li>

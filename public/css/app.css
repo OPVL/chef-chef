@@ -13,7 +13,7 @@ body {
   overflow-x: hidden;
 }
 body main {
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   max-width: 800px;
