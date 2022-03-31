@@ -15,6 +15,10 @@ class Allergen extends Model
         'animal_product',
     ];
 
+    protected $casts = [
+        'animal_product' => 'bool',
+    ];
+
     const FLESH = [
         'meat',
     ];
