@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\Alphabetical;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -56,7 +57,9 @@ class Ingredient extends Model
             return "{$this->unit->name} of {$this->name}";
         }
 
-        $quantity = $this->pivot->quantity >= 1 ? (int) ($this->pivot->quantity ?? 0) : Fraction::fromFloat($this->pivot->quantity ?? 0);
+        $quantity = $this->pivot->quantity >= 1
+            ? (int) ($this->pivot->quantity ?? 0)
+            : Fraction::fromFloat($this->pivot->quantity ?? 0);
 
         if ($this->pivot->unit->measurable ?? false) {
             $unit = $this->pivot->unit->label;
@@ -76,6 +79,17 @@ class Ingredient extends Model
             return $allergen->is_plant_based;
         })->count() > 0;
     }
+
+    protected function getIsVeganAttribute(): bool
+    {
+        return $this->animal_product === false;
+    }
+
+    protected function scopeGlutenFree(Builder $query): Builder
+    {
+        return $query->withoutAllergens(Allergen::firstWhere('name', 'like', '%gluten%'));
+    }
+
     protected function scopeWithoutAllergens(Builder $query, Allergen ...$allergens): Builder
     {
         return $query->whereDoesntHave('allergens', function (Builder $query) use ($allergens) {

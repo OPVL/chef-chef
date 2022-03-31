@@ -187,13 +187,16 @@ class IngredientTest extends TestCase
     {
         /** @var Allergen $allergen */
         $allergen = Allergen::factory()->create(['name' => 'gluten']);
-        /** @var Ingredient[] $glutenIngredients */
         $glutenIngredients = Ingredient::factory(5)->allergens([$allergen])->create();
-        /** @var Ingredient[] $glutenIngredients */
         $noGlutenIngredients = Ingredient::factory(5)->create();
+        $glutenFree = Ingredient::select('id')->glutenFree()->get();
 
         $this->assertCount(10, Ingredient::all());
         $this->assertCount(5, Ingredient::select('id')->glutenFree()->get());
+
+        $glutenIngredients->each(function (Ingredient $ingredient) use ($glutenFree): void {
+            $this->assertNotContains($ingredient->id, $glutenFree->pluck('id'));
+        });
     }
 
     /** @test */
