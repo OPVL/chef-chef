@@ -23,7 +23,8 @@ class LoginController extends Controller
         if (Auth::attempt(
             Arr::only($request->validated(), ['email', 'password']),
             Arr::get($request, 'remember', false)
-        )) {
+        )
+        ) {
             return redirect()->intended('/');
         }
 

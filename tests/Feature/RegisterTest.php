@@ -12,7 +12,7 @@ class RegisterTest extends TestCase
     use DatabaseMigrations, WithFaker;
 
     /** @test */
-    public function can_register()
+    public function can_register(): void
     {
         $this->put(route('register.store'), [
             'name' => $this->faker->name,
@@ -22,13 +22,13 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    public function can_get_register_page()
+    public function can_get_register_page(): void
     {
         $this->get(route('register'))->assertOk();
     }
 
     /** @test */
-    public function cannot_register_used_email()
+    public function cannot_register_used_email(): void
     {
         $existing = User::factory()->create();
 
@@ -42,7 +42,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    public function cannot_register_malformed_email()
+    public function cannot_register_malformed_email(): void
     {
         $password = $this->faker->password(8);
         $this->put(route('register.store'), [
@@ -54,7 +54,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    public function cannot_register_short_password()
+    public function cannot_register_short_password(): void
     {
         $password = $this->faker->password(4);
         $this->put(route('register.store'), [
@@ -66,7 +66,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    public function cannot_register_password_doesnt_match()
+    public function cannot_register_password_doesnt_match(): void
     {
         $password = $this->faker->password(8);
         $this->put(route('register.store'), [
@@ -78,7 +78,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    public function cannot_register_no_name()
+    public function cannot_register_no_name(): void
     {
         $password = $this->faker->password(8);
         $this->put(route('register.store'), [
@@ -89,7 +89,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    public function cannot_register_empty_name()
+    public function cannot_register_empty_name(): void
     {
         $password = $this->faker->password(8);
         $this->put(route('register.store'), [

@@ -11,7 +11,7 @@ class LoginTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function can_login_with_valid_user()
+    public function can_login_with_valid_user(): void
     {
         $user = User::factory()->create(['password' => 'blowfish']);
 
@@ -24,7 +24,17 @@ class LoginTest extends TestCase
     }
 
     /** @test */
-    public function can_get_login_page()
+    public function can_logout_by_csrf(): void
+    {
+        $user = User::factory()->create(['password' => 'blowfish']);
+        // Auth::shouldReceive('attempt')->andReturn(true);
+
+        $this->actingAs($user)->delete(route('login.delete'))
+            ->assertRedirect(route('home'));
+    }
+
+    /** @test */
+    public function can_get_login_page(): void
     {
         $this->get(route('login'))->assertOk();
     }
