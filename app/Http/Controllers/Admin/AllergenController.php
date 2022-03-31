@@ -12,10 +12,6 @@ use Illuminate\Http\RedirectResponse;
 
 class AllergenController extends Controller
 {
-    public function __construct()
-    {
-    }
-
     public function index(): View
     {
         return view('admin.allergen.index', ['allergens' => Allergen::all()]);
