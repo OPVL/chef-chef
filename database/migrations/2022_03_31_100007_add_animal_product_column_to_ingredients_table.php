@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('allergens', function (Blueprint $table): void {
-            $table->id();
-            $table->string('name');
+        Schema::table('ingredients', function (Blueprint $table): void {
             $table->boolean('animal_product')->default(false);
-            $table->timestamps();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('allergens');
+        Schema::table('ingredients', function (Blueprint $table): void {
+            $table->dropColumn('animal_product');
+        });
     }
 };

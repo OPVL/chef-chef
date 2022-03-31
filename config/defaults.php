@@ -187,6 +187,18 @@ return [
             'allergens' => ['molluscs'],
         ],
         [
+            'name' => 'oyster',
+            'type' => 'fish',
+            'unit' => 'item',
+            'allergens' => ['molluscs'],
+        ],
+        [
+            'name' => 'osyter stir fry sauce',
+            'type' => 'condiments',
+            'unit' => 'ml',
+            'allergens' => ['molluscs'],
+        ],
+        [
             'name' => 'dijon mustard',
             'type' => 'condiments',
             'unit' => 'tsp',
@@ -233,23 +245,23 @@ return [
         'celery',
         'gluten', // (such as barley and oats)
         'crustaceans' => [
-            'is_animal_product' => true,
+            'animal_product' => true,
         ], // (such as prawns, crabs and lobsters)
         'eggs' => [
-            'is_animal_product' => true,
+            'animal_product' => true,
         ],
         'fish' => [
-            'is_animal_product' => true,
+            'animal_product' => true,
         ],
         'meat' => [
-            'is_animal_product' => true,
+            'animal_product' => true,
         ],
         'lupin',
         'milk' => [
-            'is_animal_product' => true,
+            'animal_product' => true,
         ],
         'molluscs' => [
-            'is_animal_product' => true,
+            'animal_product' => true,
         ], // (such as mussels and oysters)
         'mustard',
         'peanuts',

@@ -20,7 +20,7 @@
                 <tr>
                     <td>{{ $allergen->id }}</td>
                     <td>{{ $allergen->name }}</td>
-                    <td>{{ $allergen->is_animal_product }}</td>
+                    <td>{{ $allergen->animal_product }}</td>
                     <td><a href="{{ route('admin.allergen.edit', $allergen) }}">edit</a></td>
                     @if (true || (Auth::user() && Auth::user()->is_super))
                         <td>

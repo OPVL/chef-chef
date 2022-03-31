@@ -11,7 +11,8 @@ class Allergen extends Model
     use HasFactory;
 
     protected $fillable = [
-
+        'name',
+        'animal_product',
     ];
 
     const FLESH = [
