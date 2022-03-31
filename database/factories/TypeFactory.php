@@ -15,13 +15,4 @@ class TypeFactory extends Factory
             'name' => $this->faker->unique()->word(),
         ];
     }
-
-    public function vegan(): static
-    {
-        return $this->state(function (array $attributes): array {
-            return [
-                'contains_animal_product' => false,
-            ];
-        });
-    }
 }

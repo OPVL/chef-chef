@@ -67,8 +67,6 @@ class IngredientSeeder extends Seeder
                     'type_id' => $this->getType($ingredient['type'], true)->id,
                 ];
 
-                dump($payload);
-
                 if (!Ingredient::firstOrCreate($payload) || $this->command === null) {
                     return;
                 }
