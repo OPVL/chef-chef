@@ -9,7 +9,7 @@
 
             <div class="input-group">
                 @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert danger">{{ $message }}</div>
                 @enderror
                 <label for="name">name</label>
                 <input type="text" name="name" id="recipe-name" placeholder="{{ $namePlaceholder }}"
@@ -18,7 +18,7 @@
 
             <div class="input-group">
                 @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert danger">{{ $message }}</div>
                 @enderror
                 <label for="name">description</label>
                 <input type="text" name="description" id="recipe-description" placeholder="{{ $descriptionPlaceholder }}"
@@ -27,7 +27,7 @@
 
             <div class="input-group">
                 @error('cuisine')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert danger">{{ $message }}</div>
                 @enderror
                 <label for="name">cuisine</label>
                 <select name="cuisine_id" id="cuisine_id">

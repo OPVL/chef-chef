@@ -4,7 +4,7 @@
     @endslot
     @section('content')
         @if (session()->has('success'))
-            {{ session()->get('success') }}
+            <div class="alert success">{{ session()->get('success') }}</div>
         @endif
         <table>
             <thead>

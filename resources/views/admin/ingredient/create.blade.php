@@ -8,13 +8,13 @@
             @method('PUT')
             @csrf
             @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert danger">{{ $message }}</div>
             @enderror
             <label for="name">name</label>
             <input type="text" name="name" id="ingredient-name">
 
             @error('unit')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert danger">{{ $message }}</div>
             @enderror
             <label for="name">unit</label>
             <select name="unit_id" id="unit_id    ">
@@ -24,7 +24,7 @@
             </select>
 
             @error('type')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert danger">{{ $message }}</div>
             @enderror
             <label for="name">storage location</label>
             <select name="type_id" id="type_id    ">

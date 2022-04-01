@@ -217,10 +217,17 @@ footer .copyright {
   border: solid;
   font-family: sans-serif;
 }
-.alert.alert-danger {
+.alert.danger {
   border-color: #FF7477;
   color: #EDE7E3;
   background: #D7263D;
+}
+.alert.success {
+  color: #EDE7E3;
+  background: #136F63;
+}
+.alert.success:hover {
+  background: #6CC551;
 }
 
 .btn {

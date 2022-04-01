@@ -7,7 +7,7 @@
             @method('PUT')
             @csrf
             @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert danger">{{ $message }}</div>
             @enderror
             <label for="name">name</label>
             <input type="text" name="name" id="type-name">

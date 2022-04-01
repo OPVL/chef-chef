@@ -19,7 +19,7 @@ class AllergenController extends Controller
 
     public function create(): View
     {
-        return view('admin.allergen.create');
+        return view('admin.allergen.create', ['namePlaceholder' => 'unicorn poop']);
     }
 
     public function get(Allergen $allergen): View

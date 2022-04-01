@@ -12,7 +12,7 @@
 
                 <div class="input-group">
                     @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="name">name</label>
                     <input type="text" name="name" id="name" autocomplete="name" required
@@ -21,7 +21,7 @@
 
                 <div class="input-group">
                     @error('email')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="email">email</label>
                     <input type="text" name="email" id="email" autocomplete="email" required
@@ -29,7 +29,7 @@
                 </div>
                 <div class="input-group">
                     @error('password')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="password">password</label>
                     <input type="password" name="password" id="password" autocomplete="new-password" required
@@ -37,7 +37,7 @@
                 </div>
                 <div class="input-group">
                     @error('repeat_password')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="repeat_password">repeat password</label>
                     <input type="password" name="repeat_password" id="repeat_password" autocomplete="password" required

@@ -11,11 +11,11 @@
                 @csrf
 
                 @error('login')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group">
                     @error('email')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="email">email</label>
                     <input type="email" name="email" id="email" autocomplete="email" required
@@ -24,7 +24,7 @@
 
                 <div class="input-group">
                     @error('password')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="password">password</label>
                     <input type="password" name="password" id="password" autocomplete="password" required
@@ -33,7 +33,7 @@
 
                 <div class="input-group inline">
                     @error('remember')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="remember">remember me?</label>
                     <input type="checkbox" name="remember" id="remember">

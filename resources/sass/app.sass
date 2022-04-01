@@ -25,9 +25,16 @@ $error: #D7263D
 
 @mixin success
     color: $white
-    background: $darkersuccess
+    background: $green
     &:hover
-        background: $darkgreen
+        background: $success
+
+@mixin error
+    border-color: $pink
+    color: $white
+    background: $error
+    &:hover
+        background: $pink
 
 *
     margin: 0
@@ -148,10 +155,10 @@ body
     border-radius: 10px
     border: solid
     font-family: sans-serif
-
-    &.alert-danger
-        color: $error
-        background: $pink
+    &.danger
+        @include error
+    &.success
+        @include success
 
 a
     &.not-focus-link
