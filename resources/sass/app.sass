@@ -18,6 +18,7 @@ $error: #D7263D
 @mixin darkmode
     background: $black
     color: $white
+
 @mixin lightmode
     background: $white
     color: $black
@@ -25,6 +26,9 @@ $error: #D7263D
 @mixin success
     color: $white
     background: $darkersuccess
+    &:hover
+        background: $darkgreen
+
 *
     margin: 0
     padding: 0
@@ -170,8 +174,6 @@ a
         letter-spacing: 3px
     &.submit
         @include success
-        &:hover
-            background: $darkgreen
 
 footer
     background: $black

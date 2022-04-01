@@ -14,8 +14,8 @@ class CreateRecipe extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'description' => 'nullable|string',
+            'name' => 'required|min:6|max:36|string|unique:recipes,name',
+            'description' => 'nullable|string|min:2',
             'cuisine_id' => 'required|integer|exists:cuisines,id',
         ];
     }
