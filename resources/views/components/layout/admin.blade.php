@@ -12,7 +12,7 @@
     <x-admin.navigation />
     <main>
         <div class="hero">
-            <h4>{{ $title ?? 'admin' }}</h4>
+            <h4 class="page-title">{{ $title ?? 'admin' }}</h4>
 
             @yield('content')
         </div>
