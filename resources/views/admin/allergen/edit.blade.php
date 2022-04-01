@@ -9,14 +9,14 @@
             <div class="admin-form">
                 <div class="input-group">
                     @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="name">name</label>
                     <input type="text" name="name" id="name" value="{{ $allergen->name }}">
                 </div>
                 <div class="input-group">
                     @error('animal_product')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="animal_product">Animal Product</label>
                     <input type="checkbox" name="animal_product" id="animal_product"

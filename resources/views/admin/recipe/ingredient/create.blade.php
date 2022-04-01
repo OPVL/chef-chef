@@ -10,7 +10,7 @@
             @method('PUT')
             @csrf
             @error('ingredient')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert danger">{{ $message }}</div>
             @enderror
 
             @foreach ($groups as $location => $ingredients)

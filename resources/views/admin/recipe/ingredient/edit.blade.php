@@ -15,7 +15,7 @@
         @method('PATCH')
         @csrf
         @error('ingredient')
-            <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert danger">{{ $message }}</div>
         @enderror
 
         @foreach ($groups as $location => $ingredients)
@@ -24,14 +24,14 @@
                 @foreach ($ingredients as $ingredient)
                     <p>{{ $ingredient->name }}</p>
                     @error('quantity[{{ $ingredient->id }}]')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="quantity[{{ $ingredient->id }}]">quantity</label>
                     <input type="number" name="quantity[{{ $ingredient->id }}]"
                         id="{{ $ingredient->name }}-quantity"
                         value="{{ old("quantity[{$ingredient->id}]") ?? $ingredient->pivot->quantity }}" step="any">
                     @error('unit[{{ $ingredient->id }}]')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert danger">{{ $message }}</div>
                     @enderror
                     <label for="unit[{{ $ingredient->id }}]">unit</label>
                     <select name="unit[{{ $ingredient->id }}]" id="{{ $ingredient->name }}-unit">

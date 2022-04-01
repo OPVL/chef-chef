@@ -139,9 +139,20 @@ body nav .sitename .name {
   border: solid;
   font-family: sans-serif;
 }
-.alert.alert-danger {
-  color: #D7263D;
+.alert.danger {
+  border-color: #FF7477;
+  color: #EDE7E3;
+  background: #D7263D;
+}
+.alert.danger:hover {
   background: #FF7477;
+}
+.alert.success {
+  color: #EDE7E3;
+  background: #136F63;
+}
+.alert.success:hover {
+  background: #6CC551;
 }
 
 a.not-focus-link {
@@ -170,10 +181,10 @@ a:hover {
 }
 .btn.submit {
   color: #EDE7E3;
-  background: #629677;
+  background: #136F63;
 }
 .btn.submit:hover {
-  background: #303C3A;
+  background: #6CC551;
 }
 
 footer {

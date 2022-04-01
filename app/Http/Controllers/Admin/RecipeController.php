@@ -30,7 +30,11 @@ class RecipeController extends Controller
     {
         $cuisines = Cuisine::all();
 
-        return view('admin.recipe.create', ['cuisines' => $cuisines]);
+        return view('admin.recipe.create', [
+            'cuisines' => $cuisines,
+            'namePlaceholder' => 'Bat Soup',
+            'descriptionPlaceholder' => 'double bubble toil & trouble',
+        ]);
     }
 
     public function get(Recipe $recipe): View

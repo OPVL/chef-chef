@@ -4,7 +4,7 @@
             <img src="{{ asset('img/chefhat.png') }}" alt="chef hat">
         </div> --}}
         <div class="name">
-            {{ config('app.name') }}
+            <a href="{{ route('admin.index') }}">{{ config('app.name') }}</a>
         </div>
     </div>
     <div class="authbox">

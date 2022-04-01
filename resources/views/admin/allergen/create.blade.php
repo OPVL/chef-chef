@@ -1,18 +1,21 @@
-<x-layout.standard>
+<x-layout.admin>
     @slot('title')
-        create storage location
+        create allergen
     @endslot
     @section('content')
-        <form action="{{ route('admin.allergen.store') }}" method="post">
+        <form class="crud-form" action="{{ route('admin.allergen.store') }}" method="post">
             @method('PUT')
             @csrf
-            @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <label for="name">name</label>
-            <input allergen="text" name="name" id="allergen-name">
+            <div class="input-group">
+                @error('name')
+                    <div class="alert danger">{{ $message }}</div>
+                @enderror
+                <label for="name">name</label>
+                <input type="text" name="name" id="allergen-name" placeholder="{{ $namePlaceholder }}"
+                    value="{{ old('description') }}">
+            </div>
 
-            <button allergen="submit">save</button>
+            <button type="submit" class="btn main submit">save</button>
         </form>
     @endsection
-</x-layout.standard>
+</x-layout.admin>

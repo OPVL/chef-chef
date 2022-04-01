@@ -10,11 +10,12 @@
 
 <body>
     <x-admin.navigation />
-    <header class="page-title">
-        <h1>{{ $title ?? 'admin' }}</h1>
-    </header>
     <main>
-        @yield('content')
+        <div class="hero">
+            <h4 class="page-title">{{ $title ?? 'admin' }}</h4>
+
+            @yield('content')
+        </div>
     </main>
     <x-admin.footer />
     @yield('scripts')
