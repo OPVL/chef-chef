@@ -156,7 +156,7 @@ footer .copyright {
   letter-spacing: 0.3vw;
   padding: 20px;
 }
-.hero form {
+.hero .crud-form {
   display: flex;
   flex-direction: column;
   min-height: 15vh;
@@ -167,14 +167,14 @@ footer .copyright {
   background: #EDE7E3;
   color: #272932;
 }
-.hero form .input-group {
+.hero .crud-form .input-group {
   display: flex;
   flex-direction: column;
   width: 300px;
   min-height: 80px;
   justify-content: space-evenly;
 }
-.hero form .input-group.inline {
+.hero .crud-form .input-group.inline {
   flex-direction: row;
   min-height: 20px;
   margin-top: 10px;
@@ -183,10 +183,10 @@ footer .copyright {
   justify-content: space-evenly;
   width: 200px;
 }
-.hero form .input-group.inline label {
+.hero .crud-form .input-group.inline label {
   font-size: 14px;
 }
-.hero form .input-group input {
+.hero .crud-form .input-group input {
   padding: 6px;
   font-weight: 800;
   letter-spacing: 0.9px;
@@ -194,7 +194,7 @@ footer .copyright {
   background: #EDE7E3;
   color: #272932;
 }
-.hero form .input-group select {
+.hero .crud-form .input-group select {
   padding: 6px;
   font-weight: 800;
   letter-spacing: 0.9px;
@@ -202,7 +202,7 @@ footer .copyright {
   background: #EDE7E3;
   color: #272932;
 }
-.hero form .input-group label {
+.hero .crud-form .input-group label {
   font-size: 23px;
   font-family: sans-serif;
 }

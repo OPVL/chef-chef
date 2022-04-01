@@ -3,7 +3,7 @@
         create recipe
     @endslot
     @section('content')
-        <form action="{{ route('admin.recipe.store') }}" method="post">
+        <form class="crud-form" action="{{ route('admin.recipe.store') }}" method="post">
             @method('PUT')
             @csrf
 
