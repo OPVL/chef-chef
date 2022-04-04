@@ -14,7 +14,6 @@ class RegisterController extends Controller
     {
         $namePlaceholder = 'louis';
         $int = random_int(0, 98);
-        dump($int);
         $number = $int < 13 ? '' : $int;
 
         return view('auth.register', [

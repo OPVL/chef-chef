@@ -46,4 +46,9 @@ class User extends Authenticatable
         $attributes['password'] = bcrypt($attributes['password']);
         return self::create($attributes);
     }
+
+    protected function getAdminAttribute(): bool
+    {
+        return (bool) $this->is_super;
+    }
 }

@@ -10,6 +10,7 @@
 
 <body>
     <x-shared.navigation />
+    <x-shared.admin-overlay />
     <main>
         @yield('content')
     </main>
