@@ -23,9 +23,9 @@ class IngredientRecipeController extends Controller
         return view(
             'admin.recipe.ingredient.create',
             [
-            'recipe' => $recipe,
-            'units' => Unit::all(),
-            'groups' => $this->sortAction->execute(Ingredient::with('type')->get()),
+                'recipe' => $recipe,
+                'units' => Unit::all(),
+                'groups' => $this->sortAction->execute(Ingredient::with('type')->get()),
             ]
         );
     }
@@ -35,37 +35,50 @@ class IngredientRecipeController extends Controller
         return view(
             'admin.recipe.ingredient.edit',
             [
-            'recipe' => $recipe,
-            'groups' => $this->sortAction->execute($recipe->ingredients()->with('type')->get()),
-            'units' => Unit::all(),
+                'recipe' => $recipe,
+                'groups' => $this->sortAction->execute($recipe->ingredients()->with('type')->get()),
+                'units' => Unit::all(),
             ]
         );
     }
 
     public function update(Recipe $recipe, UpdateIngredientRecipe $request): RedirectResponse
     {
+        // $payload = [];
         $payload = [];
         collect($request->validated('quantity'))
             ->each(
                 function (float $quantity, int $ingredient_id) use ($request, $recipe, &$payload): void {
 
-                    $payload[$ingredient_id] = [
-                    'recipe_id' => $recipe->id,
-                    'quantity' => $quantity,
-                    'unit_id'  => (int) $request->validated('unit')[$ingredient_id],
+        $payload = collect($request->validated('quantity'))
+            ->map(
+                function (float $quantity, int $ingredient_id) use ($request, $recipe, &$payload): array {
+
+                    return [
+                        'recipe_id' => $recipe->id,
+                        'quantity' => $quantity,
+                        'unit_id'  => (int) $request->validated('unit')[$ingredient_id],
                     ];
                 }
             );
 
+        // dd($payload);
         $recipe->ingredients()->sync($payload);
 
-        return redirect()->route('admin.recipe.get', $recipe);
+        return redirect()
+            ->route('admin.recipe.get', $recipe)
+            ->with('success', "stored {$recipe->ingredients()->count()} ingredients for recipe: {$recipe->name}");
     }
 
     public function store(Recipe $recipe, CreateIngredientRecipe $request): RedirectResponse
     {
         $recipe->ingredients()->attach($request->validated()['ingredient']);
 
-        return redirect()->route('admin.recipe.ingredient.edit', $recipe);
+        return redirect()
+            ->route('admin.recipe.ingredient.edit', $recipe)
+            ->with(
+                'success',
+                "stored {$recipe->ingredients()->count()} ingredients for recipe: {$recipe->name}"
+            );
     }
 }
