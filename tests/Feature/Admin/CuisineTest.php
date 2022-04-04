@@ -23,7 +23,7 @@ class CuisineTest extends TestCase
     /** @test */
     public function can_get_create_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.cuisine.create'))->assertOk();
     }
@@ -31,7 +31,7 @@ class CuisineTest extends TestCase
     /** @test */
     public function can_get_index_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.cuisine.index'))->assertOk();
     }
@@ -39,7 +39,7 @@ class CuisineTest extends TestCase
     /** @test */
     public function can_create_cuisine(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $this->assertNull(Cuisine::first(), 'Database not cleared from previous run');
 
         $payload = [
@@ -61,7 +61,7 @@ class CuisineTest extends TestCase
     /** @test */
     public function shows_list_of_cuisines_on_index(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $cuisines = Cuisine::factory(5)->create();
 
         $response = $this->get(route('admin.cuisine.index'))
@@ -76,7 +76,7 @@ class CuisineTest extends TestCase
     /** @test */
     public function can_delete_cuisine(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $cuisine = Cuisine::factory()->create();
 
         $this->delete(route('admin.cuisine.delete', $cuisine), ['confirm' => 'true'])
@@ -89,7 +89,7 @@ class CuisineTest extends TestCase
     /** @test */
     public function can_update_cuisine(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $cuisine = Cuisine::factory()->create();
 
         $payload = [

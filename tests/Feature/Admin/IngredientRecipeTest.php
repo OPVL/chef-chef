@@ -3,83 +3,80 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\Ingredient;
+use App\Models\Recipe;
 use App\Models\Type;
 use App\Models\Unit;
-use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class IngredientTest extends TestCase
+class IngredientRecipeTest extends TestCase
 {
     use DatabaseMigrations, WithFaker;
 
     /** @test */
-    public function user_cannot_access_admin_ingredients(): void
+    public function user_cannot_create_page_without_recipe(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $this->get(route('admin.ingredient.create'))->assertRedirect(route('home'));
+        $this->asAdmin();
+        $this->get(route('admin.recipe.ingredient.create', 1))->assertStatus(404);
     }
 
     /** @test */
     public function can_get_create_page(): void
     {
+        $this->withoutExceptionHandling();
         $this->asAdmin();
+        $recipe = Recipe::factory()->create();
+        $url = route('admin.recipe.ingredient.create', $recipe->id);
+        // dd($url);
 
-        $this->get(route('admin.ingredient.create'))->assertOk();
+        $this->get($url)->assertOk();
     }
 
     /** @test */
-    public function can_get_index_page(): void
+    public function can_store_ingredients_against_recipe(): void
     {
+        $this->withoutExceptionHandling();
+
         $this->asAdmin();
-
-        $this->get(route('admin.ingredient.index'))->assertOk();
-    }
-
-    /** @test */
-    public function can_create_ingredient(): void
-    {
-        $this->asAdmin();
-        $this->assertNull(Ingredient::first(), 'Database not cleared from previous run');
-
-        $unit = Unit::factory()->create();
-        $type = Type::factory()->create();
+        $recipe = Recipe::factory()->create();
+        $ingredients = Ingredient::factory(5)->create();
 
         $payload = [
-            'name' => $this->faker->name(),
-            'unit_id' => $unit->id,
-            'type_id' => $type->id,
+            'ingredient' => $ingredients->pluck('id')->toArray(),
         ];
 
-        $this->put(route('admin.ingredient.store'), $payload)
-            ->assertRedirect(route('admin.ingredient.index'))
-            ->assertSessionHas('success', "created ingredient: {$payload['name']}");
-
-        $created = Ingredient::first();
-
-        $this->assertNotNull($created);
-        $this->assertEquals($payload['name'], $created->name);
-        $this->assertEquals($payload['unit_id'], $created->unit->id);
-        $this->assertEquals($payload['type_id'], $created->type->id);
+        $this->put(route('admin.recipe.ingredient.store', $recipe), $payload)
+            ->assertRedirect(route('admin.recipe.ingredient.edit', $recipe))
+            ->assertSessionHas('success', "stored {$ingredients->count()} ingredients for recipe: {$recipe->name}");
     }
 
     /** @test */
-    public function shows_list_of_ingredients_on_index(): void
+    public function can_store_ingredients_quantities_against_recipe(): void
     {
+        $this->markTestSkipped('incomplete');
+        $this->withoutExceptionHandling();
+
         $this->asAdmin();
-        $type = Type::factory()->create();
-        $unit = Unit::factory()->create();
-        $ingredients = Ingredient::factory(5)->type($type)->unit($unit)->create();
+        $recipe = Recipe::factory()->create();
+        $ingredientsOne = Ingredient::factory(5)->create();
 
-        $response = $this->get(route('admin.ingredient.index'))
-            ->assertOk();
-        $response->assertSeeText($type->name);
+        $ingredientsTwo = Ingredient::factory(5)->create();
 
-        $ingredients->each(function (Ingredient $ingredient) use ($response): void {
-            $response->assertSeeText($ingredient->name);
-        });
+        $payload = [
+            'quantity' => $ingredientsTwo->map(function ($ingredient) {
+                return (float) ($this->faker->numberBetween(0, 1000) / 10);
+            }),
+            'unit' => $ingredientsTwo->pluck('id')->toArray(),
+        ];
+
+        // dd($payload);
+
+        $this->patch(route('admin.recipe.ingredient.update', $recipe), $payload)
+            ->assertRedirect(route('admin.recipe.get', $recipe))
+            ->assertSessionHas('success', "updated {$ingredientsTwo->count()} ingredients for recipe: {$recipe->name}");
+
+        $this->assertCount(5, $recipe->ingredients);
     }
 
     /** @test */

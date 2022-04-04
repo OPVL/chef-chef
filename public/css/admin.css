@@ -167,14 +167,57 @@ footer .copyright {
   background: #EDE7E3;
   color: #272932;
 }
-.hero .crud-form .input-group {
+.hero .crud-form.wrap-over {
+  flex-direction: row;
+  width: 70vw;
+  flex-wrap: wrap;
+}
+.hero .crud-form .form-group {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  max-height: 50vh;
+  align-items: center;
+  max-width: 650px;
+}
+.hero .crud-form .form-group .ingredient-group .quantity-box {
+  display: flex;
+}
+.hero .crud-form .form-group .ingredient-group .quantity-box .input-group {
+  width: auto;
+}
+.hero .crud-form .form-group .ingredient-group .quantity-box .input-group label {
+  font-size: 18px !important;
+}
+.hero .crud-form .form-group .ingredient-group .quantity-box .input-group select {
+  width: 88px;
+  font-size: 10px;
+  height: 33px;
+}
+.hero .crud-form .form-group .ingredient-group .quantity-box .input-group input {
+  border-right: transparent;
+}
+
+.form-group {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  max-height: 50vh;
+  align-items: center;
+  max-width: 650px;
+}
+
+.input-group {
   display: flex;
   flex-direction: column;
   width: 300px;
   min-height: 80px;
   justify-content: space-evenly;
 }
-.hero .crud-form .input-group.inline {
+.input-group.smaller {
+  font-size: 17px;
+}
+.input-group.inline {
   flex-direction: row;
   min-height: 20px;
   margin-top: 10px;
@@ -183,10 +226,10 @@ footer .copyright {
   justify-content: space-evenly;
   width: 200px;
 }
-.hero .crud-form .input-group.inline label {
+.input-group.inline label {
   font-size: 14px;
 }
-.hero .crud-form .input-group input {
+.input-group input {
   padding: 6px;
   font-weight: 800;
   letter-spacing: 0.9px;
@@ -194,7 +237,7 @@ footer .copyright {
   background: #EDE7E3;
   color: #272932;
 }
-.hero .crud-form .input-group select {
+.input-group select {
   padding: 6px;
   font-weight: 800;
   letter-spacing: 0.9px;
@@ -202,7 +245,7 @@ footer .copyright {
   background: #EDE7E3;
   color: #272932;
 }
-.hero .crud-form .input-group label {
+.input-group label {
   font-size: 23px;
   font-family: sans-serif;
 }

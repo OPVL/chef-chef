@@ -1,4 +1,4 @@
-<x-layout.standard>
+<x-layout.admin>
     @slot('title')
         {{ $recipe->name }}
     @endslot
@@ -7,4 +7,4 @@
             <p>{{ $ingredient->display }}</p>
         @endforeach
     @endsection
-</x-layout.standard>
+</x-layout.admin>

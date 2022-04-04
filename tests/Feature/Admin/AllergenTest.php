@@ -23,7 +23,7 @@ class AllergenTest extends TestCase
     /** @test */
     public function can_get_create_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.allergen.create'))->assertOk();
     }
@@ -31,7 +31,7 @@ class AllergenTest extends TestCase
     /** @test */
     public function can_get_index_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.allergen.index'))->assertOk();
     }
@@ -39,7 +39,7 @@ class AllergenTest extends TestCase
     /** @test */
     public function can_create_allergen(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $this->assertNull(Allergen::first(), 'Database not cleared from previous run');
 
         $payload = [
@@ -60,7 +60,7 @@ class AllergenTest extends TestCase
     /** @test */
     public function shows_list_of_allergens_on_index(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $allergens = Allergen::factory(5)->create();
 
         $response = $this->get(route('admin.allergen.index'))
@@ -74,7 +74,7 @@ class AllergenTest extends TestCase
     /** @test */
     public function can_delete_allergen(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $allergen = Allergen::factory()->create();
 
         $this->delete(route('admin.allergen.delete', $allergen), ['confirm' => 'true'])
@@ -87,7 +87,7 @@ class AllergenTest extends TestCase
     /** @test */
     public function can_update_allergen(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $allergen = Allergen::factory()
             ->create();
 

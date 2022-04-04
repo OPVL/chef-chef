@@ -7,14 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateRecipe extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -25,6 +17,10 @@ class UpdateRecipe extends FormRequest
             'name' => 'required|string',
             'description' => 'nullable|string',
             'cuisine_id' => 'required|integer|exists:cuisines,id',
+            'quantity' => 'nullable|array',
+            'quantity.*' => 'numeric',
+            'unit' => 'nullable|array',
+            'unit.*' => 'exists:units,id|integer',
         ];
     }
 }

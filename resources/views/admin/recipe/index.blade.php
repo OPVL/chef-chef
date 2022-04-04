@@ -5,22 +5,25 @@
 
     @section('content')
         @if (session()->has('success'))
-            {{ session()->get('success') }}
+            <div class="alert success">{{ session()->get('success') }}</div>
         @endif
         <div class="search-box">
             <h4>filter</h4>
-            <div class="input-group">
-                <label for="filter-type">type</label>
-                <select name="filter-type" id="filter-type">
-                    @foreach ($types as $type)
-                        <option value="{{ $type->id }}">{{ $type->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+            <div class="form-group">
 
-            <div class="input-group">
-                <label for="filter-name">name</label>
-                <input type="text" name="filter-name" id="filter-name" value="{{ old('filter-name') }}">
+                <div class="input-group">
+                    <label for="filter-type">type</label>
+                    <select name="filter-type" id="filter-type">
+                        @foreach ($cuisines as $cuisine)
+                            <option value="{{ $cuisine->id }}">{{ $cuisine->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="filter-name">name</label>
+                    <input type="text" name="filter-name" id="filter-name" value="{{ old('filter-name') }}">
+                </div>
             </div>
             <div class="extra">
                 <div class="diet"></div>

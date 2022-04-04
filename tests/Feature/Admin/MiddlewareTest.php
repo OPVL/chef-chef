@@ -22,7 +22,7 @@ class MiddlewareTest extends TestCase
     /** @test */
     public function admin_user_can_access_admin(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.index'))->assertOk();
     }

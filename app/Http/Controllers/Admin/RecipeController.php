@@ -10,7 +10,6 @@ use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\UpdateRecipe;
 use App\Models\Cuisine;
 use App\Models\Recipe;
-use App\Models\Type;
 use App\Models\Unit;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -23,7 +22,7 @@ class RecipeController extends Controller
 
     public function index(): View
     {
-        return view('admin.recipe.index', ['recipes' => Recipe::all(), 'types' => Type::all()]);
+        return view('admin.recipe.index', ['recipes' => Recipe::all(), 'cuisines' => Cuisine::all()]);
     }
 
     public function create(): View
@@ -53,6 +52,8 @@ class RecipeController extends Controller
 
     public function update(Recipe $recipe, UpdateRecipe $request): RedirectResponse
     {
+        dd($request->all());
+
         $recipe->update($request->validated());
 
         return redirect()
