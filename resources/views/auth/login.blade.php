@@ -6,7 +6,7 @@
         <div class="hero">
             <h4 class="page-title">login</h4>
 
-            <form action="{{ route('login.store') }}" method="post">
+            <form class="crud-form" action="{{ route('login.store') }}" method="post">
                 @method('PUT')
                 @csrf
 

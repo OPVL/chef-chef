@@ -173,39 +173,73 @@ footer
         padding: 20px
         border: solid $black
         @include lightmode
+        &.wrap-over
+            flex-direction: row
+            width: 70vw
+            flex-wrap: wrap
 
-        .input-group
+        .form-group
+            flex-wrap: wrap
             display: flex
             flex-direction: column
-            width: 300px
-            min-height: 80px
-            justify-content: space-evenly
-            &.inline
-                flex-direction: row
-                min-height: 20px
-                margin-top: 10px
-                font-size: 24px
-                align-items: center
-                justify-content: space-evenly
-                width: 200px
-                label
-                    font-size: 14px
-            input
-                padding: 6px
-                font-weight: 800
-                letter-spacing: 0.9px
-                border: solid $black
-                @include lightmode
+            max-height: 50vh
+            align-items: center
+            max-width: 650px
+            .ingredient-group
+                .quantity-box
+                    display: flex
+                    .input-group
+                        width: auto
+                        label
+                            font-size: 18px!important
+                        select
+                            width: 88px
+                            font-size: 10px
+                            height: 33px
+                            // border-left: transparent
+                        input
+                            border-right: transparent
+.form-group
+    flex-wrap: wrap
+    display: flex
+    flex-direction: column
+    max-height: 50vh
+    align-items: center
+    max-width: 650px
 
-            select
-                padding: 6px
-                font-weight: 800
-                letter-spacing: 0.9px
-                border: solid $black
-                @include lightmode
-            label
-                font-size: 23px
-                font-family: sans-serif
+.input-group
+    display: flex
+    flex-direction: column
+    width: 300px
+    min-height: 80px
+    justify-content: space-evenly
+    &.smaller
+        font-size: 17px
+    &.inline
+        flex-direction: row
+        min-height: 20px
+        margin-top: 10px
+        font-size: 24px
+        align-items: center
+        justify-content: space-evenly
+        width: 200px
+        label
+            font-size: 14px
+    input
+        padding: 6px
+        font-weight: 800
+        letter-spacing: 0.9px
+        border: solid $black
+        @include lightmode
+    select
+        padding: 6px
+        font-weight: 800
+        letter-spacing: 0.9px
+        border: solid $black
+        @include lightmode
+    label
+        font-size: 23px
+        font-family: sans-serif
 
 .alert
     font-size: 14px
