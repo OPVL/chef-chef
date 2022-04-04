@@ -206,4 +206,39 @@ footer .copyright {
   align-items: center;
 }
 
+#admin-overlay {
+  width: 100%;
+  background: white;
+}
+#admin-overlay .horizontal-list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+}
+#admin-overlay .horizontal-list li {
+  list-style-type: none;
+}
+#admin-overlay .horizontal-list li a {
+  display: flex;
+  height: 40px;
+  display: flex;
+  padding: 10px 30px;
+  align-items: center;
+  color: #D7263D;
+  text-decoration: none;
+  font-weight: 800;
+  font-family: sans-serif;
+  letter-spacing: 3px;
+  transition: 0.15s;
+}
+#admin-overlay .horizontal-list li a:hover {
+  background: #272932;
+  color: #EDE7E3;
+  cursor: pointer;
+}
+#admin-overlay .horizontal-list li a i {
+  margin-right: 35px;
+}
+
 /*# sourceMappingURL=app.css.map */

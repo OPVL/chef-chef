@@ -1,6 +1,6 @@
 <x-layout.standard>
     @slot('title')
-        login
+        {{ config('app.name') }}
     @endslot
     @section('content')
         <script>
