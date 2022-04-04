@@ -21,7 +21,7 @@ class RegisterController extends Controller
             'emailPlaceholder' => "{$namePlaceholder}{$number}@example.com",
             'namePlaceholder' => $namePlaceholder,
             'passwordPlaceholder' => 'three-rough-boys',
-            'nonce' => $this->seedDebugNonce($namePlaceholder, $number),
+            'nonce' => config('app.debug') ? $this->seedDebugNonce($namePlaceholder, $number) : false,
         ]);
     }
 

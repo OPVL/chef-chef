@@ -13,7 +13,6 @@ class Controller extends BaseController
 
     protected function seedDebugNonce(string ...$data): string
     {
-
         $data = implode(':', collect($data)->map(function ($seed) {
             try {
                 return str($seed);
@@ -21,9 +20,7 @@ class Controller extends BaseController
                 return '';
             }
         })->toArray());
-        dump($data);
         $hash = hash('sha256', $data);
-        dump($hash);
         session(['debug_nonce' => $hash]);
 
         return $hash;

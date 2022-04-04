@@ -43,7 +43,9 @@
                     <input type="password" name="repeat_password" id="repeat_password" autocomplete="password" required
                         placeholder="{{ $passwordPlaceholder }}">
                 </div>
-                <x-debug.input type="checkbox" name="make_admin" :nonce="$nonce" />
+                @if ($nonce)
+                    <x-debug.input type="checkbox" name="make_admin" :nonce="$nonce" />
+                @endif
                 <button type="submit" class="btn main submit">register</button>
                 <a class="not-focus-link" href="{{ route('login') }}">already got an account?</a>
             </form>
