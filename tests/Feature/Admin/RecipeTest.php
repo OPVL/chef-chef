@@ -24,7 +24,7 @@ class RecipeTest extends TestCase
     /** @test */
     public function can_get_create_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.recipe.create'))->assertOk();
     }
@@ -32,7 +32,7 @@ class RecipeTest extends TestCase
     /** @test */
     public function can_get_index_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.recipe.index'))->assertOk();
     }
@@ -40,7 +40,7 @@ class RecipeTest extends TestCase
     /** @test */
     public function can_create_recipe(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $this->assertNull(Recipe::first(), 'Database not cleared from previous run');
 
         $cuisine = Cuisine::factory()->create();
@@ -66,7 +66,7 @@ class RecipeTest extends TestCase
     /** @test */
     public function can_update_recipe(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $recipe = Recipe::factory()->create();
 
         $cuisine = Cuisine::factory()->create();
@@ -93,7 +93,7 @@ class RecipeTest extends TestCase
     /** @test */
     public function shows_list_of_recipes_on_index(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $cuisine = Cuisine::factory()->create();
         $recipes = Recipe::factory(5)->cuisine($cuisine)->create();
 
@@ -108,7 +108,7 @@ class RecipeTest extends TestCase
     /** @test */
     public function can_delete_recipe(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $recipe = Recipe::factory()->create();
 
         $this->delete(route('admin.recipe.delete', $recipe), ['confirm' => 'true'])

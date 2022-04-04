@@ -23,7 +23,7 @@ class TypeTest extends TestCase
     /** @test */
     public function can_get_create_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.type.create'))->assertOk();
     }
@@ -31,7 +31,7 @@ class TypeTest extends TestCase
     /** @test */
     public function can_get_index_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.type.index'))->assertOk();
     }
@@ -39,7 +39,7 @@ class TypeTest extends TestCase
     /** @test */
     public function can_create_type(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $this->assertNull(Type::first(), 'Database not cleared from previous run');
 
         $payload = [
@@ -59,7 +59,7 @@ class TypeTest extends TestCase
     /** @test */
     public function shows_list_of_types_on_index(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $types = Type::factory(5)->create();
 
         $response = $this->get(route('admin.type.index'))
@@ -74,7 +74,7 @@ class TypeTest extends TestCase
     /** @test */
     public function can_delete_type(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $type = Type::factory()->create();
 
         $this->delete(route('admin.type.delete', $type), ['confirm' => 'true'])
@@ -87,7 +87,7 @@ class TypeTest extends TestCase
     /** @test */
     public function can_update_type(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $type = Type::factory()->create();
 
         $payload = [

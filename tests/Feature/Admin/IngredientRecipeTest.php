@@ -25,7 +25,6 @@ class IngredientRecipeTest extends TestCase
     public function can_get_create_page(): void
     {
         $this->withoutExceptionHandling();
-
         $this->asAdmin();
         $recipe = Recipe::factory()->create();
         $url = route('admin.recipe.ingredient.create', $recipe->id);
@@ -55,6 +54,7 @@ class IngredientRecipeTest extends TestCase
     /** @test */
     public function can_store_ingredients_quantities_against_recipe(): void
     {
+        $this->markTestSkipped('incomplete');
         $this->withoutExceptionHandling();
 
         $this->asAdmin();

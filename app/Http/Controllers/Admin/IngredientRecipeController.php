@@ -45,10 +45,7 @@ class IngredientRecipeController extends Controller
     public function update(Recipe $recipe, UpdateIngredientRecipe $request): RedirectResponse
     {
         // $payload = [];
-        $payload = [];
-        collect($request->validated('quantity'))
-            ->each(
-                function (float $quantity, int $ingredient_id) use ($request, $recipe, &$payload): void {
+        dd($request->all());
 
         $payload = collect($request->validated('quantity'))
             ->map(

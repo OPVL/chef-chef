@@ -23,7 +23,7 @@ class UnitTest extends TestCase
     /** @test */
     public function can_get_create_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.unit.create'))->assertOk();
     }
@@ -31,7 +31,7 @@ class UnitTest extends TestCase
     /** @test */
     public function can_get_index_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.unit.index'))->assertOk();
     }
@@ -39,7 +39,7 @@ class UnitTest extends TestCase
     /** @test */
     public function can_create_unit(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $this->assertNull(Unit::first(), 'Database not cleared from previous run');
 
         $payload = [
@@ -61,7 +61,7 @@ class UnitTest extends TestCase
     /** @test */
     public function shows_list_of_units_on_index(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $units = Unit::factory(5)->create();
 
         $response = $this->get(route('admin.unit.index'))
@@ -76,7 +76,7 @@ class UnitTest extends TestCase
     /** @test */
     public function can_delete_unit(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $unit = Unit::factory()->create();
 
         $this->delete(route('admin.unit.delete', $unit), ['confirm' => 'true'])
@@ -89,7 +89,7 @@ class UnitTest extends TestCase
     /** @test */
     public function can_update_unit(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $unit = Unit::factory()->create();
 
         $payload = [

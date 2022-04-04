@@ -25,7 +25,7 @@ class IngredientTest extends TestCase
     /** @test */
     public function can_get_create_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.ingredient.create'))->assertOk();
     }
@@ -33,7 +33,7 @@ class IngredientTest extends TestCase
     /** @test */
     public function can_get_index_page(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
 
         $this->get(route('admin.ingredient.index'))->assertOk();
     }
@@ -41,7 +41,7 @@ class IngredientTest extends TestCase
     /** @test */
     public function can_create_ingredient(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $this->assertNull(Ingredient::first(), 'Database not cleared from previous run');
 
         $unit = Unit::factory()->create();
@@ -68,7 +68,7 @@ class IngredientTest extends TestCase
     /** @test */
     public function shows_list_of_ingredients_on_index(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $type = Type::factory()->create();
         $unit = Unit::factory()->create();
         $ingredients = Ingredient::factory(5)->type($type)->unit($unit)->create();
@@ -85,7 +85,7 @@ class IngredientTest extends TestCase
     /** @test */
     public function can_delete_ingredient(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $ingredient = Ingredient::factory()->create();
 
         $this->delete(route('admin.ingredient.delete', $ingredient), ['confirm' => 'true'])
@@ -98,7 +98,7 @@ class IngredientTest extends TestCase
     /** @test */
     public function can_update_ingredient(): void
     {
-        $this->actingAs(User::factory()->admin()->create());
+        $this->asAdmin();
         $ingredient = Ingredient::factory()
             ->unit(Unit::factory()->create())
             ->type(Type::factory()->create())
